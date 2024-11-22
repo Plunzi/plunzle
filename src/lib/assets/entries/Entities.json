@@ -321,7 +321,7 @@
 		"height": 1.95,
 		"behavior": "Hostile Passive Neutral",
 		"spawn": "Conversion Biome Jockey Structure Reinforcements",
-		"classification": ""
+		"classification": "Undead"
 	},
     {
 		"mob": "Enderman",
@@ -402,7 +402,7 @@
 		"height": 0.9,
 		"behavior": "Neutral Hostile",
 		"spawn": "Light level Spawner Jockey",
-		"classification": ""
+		"classification": "Arthropod"
 	},
     {
 		"mob": "Wolf",
@@ -474,7 +474,7 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Structure Raids Jockey",
-		"classification": ""
+		"classification": "Illager"
 	},
     {
 		"mob": "Ghast",
@@ -510,7 +510,7 @@
 		"height": "1.95",
 		"behavior": "Hostile",
 		"spawn": "Biome Jockey Spawner Light level Reinforcements",
-		"classification": ""
+		"classification": "Undead"
 	},
     {
 		"mob": "Magma Cube",
@@ -546,7 +546,7 @@
 		"height": 1.95,
 		"behavior": "Hostile Passive",
 		"spawn": "Overworld Structure Raids Jockey",
-		"classification": ""
+		"classification": "Illager"
 	},
     {
 		"mob": "Ravager",
@@ -582,7 +582,7 @@
 		"height": 1.99,
 		"behavior": "Hostile",
 		"spawn": "Light level Biome Spawner Lightning Jockey Structure",
-		"classification": ""
+		"classification": "Undead"
 	},
     {
 		"mob": "Slime",
