@@ -1,0 +1,731 @@
+[
+	{
+		"mob": "Allay",
+		"release": "1.19",
+		"health": 20,
+		"height": 0.6,
+		"behavior": "Passive",
+		"spawn": "Structure Duplication",
+		"classification": "None"
+	},
+	{
+		"mob": "Armadillo",
+		"release": "1.20.5",
+		"health": 12,
+		"height": 0.65,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Axolotl",
+		"release": "1.17",
+		"health": 14,
+		"height": 0.42,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Bat",
+		"release": "1.4.2",
+		"health": 6,
+		"height": 0.9,
+		"behavior": "Passive",
+		"spawn": "Light level",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Camel",
+		"release": "1.20",
+		"health": 32,
+		"height": 2.375,
+		"behavior": "Passive",
+		"spawn": "Structure Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Cat",
+		"release": "1.14",
+		"health": 10,
+		"height": 0.7,
+		"behavior": "Passive",
+		"spawn": "Structure Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Chicken",
+		"release": "Alpha 1.0.14",
+		"health": 4,
+		"height": 0.7,
+		"behavior": "Passive",
+		"spawn": "Grass Jockey Projectile Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Cod",
+		"release": "1.13",
+		"health": 3,
+		"height": 0.3,
+		"behavior": "Passive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Cow",
+		"release": "Alpha 1.0.8",
+		"health": 10,
+		"height": 1.4,
+		"behavior": "Passive",
+		"spawn": "Grass Conversion Breeding Structure",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Donkey",
+		"release": "1.6.1",
+		"health": 22,
+		"height": 1.5,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Frog",
+		"release": "1.19",
+		"health": 10,
+		"height": 0.5,
+		"behavior": "Passive",
+		"spawn": "Biome Conversion",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Glow Squid",
+		"release": "1.17",
+		"health": 10,
+		"height": 0.8,
+		"behavior": "Passive",
+		"spawn": "Light level",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Horse",
+		"release": "1.6.1",
+		"health": 22,
+		"height": 1.6,
+		"behavior": "Passive",
+		"spawn": "Biome Structure Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Mooshroom",
+		"release": "1.0.0",
+		"health": 10,
+		"height": 1.4,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Mule",
+		"release": "1.6.1",
+		"health": 22,
+		"height": 1.6,
+		"behavior": "Passive",
+		"spawn": "Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Ocelot",
+		"release": "1.2.1",
+		"health": 10,
+		"height": 0.7,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Parrot",
+		"release": "1.12",
+		"health": 6,
+		"height": 0.9,
+		"behavior": "Passive",
+		"spawn": "Biome",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Pig",
+		"release": "pre-alpha",
+		"health": 10,
+		"height": 0.9,
+		"behavior": "Passive",
+		"spawn": "Grass Breeding Structure",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Pufferfish",
+		"release": "1.13",
+		"health": 3,
+		"height": 0.7,
+		"behavior": "Passive Defensive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Rabbit",
+		"release": "1.8",
+		"health": 3,
+		"height": 0.5,
+		"behavior": "Passive Hostile",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Salmon",
+		"release": "1.13",
+		"health": 3,
+		"height": 0.4,
+		"behavior": "Passive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Sheep",
+		"release": "pre-alpha",
+		"health": 8,
+		"height": 1.3,
+		"behavior": "Passive",
+		"spawn": "Grass Breeding Structure",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Skeleton Horse",
+		"release": "1.6.1",
+		"health": 15,
+		"height": 1.6,
+		"behavior": "Passive",
+		"spawn": "Lightning",
+		"classification": "Undead Animal"
+	},
+	{
+		"mob": "Sniffer",
+		"release": "1.20",
+		"health": 14,
+		"height": 1.75,
+		"behavior": "Passive",
+		"spawn": "Breeding Hatching",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Snow Golem",
+		"release": "1.0.0",
+		"health": 4,
+		"height": 1.9,
+		"behavior": "Passive",
+		"spawn": "Summon",
+		"classification": "Golem"
+	},
+	{
+		"mob": "Squid",
+		"release": "Beta 1.2",
+		"health": 10,
+		"height": 0.8,
+		"behavior": "Passive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Strider",
+		"release": "1.16",
+		"health": 20,
+		"height": 1.7,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding Jockey",
+		"classification": "Animal"
+	},
+	{
+		"mob": "Tadpole",
+		"release": "1.19",
+		"health": 6,
+		"height": 0.3,
+		"behavior": "Passive",
+		"spawn": "Hatching",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Tropical Fish",
+		"release": "1.13",
+		"health": 3,
+		"height": 0.4,
+		"behavior": "Passive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Turtle",
+		"release": "1.13",
+		"health": 30,
+		"height": 0.4,
+		"behavior": "Passive",
+		"spawn": "Biome Breeding Hatching",
+		"classification": "Animal Aquatic"
+	},
+	{
+		"mob": "Villager",
+		"release": "1.0.0",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Passive",
+		"spawn": "Structure Breeding Conversion",
+		"classification": "None"
+	},
+	{
+		"mob": "Wandering Trader",
+		"release": "1.14",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Passive",
+		"spawn": "Overworld",
+		"classification": "None"
+	},
+	{
+		"mob": "Bee",
+		"release": "1.15",
+		"health": 10,
+		"height": 0.6,
+		"behavior": "Neutral Passive",
+		"spawn": "Block Breeding",
+		"classification": "Animal Arthropod"
+	},
+    {
+		"mob": "Cave Spider",
+		"release": "Beta 1.8",
+		"health": 12,
+		"height": 0.5,
+		"behavior": "Hostile Neutral",
+		"spawn": "Spawner",
+		"classification": "Arthropod"
+	},
+    {
+		"mob": "Dolphin",
+		"release": "1.13",
+		"health": 10,
+		"height": 0.6,
+		"behavior": "Neutral Passive",
+		"spawn": "Biome",
+		"classification": "Animal Aquatic"
+	},
+    {
+		"mob": "Drowned",
+		"release": "1.13",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Hostile Passive Neutral",
+		"spawn": "Conversion Biome Jockey Structure Reinforcements",
+		"classification": ""
+	},
+    {
+		"mob": "Enderman",
+		"release": "Beta 1.8",
+		"health": 40,
+		"height": 2.9,
+		"behavior": "Neutral",
+		"spawn": "Light level Biome",
+		"classification": "None"
+	},
+    {
+		"mob": "Fox",
+		"release": "1.14",
+		"health": 10,
+		"height": 0.7,
+		"behavior": "Passive Neutral",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Goat",
+		"release": "1.17",
+		"health": 10,
+		"height": 1.3,
+		"behavior": "Neutral",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Iron Golem",
+		"release": "1.2.1",
+		"health": 100,
+		"height": 2.7,
+		"behavior": "Neutral Passive",
+		"spawn": "Structure Summon",
+		"classification": "Golem"
+	},
+    {
+		"mob": "Llama",
+		"release": "1.11",
+		"health": 22,
+		"height": 1.87,
+		"behavior": "Neutral",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Panda",
+		"release": "1.14",
+		"health": 20,
+		"height": 1.25,
+		"behavior": "Neutral Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Piglin",
+		"release": "1.16",
+		"health": 16,
+		"height": 1.95,
+		"behavior": "Neutral Passive",
+		"spawn": "Biome Structure",
+		"classification": "None"
+	},
+    {
+		"mob": "Polar Bear",
+		"release": "1.10",
+		"health": 30,
+		"height": 1.4,
+		"behavior": "Neutral Passive",
+		"spawn": "Biome",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Spider",
+		"release": "pre-alpha",
+		"health": 16,
+		"height": 0.9,
+		"behavior": "Neutral Hostile",
+		"spawn": "Light level Spawner Jockey",
+		"classification": ""
+	},
+    {
+		"mob": "Wolf",
+		"release": "Beta 1.4",
+		"health": 8,
+		"height": 0.85,
+		"behavior": "Neutral Passive",
+		"spawn": "Biome Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Zombified Piglin",
+		"release": "Alpha 1.2.0",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Neutral",
+		"spawn": "Biome Structure Conversion Lightning Jockey Reinforcements",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Blaze",
+		"release": "1.0.0",
+		"health": 20,
+		"height": 1.8,
+		"behavior": "Hostile",
+		"spawn": "Structure Spawner",
+		"classification": "None"
+	},
+    {
+		"mob": "Bogged",
+		"release": "1.21",
+		"health": 16,
+		"height": 1.99,
+		"behavior": "Hostile",
+		"spawn": "Biome Spawner",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Creeper",
+		"release": "pre-alpha",
+		"health": 20,
+		"height": 1.7,
+		"behavior": "Hostile",
+		"spawn": "Light level",
+		"classification": "None"
+	},
+    {
+		"mob": "Elder Guardian",
+		"release": "1.8",
+		"health": 80,
+		"height": 1.9975,
+		"behavior": "Hostile",
+		"spawn": "Structure",
+		"classification": "Aquatic"
+	},
+    {
+		"mob": "Endermite",
+		"release": "1.8",
+		"health": 8,
+		"height": 0.3,
+		"behavior": "Hostile",
+		"spawn": "Projectile",
+		"classification": "Arthropod"
+	},
+    {
+		"mob": "Evoker",
+		"release": "1.11",
+		"health": 24,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Structure Raids Jockey",
+		"classification": ""
+	},
+    {
+		"mob": "Ghast",
+		"release": "Alpha 1.2.0",
+		"health": 10,
+		"height": 4,
+		"behavior": "Hostile",
+		"spawn": "Biome",
+		"classification": "None"
+	},
+    {
+		"mob": "Guardian",
+		"release": "1.8",
+		"health": 30,
+		"height": 0.85,
+		"behavior": "Hostile",
+		"spawn": "Structure",
+		"classification": "Aquatic"
+	},
+    {
+		"mob": "Hoglin",
+		"release": "1.16",
+		"health": 40,
+		"height": 1.4,
+		"behavior": "Hostile",
+		"spawn": "Biome Structure Breeding",
+		"classification": "Animal"
+	},
+    {
+		"mob": "Husk",
+		"release": "1.10",
+		"health": "20",
+		"height": "1.95",
+		"behavior": "Hostile",
+		"spawn": "Biome Jockey Spawner Light level Reinforcements",
+		"classification": ""
+	},
+    {
+		"mob": "Magma Cube",
+		"release": "1.0.0",
+		"health": 16,
+		"height": 2.04,
+		"behavior": "Hostile",
+		"spawn": "Biome Spawner Structure",
+		"classification": "None"
+	},
+    {
+		"mob": "Phantom",
+		"release": "1.13",
+		"health": 20,
+		"height": 0.5,
+		"behavior": "Hostile",
+		"spawn": "Summon Light level",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Piglin Brute",
+		"release": "1.16.2",
+		"health": 50,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Structure",
+		"classification": "None"
+	},
+    {
+		"mob": "Pillager",
+		"release": "1.14",
+		"health": 24,
+		"height": 1.95,
+		"behavior": "Hostile Passive",
+		"spawn": "Overworld Structure Raids Jockey",
+		"classification": ""
+	},
+    {
+		"mob": "Ravager",
+		"release": "1.14",
+		"health": 100,
+		"height": 2.2,
+		"behavior": "Hostile",
+		"spawn": "Raids",
+		"classification": "None"
+	},
+    {
+		"mob": "Shulker",
+		"release": "1.9",
+		"health": 30,
+		"height": 1,
+		"behavior": "Hostile",
+		"spawn": "Structure Duplication",
+		"classification": "None"
+	},
+    {
+		"mob": "Silverfish",
+		"release": "Beta 1.7",
+		"health": 8,
+		"height": 0.3,
+		"behavior": "Hostile",
+		"spawn": "Block Spawner Magic",
+		"classification": "Arthropod"
+	},
+    {
+		"mob": "Skeleton",
+		"release": "pre-alpha",
+		"health": 20,
+		"height": 1.99,
+		"behavior": "Hostile",
+		"spawn": "Light level Biome Spawner Lightning Jockey Structure",
+		"classification": ""
+	},
+    {
+		"mob": "Slime",
+		"release": "Alpha 1.0.11",
+		"health": 16,
+		"height": 2.04,
+		"behavior": "Hostile",
+		"spawn": "Biome Magic Spawner",
+		"classification": "None"
+	},
+    {
+		"mob": "Stray",
+		"release": "1.10",
+		"health": 20,
+		"height": 1.99,
+		"behavior": "Hostile",
+		"spawn": "Light level Biome Conversion Spawner",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Vex",
+		"release": "1.11",
+		"health": 14,
+		"height": 0.8,
+		"behavior": "Hostile",
+		"spawn": "Summon",
+		"classification": "None"
+	},
+    {
+		"mob": "Vindicator",
+		"release": "1.11",
+		"health": 24,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Structure Raids Jockey",
+		"classification": "Illager"
+	},
+    {
+		"mob": "Warden",
+		"release": "1.19",
+		"health": 500,
+		"height": 2.9,
+		"behavior": "Hostile",
+		"spawn": "Block Summon",
+		"classification": "None"
+	},
+    {
+		"mob": "Witch",
+		"release": "1.4.2",
+		"health": 26,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Light level Structure Raids Conversion Lightning",
+		"classification": "None"
+	},
+    {
+		"mob": "Wither Skeleton",
+		"release": "1.4.2",
+		"health": 20,
+		"height": 2.4,
+		"behavior": "Hostile",
+		"spawn": "Structure",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Zoglin",
+		"release": "1.16",
+		"health": 40,
+		"height": 1.4,
+		"behavior": "Hostile",
+		"spawn": "Conversion",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Zombie",
+		"release": "pre-alpha",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Light level Conversion Spawner Jockey Reinforcements Sieges",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Zombie Villager",
+		"release": "1.4.2",
+		"health": 20,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Light level Conversion Structure Jockey Reinforcements",
+		"classification": "Undead"
+	},
+    {
+		"mob": "Creaking",
+		"release": "1.21.4",
+		"health": 1,
+		"height": 2.7,
+		"behavior": "Hostile",
+		"spawn": "Block",
+		"classification": "None"
+	},
+    {
+		"mob": "Ender Dragon",
+		"release": "1.0.0",
+		"health": "200",
+		"height": 8,
+		"behavior": "Hostile",
+		"spawn": "Structure Summon",
+		"classification": "Boss"
+	},
+    {
+		"mob": "Wither",
+		"release": "1.4.2",
+		"health": 300,
+		"height": 3.5,
+		"behavior": "Hostile",
+		"spawn": "Summon",
+		"classification": "Undead Boss"
+	},
+    {
+		"mob": "Zombie Horse",
+		"release": "1.6.1",
+		"health": 15,
+		"height": 1.6,
+		"behavior": "Passive",
+		"spawn": "Command",
+		"classification": "Undead Animal"
+	},
+    {
+		"mob": "Giant",
+		"release": "pre-alpha",
+		"health": 100,
+		"height": 12,
+		"behavior": "Hostile",
+		"spawn": "Light level Command",
+		"classification": "None"
+	},
+    {
+		"mob": "Illusioner",
+		"release": "1.12",
+		"health": 32,
+		"height": 1.95,
+		"behavior": "Hostile",
+		"spawn": "Command",
+		"classification": "Illager"
+	}
+]
