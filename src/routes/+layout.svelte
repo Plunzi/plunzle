@@ -3,4 +3,7 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
+
+<main class="pt-16 flex-grow">
+	{@render children()}
+</main>
