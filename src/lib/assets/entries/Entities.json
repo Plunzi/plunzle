@@ -6,7 +6,8 @@
 		"height": 0.6,
 		"behavior": "Passive",
 		"spawn": "Structure Duplication",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/allay.gif"
 	},
 	{
 		"mob": "Armadillo",
@@ -15,7 +16,8 @@
 		"height": 0.65,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/armadillo.gif"
 	},
 	{
 		"mob": "Axolotl",
@@ -24,7 +26,8 @@
 		"height": 0.42,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/axolotl.png"
 	},
 	{
 		"mob": "Bat",
@@ -33,7 +36,8 @@
 		"height": 0.9,
 		"behavior": "Passive",
 		"spawn": "Light level",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/bat.gif"
 	},
 	{
 		"mob": "Camel",
@@ -42,7 +46,8 @@
 		"height": 2.375,
 		"behavior": "Passive",
 		"spawn": "Structure Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/camel.png"
 	},
 	{
 		"mob": "Cat",
@@ -51,7 +56,8 @@
 		"height": 0.7,
 		"behavior": "Passive",
 		"spawn": "Structure Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/cat.png"
 	},
 	{
 		"mob": "Chicken",
@@ -60,7 +66,8 @@
 		"height": 0.7,
 		"behavior": "Passive",
 		"spawn": "Grass Jockey Projectile Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/chicken.png"
 	},
 	{
 		"mob": "Cod",
@@ -69,7 +76,8 @@
 		"height": 0.3,
 		"behavior": "Passive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/cod.gif"
 	},
 	{
 		"mob": "Cow",
@@ -78,7 +86,8 @@
 		"height": 1.4,
 		"behavior": "Passive",
 		"spawn": "Grass Conversion Breeding Structure",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/cow.png"
 	},
 	{
 		"mob": "Donkey",
@@ -87,7 +96,8 @@
 		"height": 1.5,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/donkey.png"
 	},
 	{
 		"mob": "Frog",
@@ -96,7 +106,8 @@
 		"height": 0.5,
 		"behavior": "Passive",
 		"spawn": "Biome Conversion",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/frog.gif"
 	},
 	{
 		"mob": "Glow Squid",
@@ -105,7 +116,8 @@
 		"height": 0.8,
 		"behavior": "Passive",
 		"spawn": "Light level",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/glow_squid.gif"
 	},
 	{
 		"mob": "Horse",
@@ -114,7 +126,8 @@
 		"height": 1.6,
 		"behavior": "Passive",
 		"spawn": "Biome Structure Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/horse.png"
 	},
 	{
 		"mob": "Mooshroom",
@@ -123,7 +136,8 @@
 		"height": 1.4,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/mooshroom.png"
 	},
 	{
 		"mob": "Mule",
@@ -132,7 +146,8 @@
 		"height": 1.6,
 		"behavior": "Passive",
 		"spawn": "Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/mule.png"
 	},
 	{
 		"mob": "Ocelot",
@@ -141,7 +156,8 @@
 		"height": 0.7,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/ocelot.png"
 	},
 	{
 		"mob": "Parrot",
@@ -150,7 +166,8 @@
 		"height": 0.9,
 		"behavior": "Passive",
 		"spawn": "Biome",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/parrot.png"
 	},
 	{
 		"mob": "Pig",
@@ -159,7 +176,8 @@
 		"height": 0.9,
 		"behavior": "Passive",
 		"spawn": "Grass Breeding Structure",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/pig.png"
 	},
 	{
 		"mob": "Pufferfish",
@@ -168,7 +186,8 @@
 		"height": 0.7,
 		"behavior": "Passive Defensive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/pufferfish.gif"
 	},
 	{
 		"mob": "Rabbit",
@@ -177,7 +196,8 @@
 		"height": 0.5,
 		"behavior": "Passive Hostile",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/rabbit.png"
 	},
 	{
 		"mob": "Salmon",
@@ -186,7 +206,8 @@
 		"height": 0.4,
 		"behavior": "Passive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/salmon.gif"
 	},
 	{
 		"mob": "Sheep",
@@ -195,7 +216,8 @@
 		"height": 1.3,
 		"behavior": "Passive",
 		"spawn": "Grass Breeding Structure",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/sheep.png"
 	},
 	{
 		"mob": "Skeleton Horse",
@@ -204,7 +226,8 @@
 		"height": 1.6,
 		"behavior": "Passive",
 		"spawn": "Lightning",
-		"classification": "Undead Animal"
+		"classification": "Undead Animal",
+		"ressource": "/skeleton_horse.png"
 	},
 	{
 		"mob": "Sniffer",
@@ -213,7 +236,8 @@
 		"height": 1.75,
 		"behavior": "Passive",
 		"spawn": "Breeding Hatching",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/sniffer.gif"
 	},
 	{
 		"mob": "Snow Golem",
@@ -222,7 +246,8 @@
 		"height": 1.9,
 		"behavior": "Passive",
 		"spawn": "Summon",
-		"classification": "Golem"
+		"classification": "Golem",
+		"ressource": "/snow_golem.png"
 	},
 	{
 		"mob": "Squid",
@@ -231,7 +256,8 @@
 		"height": 0.8,
 		"behavior": "Passive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/squid.gif"
 	},
 	{
 		"mob": "Strider",
@@ -240,7 +266,8 @@
 		"height": 1.7,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding Jockey",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/strider.gif"
 	},
 	{
 		"mob": "Tadpole",
@@ -249,7 +276,8 @@
 		"height": 0.3,
 		"behavior": "Passive",
 		"spawn": "Hatching",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/tadpole.gif"
 	},
 	{
 		"mob": "Tropical Fish",
@@ -258,7 +286,8 @@
 		"height": 0.4,
 		"behavior": "Passive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/tropical_fish.png"
 	},
 	{
 		"mob": "Turtle",
@@ -267,7 +296,8 @@
 		"height": 0.4,
 		"behavior": "Passive",
 		"spawn": "Biome Breeding Hatching",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/turtle.png"
 	},
 	{
 		"mob": "Villager",
@@ -276,7 +306,8 @@
 		"height": 1.95,
 		"behavior": "Passive",
 		"spawn": "Structure Breeding Conversion",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/villager.png"
 	},
 	{
 		"mob": "Wandering Trader",
@@ -285,7 +316,8 @@
 		"height": 1.95,
 		"behavior": "Passive",
 		"spawn": "Overworld",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/wandering_trader.png"
 	},
 	{
 		"mob": "Bee",
@@ -294,7 +326,8 @@
 		"height": 0.6,
 		"behavior": "Neutral Passive",
 		"spawn": "Block Breeding",
-		"classification": "Animal Arthropod"
+		"classification": "Animal Arthropod",
+		"ressource": "/bee.gif"
 	},
     {
 		"mob": "Cave Spider",
@@ -303,7 +336,8 @@
 		"height": 0.5,
 		"behavior": "Hostile Neutral",
 		"spawn": "Spawner",
-		"classification": "Arthropod"
+		"classification": "Arthropod",
+		"ressource": "/cave_spider.png"
 	},
     {
 		"mob": "Dolphin",
@@ -312,7 +346,8 @@
 		"height": 0.6,
 		"behavior": "Neutral Passive",
 		"spawn": "Biome",
-		"classification": "Animal Aquatic"
+		"classification": "Animal Aquatic",
+		"ressource": "/dolphin.gif"
 	},
     {
 		"mob": "Drowned",
@@ -321,7 +356,8 @@
 		"height": 1.95,
 		"behavior": "Hostile Passive Neutral",
 		"spawn": "Conversion Biome Jockey Structure Reinforcements",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/drowned.png"
 	},
     {
 		"mob": "Enderman",
@@ -330,7 +366,8 @@
 		"height": 2.9,
 		"behavior": "Neutral",
 		"spawn": "Light level Biome",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/enderman.png"
 	},
     {
 		"mob": "Fox",
@@ -339,7 +376,8 @@
 		"height": 0.7,
 		"behavior": "Passive Neutral",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/fox.png"
 	},
     {
 		"mob": "Goat",
@@ -348,7 +386,8 @@
 		"height": 1.3,
 		"behavior": "Neutral",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/goat.png"
 	},
     {
 		"mob": "Iron Golem",
@@ -357,7 +396,8 @@
 		"height": 2.7,
 		"behavior": "Neutral Passive",
 		"spawn": "Structure Summon",
-		"classification": "Golem"
+		"classification": "Golem",
+		"ressource": "/iron_golem.png"
 	},
     {
 		"mob": "Llama",
@@ -366,7 +406,8 @@
 		"height": 1.87,
 		"behavior": "Neutral",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/llama.png"
 	},
     {
 		"mob": "Panda",
@@ -375,7 +416,8 @@
 		"height": 1.25,
 		"behavior": "Neutral Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/panda.png"
 	},
     {
 		"mob": "Piglin",
@@ -384,7 +426,8 @@
 		"height": 1.95,
 		"behavior": "Neutral Passive",
 		"spawn": "Biome Structure",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/piglin.png"
 	},
     {
 		"mob": "Polar Bear",
@@ -393,7 +436,8 @@
 		"height": 1.4,
 		"behavior": "Neutral Passive",
 		"spawn": "Biome",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/polar_bear.png"
 	},
     {
 		"mob": "Spider",
@@ -402,7 +446,8 @@
 		"height": 0.9,
 		"behavior": "Neutral Hostile",
 		"spawn": "Light level Spawner Jockey",
-		"classification": "Arthropod"
+		"classification": "Arthropod",
+		"ressource": "/spider.png"
 	},
     {
 		"mob": "Wolf",
@@ -411,7 +456,8 @@
 		"height": 0.85,
 		"behavior": "Neutral Passive",
 		"spawn": "Biome Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/wolf.png"
 	},
     {
 		"mob": "Zombified Piglin",
@@ -420,7 +466,8 @@
 		"height": 1.95,
 		"behavior": "Neutral",
 		"spawn": "Biome Structure Conversion Lightning Jockey Reinforcements",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/zombified_piglin.png"
 	},
     {
 		"mob": "Blaze",
@@ -429,7 +476,8 @@
 		"height": 1.8,
 		"behavior": "Hostile",
 		"spawn": "Structure Spawner",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/blaze.gif"
 	},
     {
 		"mob": "Bogged",
@@ -438,7 +486,8 @@
 		"height": 1.99,
 		"behavior": "Hostile",
 		"spawn": "Biome Spawner",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/bogged.webp"
 	},
     {
 		"mob": "Creeper",
@@ -447,7 +496,8 @@
 		"height": 1.7,
 		"behavior": "Hostile",
 		"spawn": "Light level",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/creeper.png"
 	},
     {
 		"mob": "Elder Guardian",
@@ -456,7 +506,8 @@
 		"height": 1.9975,
 		"behavior": "Hostile",
 		"spawn": "Structure",
-		"classification": "Aquatic"
+		"classification": "Aquatic",
+		"ressource": "/elder_guardian.gif"
 	},
     {
 		"mob": "Endermite",
@@ -465,7 +516,8 @@
 		"height": 0.3,
 		"behavior": "Hostile",
 		"spawn": "Projectile",
-		"classification": "Arthropod"
+		"classification": "Arthropod",
+		"ressource": "/endermite.gif"
 	},
     {
 		"mob": "Evoker",
@@ -474,7 +526,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Structure Raids Jockey",
-		"classification": "Illager"
+		"classification": "Illager",
+		"ressource": "/evoker.png"
 	},
     {
 		"mob": "Ghast",
@@ -483,7 +536,8 @@
 		"height": 4,
 		"behavior": "Hostile",
 		"spawn": "Biome",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/ghast.gif"
 	},
     {
 		"mob": "Guardian",
@@ -492,7 +546,8 @@
 		"height": 0.85,
 		"behavior": "Hostile",
 		"spawn": "Structure",
-		"classification": "Aquatic"
+		"classification": "Aquatic",
+		"ressource": "/guardian.gif"
 	},
     {
 		"mob": "Hoglin",
@@ -501,7 +556,8 @@
 		"height": 1.4,
 		"behavior": "Hostile",
 		"spawn": "Biome Structure Breeding",
-		"classification": "Animal"
+		"classification": "Animal",
+		"ressource": "/hoglin.png"
 	},
     {
 		"mob": "Husk",
@@ -510,7 +566,8 @@
 		"height": "1.95",
 		"behavior": "Hostile",
 		"spawn": "Biome Jockey Spawner Light level Reinforcements",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/husk.png"
 	},
     {
 		"mob": "Magma Cube",
@@ -519,7 +576,8 @@
 		"height": 2.04,
 		"behavior": "Hostile",
 		"spawn": "Biome Spawner Structure",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/magma_cube.png"
 	},
     {
 		"mob": "Phantom",
@@ -528,7 +586,8 @@
 		"height": 0.5,
 		"behavior": "Hostile",
 		"spawn": "Summon Light level",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/phantom.gif"
 	},
     {
 		"mob": "Piglin Brute",
@@ -537,7 +596,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Structure",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/piglin_brute.png"
 	},
     {
 		"mob": "Pillager",
@@ -546,7 +606,8 @@
 		"height": 1.95,
 		"behavior": "Hostile Passive",
 		"spawn": "Overworld Structure Raids Jockey",
-		"classification": "Illager"
+		"classification": "Illager",
+		"ressource": "/pillager.png"
 	},
     {
 		"mob": "Ravager",
@@ -555,7 +616,8 @@
 		"height": 2.2,
 		"behavior": "Hostile",
 		"spawn": "Raids",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/ravager.png"
 	},
     {
 		"mob": "Shulker",
@@ -564,7 +626,8 @@
 		"height": 1,
 		"behavior": "Hostile",
 		"spawn": "Structure Duplication",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/shulker.png"
 	},
     {
 		"mob": "Silverfish",
@@ -573,7 +636,8 @@
 		"height": 0.3,
 		"behavior": "Hostile",
 		"spawn": "Block Spawner Magic",
-		"classification": "Arthropod"
+		"classification": "Arthropod",
+		"ressource": "/silverfish.gif"
 	},
     {
 		"mob": "Skeleton",
@@ -582,7 +646,8 @@
 		"height": 1.99,
 		"behavior": "Hostile",
 		"spawn": "Light level Biome Spawner Lightning Jockey Structure",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/skeleton.png"
 	},
     {
 		"mob": "Slime",
@@ -591,7 +656,8 @@
 		"height": 2.04,
 		"behavior": "Hostile",
 		"spawn": "Biome Magic Spawner",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/slime.png"
 	},
     {
 		"mob": "Stray",
@@ -600,7 +666,8 @@
 		"height": 1.99,
 		"behavior": "Hostile",
 		"spawn": "Light level Biome Conversion Spawner",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/stray.png"
 	},
     {
 		"mob": "Vex",
@@ -609,7 +676,8 @@
 		"height": 0.8,
 		"behavior": "Hostile",
 		"spawn": "Summon",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/vex.gif"
 	},
     {
 		"mob": "Vindicator",
@@ -618,7 +686,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Structure Raids Jockey",
-		"classification": "Illager"
+		"classification": "Illager",
+		"ressource": "/vindicator.png"
 	},
     {
 		"mob": "Warden",
@@ -627,7 +696,8 @@
 		"height": 2.9,
 		"behavior": "Hostile",
 		"spawn": "Block Summon",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/warden.gif"
 	},
     {
 		"mob": "Witch",
@@ -636,7 +706,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Light level Structure Raids Conversion Lightning",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/witch.png"
 	},
     {
 		"mob": "Wither Skeleton",
@@ -645,7 +716,8 @@
 		"height": 2.4,
 		"behavior": "Hostile",
 		"spawn": "Structure",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/wither_skeleton.png"
 	},
     {
 		"mob": "Zoglin",
@@ -654,7 +726,8 @@
 		"height": 1.4,
 		"behavior": "Hostile",
 		"spawn": "Conversion",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/zoglin.png"
 	},
     {
 		"mob": "Zombie",
@@ -663,7 +736,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Light level Conversion Spawner Jockey Reinforcements Sieges",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/zombie.png"
 	},
     {
 		"mob": "Zombie Villager",
@@ -672,7 +746,8 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Light level Conversion Structure Jockey Reinforcements",
-		"classification": "Undead"
+		"classification": "Undead",
+		"ressource": "/zombie_villager.png"
 	},
     {
 		"mob": "Creaking",
@@ -681,7 +756,8 @@
 		"height": 2.7,
 		"behavior": "Hostile",
 		"spawn": "Block",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/creaking.png"
 	},
     {
 		"mob": "Ender Dragon",
@@ -690,7 +766,8 @@
 		"height": 8,
 		"behavior": "Hostile",
 		"spawn": "Structure Summon",
-		"classification": "Boss"
+		"classification": "Boss",
+		"ressource": "/ender_dragon.gif"
 	},
     {
 		"mob": "Wither",
@@ -699,7 +776,8 @@
 		"height": 3.5,
 		"behavior": "Hostile",
 		"spawn": "Summon",
-		"classification": "Undead Boss"
+		"classification": "Undead Boss",
+		"ressource": "/wither.png"
 	},
     {
 		"mob": "Zombie Horse",
@@ -708,7 +786,8 @@
 		"height": 1.6,
 		"behavior": "Passive",
 		"spawn": "Command",
-		"classification": "Undead Animal"
+		"classification": "Undead Animal",
+		"ressource": "/zombie_horse.png"
 	},
     {
 		"mob": "Giant",
@@ -717,7 +796,8 @@
 		"height": 12,
 		"behavior": "Hostile",
 		"spawn": "Light level Command",
-		"classification": "None"
+		"classification": "None",
+		"ressource": "/giant.png"
 	},
     {
 		"mob": "Illusioner",
@@ -726,6 +806,7 @@
 		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Command",
-		"classification": "Illager"
+		"classification": "Illager",
+		"ressource": "/illusioner.png"
 	}
 ]

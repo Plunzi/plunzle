@@ -180,76 +180,91 @@
 
 		{#if searchTerm !== ''}
 			<div class="fixed bottom-0 left-0 right-0 top-36 overflow-y-auto p-8">
-				<table class="w-full border-collapse">
-					<thead class="-translate-y-4 p-4">
-						<tr class=" border-transparent">
-							<td class="w-[14.25%] rounded-l-lg bg-neutral-950 px-2 py-1 text-center">
+				<div class="w-full border-collapse">
+					<div class="-translate-y-4 p-4">
+						<div class=" border-transparent flex">
+							<div class="w-[14.25%] rounded-l-lg bg-neutral-950 px-2 py-1 text-center">
 								<button
 									onclick={() => (sortField = 'mob')}
 									class:bg-[#2da05a]={sortField == 'mob'}
 									class="w-full rounded-md py-1">Mob</button
 								>
-							</td>
-							<td class="w-[14.25%] bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'release')}
 									class:bg-[#2da05a]={sortField == 'release'}
 									class="w-full rounded-md py-1">Release</button
 								>
-							</td>
-							<td class="w-[14.25%] bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'health')}
 									class:bg-[#2da05a]={sortField == 'health'}
 									class="w-full rounded-md py-1">Health</button
 								>
-							</td>
-							<td class="w-[14.25%] bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'height')}
 									class:bg-[#2da05a]={sortField == 'height'}
 									class="w-full rounded-md py-1">Height</button
 								>
-							</td>
-							<td class="w-[14.25%] bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'behavior')}
 									class:bg-[#2da05a]={sortField == 'behavior'}
 									class="w-full rounded-md py-1">Behavior</button
 								>
-							</td>
-							<td class="w-[14.25%] bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'spawn')}
 									class:bg-[#2da05a]={sortField == 'spawn'}
 									class="w-full rounded-md py-1">Spawn</button
 								>
-							</td>
-							<td class="w-[14.25%] rounded-r-lg bg-neutral-950 p-2 text-center">
+							</div>
+							<div class="w-[14.25%] rounded-r-lg bg-neutral-950 p-2 text-center">
 								<button
 									onclick={() => (sortField = 'classification')}
 									class:bg-[#2da05a]={sortField == 'classification'}
 									class="w-full rounded-md py-1">classification</button
 								>
-							</td>
-						</tr>
-					</thead>
-					<tbody>
+							</div>
+						</div>
+					</div>
+					
 						{#if filteredMobs.length === 0}
 							<tr>
 								<td>Nothing found</td>
 							</tr>
 						{:else}
 							{#each filteredMobs as mob (mob)}
-								<tr animate:flip={{ duration: 250 }}>
-									{#each Object.keys(mob) as field, i}
-										<td class:rounded-l-lg={i == 0} class:rounded-r-lg={i == 6} class="w-[14.25%] p-2 bg-neutral-950">{mob[field]}</td>
+								<div animate:flip={{ duration: 250 }} class="flex">
+									{#each Object.keys(mob).slice(0, 7) as field, i}
+										{#if i === 0}
+											<div class="rounded-l-lg bg-neutral-950 p-2 flex w-full items-center gap-4 px-2">
+												<div
+													class="h-16 w-16 bg-contain bg-center bg-no-repeat"
+													style="background-image: url('/entities/{mob.ressource}')"
+												></div>
+												<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
+												{mob[field]}
+											</div>
+										{:else}
+											<div
+												class:rounded-r-lg={i == 6}
+												class="w-[14.25%] bg-neutral-950 p-2 text-center"
+											>
+												{mob[field]}
+											</div>
+										{/if}
 									{/each}
-								</tr>
+								</div>
 							{/each}
 						{/if}
-					</tbody>
-				</table>
+				</div>
 			</div>
 		{/if}
 	</main>
