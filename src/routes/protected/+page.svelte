@@ -103,7 +103,7 @@
 	>
 		{#if !finished}
 			<div class="relative ml-auto">
-				<div class="relative flex h-fit w-[61rem] min-w-[61rem] px-8">
+				<div class="relative flex h-fit min-w-[54rem] w-[54rem] 4xl:w-[61rem] 4xl:min-w-[61rem] px-8">
 					<button
 						aria-label="search"
 						class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
@@ -206,7 +206,7 @@
 		<div class="mr-auto w-fit pr-8" class:ml-auto={finished}>
 			<div
 				class:justify-center={finished}
-				class="relative mt-14 flex w-full flex-col content-center items-center gap-2 overflow-y-scroll"
+				class="relative mt-14 flex w-full flex-col content-center items-center gap-2"
 				style="height: calc(100vh - 11.5rem);"
 			>
 				{#if guesses.length !== 0}
@@ -227,7 +227,7 @@
 					<div class="sticky left-8 right-0 top-0 z-10 h-16 w-fit rounded-xl bg-[#00000050] p-2">
 						<div class="flex rounded-lg bg-[#00000090] backdrop-blur-sm">
 							{#each entryFields as field}
-								<div class="relative z-10 flex h-12 w-32 items-center gap-4 text-lg">
+								<div class="relative z-10 flex h-12 w-28 4xl:w-32 items-center gap-4 text-lg">
 									<span class="absolute left-0 right-0 my-auto text-center text-lg">{field}</span>
 								</div>
 							{/each}
@@ -235,7 +235,9 @@
 					</div>
 				{/if}
 
-				<Guesses {entryFields} {guesses} {selected} />
+				<div class="overflow-y-scroll ml-5">
+					<Guesses {entryFields} {guesses} {selected} />
+				</div>
 			</div>
 		</div>
 	</main>

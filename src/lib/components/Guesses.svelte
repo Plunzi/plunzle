@@ -6,7 +6,7 @@
     const { guesses, entryFields, selected } = $props();
 </script>
 
-{#each guesses as mob (mob)}
+{#each guesses as mob, tries (mob)}
 	<div
 		in:fade={{ duration: 250 }}
 		out:fade={{ duration: 250 }}
@@ -16,8 +16,9 @@
 		{#each entryFields as field, i}
 			{#if i === 0}
 				<div class="relative flex w-fit items-center gap-4 text-lg">
+					<span class="absolute left-4 font-bold text-neutral-300 top-2">{guesses.length - tries}</span>
 					<div
-						class="flex h-32 w-32 rounded-l-lg bg-contain bg-center bg-no-repeat"
+						class="flex h-28 w-28 4xl:h-32 4xl:w-32 rounded-l-lg bg-contain bg-center bg-no-repeat"
 						style="background-image: url('/gui/sprites/{mob[field] === selected[field]
 							? 'slot_right'
 							: 'slot_wrong'}.png')"
@@ -38,7 +39,7 @@
 						mob,
 						selected.release
 					)}.png')"
-					class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+					class="relative flex h-28 w-28 4xl:h-32 4xl:w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 				>
 					<span
 						class:bottom-6={compareReleaseVersion(mob, selected.release) !== 'slot_right'}
@@ -49,7 +50,7 @@
 			{:else if i === 2}
 				<div
 					style="background-image: url('/gui/sprites/{compareHealth(mob, selected.health)}.png')"
-					class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+					class="relative flex h-28 w-28 4xl:h-32 4xl:w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 				>
 					<span
 						class:bottom-6={compareHealth(mob, selected.health) !== 'slot_right'}
@@ -60,7 +61,7 @@
 			{:else if i === 3}
 				<div
 					style="background-image: url('/gui/sprites/{compareHeight(mob, selected.height)}.png')"
-					class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+					class="relative flex h-28 w-28 4xl:h-32 4xl:w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 				>
 					<span
 						class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
@@ -74,7 +75,7 @@
 					style="background-image: url('/gui/sprites/{mob[field] === selected[field]
 						? 'slot_right'
 						: 'slot_wrong'}.png')"
-					class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+					class="relative flex h-28 w-28 4xl:h-32 4xl:w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 				>
 					<span
 						class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-lg leading-4"
