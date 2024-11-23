@@ -4,7 +4,8 @@
 	import jsonEntries from '$lib/assets/entries/Entities.json';
 	import { flip } from 'svelte/animate';
 	import { fade } from 'svelte/transition';
-	import { compareReleaseVersion } from '$lib/compare';
+	import { compareReleaseVersion, compareHeight, compareHealth } from '$lib/compare';
+	import SearchMob from '$lib/components/SearchMob.svelte';
 
 	interface Entry {
 		mob: string;
@@ -46,8 +47,9 @@
 	let sortField = $state<keyof Entry>('mob');
 	let sortDirection = $state('asc');
 	let finished = $state(false);
+	let mode = $state('search');
+	let date = new Date();
 
-	// Computed state for filtered and sorted mobs
 	let filteredMobs: Entry[] = $derived.by(() => {
 		let filtered = entities.filter(
 			(mob) =>
@@ -157,6 +159,8 @@
 						>
 					</button>
 					<button
+						class:!bg-[#2da05a]={mode === 'search'}
+						class:!text-white={mode === 'search'}
 						aria-label="search"
 						class="contens rounded-r-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 						><svg
@@ -173,115 +177,32 @@
 							></path></svg
 						>
 					</button>
-					<button
-						aria-label="search"
-						class="contens ml-3 rounded-sm text-neutral-500 hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
-					>
-						<svg
-							class="h-10 w-11 rounded-lg border-neutral-800 bg-neutral-900 fill-[currentcolor] p-2 px-1 hover:border-r-[#278c4c] hover:bg-[#278c4c]"
-							xmlns="http://www.w3.org/2000/svg"
-							width="1em"
-							height="1em"
-							fill="currentcolor"
-							viewBox="0 0 256 256"
-							><path
-								d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
-							></path></svg
-						>
-					</button>
 				</div>
 
-				<div
-					class:opacity-0={!searchTerm}
-					class:pointer-events-none={!searchTerm}
-					style="height: calc(100vh - 11.5rem);"
-					class="mt-4 w-fit min-w-[50rem] overflow-y-scroll py-8 pl-8 pt-0 transition-all"
-				>
-					<div class="relative flex w-full flex-col gap-2">
-						<div
-							class="sticky left-8 right-0 top-0 z-10 h-16 w-fit cursor-pointer rounded-xl bg-[#00000050] p-2"
-						>
-							<div class="flex rounded-lg bg-[#00000090]">
-								{#each entryFields as field}
-									<button
-										onclick={() => (sortField = field)}
-										class="relative z-10 flex h-12 w-32 items-center gap-4 text-lg"
-									>
-										<span class="absolute left-0 right-0 my-auto text-center text-lg">{field}</span>
-									</button>
-								{/each}
-								<div
-									class:translate-x-[8rem]={sortField == 'release'}
-									class:translate-x-[16rem]={sortField == 'health'}
-									class:translate-x-[24rem]={sortField == 'height'}
-									class:translate-x-[32rem]={sortField == 'behavior'}
-									class:translate-x-[40rem]={sortField == 'spawn'}
-									class:translate-x-[48rem]={sortField == 'classification'}
-									class="absolute left-2 h-12 w-32 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
-								></div>
-							</div>
-						</div>
-
-						{#if filteredMobs.length === 0}
-							<p>Nothing found</p>
-						{:else}
-							{#each filteredMobs as mob (mob)}
-								<button
-									onclick={() => {
-										entities = entities.filter((filterEntry) => filterEntry !== mob);
-										guesses = [mob, ...guesses];
-										if (JSON.stringify(selected) === JSON.stringify(mob)) {
-											finished = true;
-										}
-									}}
-									in:fade={{ duration: 250 }}
-									out:fade={{ duration: 250 }}
-									animate:flip={{ duration: 250 }}
-									class="flex w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 hover:bg-[#36bf6850]"
-								>
-									{#each entryFields as field, i}
-										{#if i === 0}
-											<div class="relative flex w-fit items-center gap-4 text-lg">
-												<div
-													class="flex h-32 w-32 rounded-l-lg bg-contain bg-center bg-no-repeat"
-													style="background-image: url('/gui/sprites/slot.png')"
-												>
-													<div
-														class="mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
-														style="background-image: url('/entities{mob.ressource}')"
-													></div>
-												</div>
-												<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
-												<span
-													class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-													>{mob[field]}</span
-												>
-											</div>
-										{:else}
-											<div
-												class:rounded-r-lg={i == 6}
-												style="background-image: url('/gui/sprites/slot.png')"
-												class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
-											>
-												<span
-													class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-													>{mob[field]}</span
-												>
-											</div>
-										{/if}
-									{/each}
-								</button>
-							{/each}
-						{/if}
-					</div>
-				</div>
+				<SearchMob
+					bind:entities
+					{entryFields}
+					{filteredMobs}
+					bind:finished
+					bind:guesses
+					{searchTerm}
+					{selected}
+					bind:sortField
+				/>
 			</div>
 		{/if}
 
 		<div class="mr-auto w-fit pr-8" class:ml-auto={finished}>
-			<div class="flex w-full flex-col gap-2 overflow-y-scroll" style="height: calc(100vh - 8rem);">
+			<div class:justify-center={finished} class="relative flex w-full flex-col gap-2 overflow-y-scroll content-center items-center" style="height: calc(100vh - 8rem);">
 				{#if guesses.length !== 0}
-					<p>23/11/2024</p>
+					{#if finished}
+						<h1 class="text-4xl font-black font-minecraft leading-loose text-center">Congratulations!</h1>
+						<p class="text-center text-lg -mt-4">You discovered <strong>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</strong>'s #Plunzle mob in <strong>{guesses.length} {guesses.length === 1 ? "try" : "tries"}</strong>! 🐸</p>
+						<br>
+						<img src="/brand-logo-white.svg" class="opacity-10 absolute w-96 h-96" alt="brand">
+					{:else}
+						<p>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</p>
+					{/if}				
 					<div class="sticky left-8 right-0 top-0 z-10 h-16 w-fit rounded-xl bg-[#00000050] p-2">
 						<div class="flex rounded-lg bg-[#00000090]">
 							{#each entryFields as field}
@@ -314,24 +235,43 @@
 											style="background-image: url('/entities{mob.ressource}')"
 										></div>
 									</div>
-									<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
 									<span
 										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}</span
-									>
+										>{mob[field]}
+									</span>
 								</div>
 							{:else if i === 1}
 								<div
-									style="background-image: url('/gui/sprites/{compareReleaseVersion(
-										mob,
-										selected.release
-									)}.png')"
+									style="background-image: url('/gui/sprites/{compareReleaseVersion(mob, selected.release)}.png')"
 									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 								>
 									<span
-										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}</span
-									>
+										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
+										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
+										>{mob[field]}
+									</span>
+								</div>
+							{:else if i === 2}
+								<div
+									style="background-image: url('/gui/sprites/{compareHealth(mob, selected.health)}.png')"
+									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+								>
+									<span
+										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
+										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
+										>{mob[field]}
+									</span>
+								</div>
+							{:else if i === 3}
+								<div
+									style="background-image: url('/gui/sprites/{compareHeight(mob, selected.height)}.png')"
+									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
+								>
+									<span
+										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
+										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
+										>{mob[field]}
+									</span>
 								</div>
 							{:else}
 								<div
@@ -342,7 +282,7 @@
 									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
 								>
 									<span
-										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
+										class="absolute bottom-0 top-0 flex items-center justify-center left-0 right-0 text-center font-minecraft text-lg leading-4"
 										>{mob[field]}</span
 									>
 								</div>
