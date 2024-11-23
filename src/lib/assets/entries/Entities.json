@@ -562,8 +562,8 @@
     {
 		"mob": "Husk",
 		"release": "1.10",
-		"health": "20",
-		"height": "1.95",
+		"health": 20,
+		"height": 1.95,
 		"behavior": "Hostile",
 		"spawn": "Biome Jockey Spawner Light level Reinforcements",
 		"classification": "Undead",
@@ -762,7 +762,7 @@
     {
 		"mob": "Ender Dragon",
 		"release": "1.0.0",
-		"health": "200",
+		"health": 200,
 		"height": 8,
 		"behavior": "Hostile",
 		"spawn": "Structure Summon",
