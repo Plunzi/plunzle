@@ -31,13 +31,13 @@
 	class:opacity-0={!searchTerm}
 	class:pointer-events-none={!searchTerm}
 	style="height: calc(100vh - 11.5rem);"
-	class="mt-4 w-fit min-w-[50rem] overflow-y-scroll py-8 pl-8 pt-0 transition-all"
+	class="mt-4 w-fit min-w-[50rem] overflow-y-scroll pl-8 pt-0 transition-all"
 >
 	<div class="relative flex w-full flex-col gap-2">
 		<div
 			class="sticky left-8 right-0 top-0 z-10 h-16 w-fit cursor-pointer rounded-xl bg-[#00000050] p-2"
 		>
-			<div class="flex rounded-lg bg-[#00000090]">
+			<div class="flex backdrop-blur-sm rounded-lg bg-[#00000090]">
 				{#each entryFields as field}
 					<button
 						onclick={() => (sortField = field)}
@@ -53,7 +53,7 @@
 					class:translate-x-[32rem]={sortField == 'behavior'}
 					class:translate-x-[40rem]={sortField == 'spawn'}
 					class:translate-x-[48rem]={sortField == 'classification'}
-					class="absolute left-2 h-12 w-32 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
+					class="absolute left-0 h-12 w-32 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
 				></div>
 			</div>
 		</div>

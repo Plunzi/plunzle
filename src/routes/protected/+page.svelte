@@ -2,10 +2,9 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 
 	import jsonEntries from '$lib/assets/entries/Entities.json';
-	import { flip } from 'svelte/animate';
-	import { fade } from 'svelte/transition';
-	import { compareReleaseVersion, compareHeight, compareHealth } from '$lib/compare';
 	import SearchMob from '$lib/components/SearchMob.svelte';
+	import Guesses from '$lib/components/Guesses.svelte';
+	import { onMount } from 'svelte';
 
 	interface Entry {
 		mob: string;
@@ -21,27 +20,27 @@
 	let entities: Entry[] = $state(jsonEntries);
 
 	// Bee
-	// const selected = {
-	// 	mob: 'Bee',
-	// 	release: '1.15',
-	// 	health: 10,
-	// 	height: 0.6,
-	// 	behavior: 'Neutral Passive',
-	// 	spawn: 'Block Breeding',
-	// 	classification: 'Animal Arthropod',
-	// 	ressource: '/bee.gif'
-	// };
-
 	const selected = {
-		mob: 'Enderman',
-		release: 'Beta 1.8',
-		health: 40,
-		height: 2.9,
-		behavior: 'Neutral',
-		spawn: 'Light level Biome',
-		classification: 'None',
-		ressource: '/enderman.png'
+		mob: 'Iron Golem',
+		release: '1.2.1',
+		health: 100,
+		height: 2.7,
+		behavior: 'Neutral Passive',
+		spawn: 'Structure Summon',
+		classification: 'Golem',
+		ressource: '/iron_golem.png'
 	};
+
+	// const selected = {
+	// 	mob: 'Enderman',
+	// 	release: 'Beta 1.8',
+	// 	health: 40,
+	// 	height: 2.9,
+	// 	behavior: 'Neutral',
+	// 	spawn: 'Light level Biome',
+	// 	classification: 'None',
+	// 	ressource: '/enderman.png'
+	// };
 
 	let searchTerm = $state('');
 	let sortField = $state<keyof Entry>('mob');
@@ -87,9 +86,12 @@
 		'spawn',
 		'classification'
 	] as const;
-	type EntryField = (typeof entryFields)[number];
 
 	let guesses: Entry[] = $state([]);
+
+	onMount(() => {
+		document.getElementById('searchTerm')!.focus();
+	});
 </script>
 
 <div class="h-full w-full flex-grow">
@@ -100,7 +102,7 @@
 		style="background-image: url('/blue-night-sky.webp');"
 	>
 		{#if !finished}
-			<div class="ml-auto">
+			<div class="relative ml-auto">
 				<div class="relative flex h-fit w-[61rem] min-w-[61rem] px-8">
 					<button
 						aria-label="search"
@@ -121,6 +123,7 @@
 					</button>
 
 					<input
+						id="searchTerm"
 						bind:value={searchTerm}
 						name="quick-overall-search"
 						placeholder="Search ..."
@@ -189,22 +192,40 @@
 					{selected}
 					bind:sortField
 				/>
+
+				<!-- {#if searchTerm === ''}
+					<div class="absolute top-14 px-8 left-0 right-0">
+						<div class="bg-red-500">
+							test
+						</div>
+					</div>
+				{/if} -->
 			</div>
 		{/if}
 
 		<div class="mr-auto w-fit pr-8" class:ml-auto={finished}>
-			<div class:justify-center={finished} class="relative flex w-full flex-col gap-2 overflow-y-scroll content-center items-center" style="height: calc(100vh - 8rem);">
+			<div
+				class:justify-center={finished}
+				class="relative mt-14 flex w-full flex-col content-center items-center gap-2 overflow-y-scroll"
+				style="height: calc(100vh - 11.5rem);"
+			>
 				{#if guesses.length !== 0}
 					{#if finished}
-						<h1 class="text-4xl font-black font-minecraft leading-loose text-center">Congratulations!</h1>
-						<p class="text-center text-lg -mt-4">You discovered <strong>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</strong>'s #Plunzle mob in <strong>{guesses.length} {guesses.length === 1 ? "try" : "tries"}</strong>! 🐸</p>
-						<br>
-						<img src="/brand-logo-white.svg" class="opacity-10 absolute w-96 h-96" alt="brand">
+						<h1 class="text-center font-minecraft text-4xl font-black leading-loose">
+							Congratulations!
+						</h1>
+						<p class="-mt-4 text-center text-lg">
+							You discovered <strong>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</strong
+							>'s #Plunzle mob in
+							<strong>{guesses.length} {guesses.length === 1 ? 'try' : 'tries'}</strong>! 🐸
+						</p>
+						<br />
+						<img src="/brand-logo-white.svg" class="absolute h-96 w-96 opacity-10" alt="brand" />
 					{:else}
-						<p>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</p>
-					{/if}				
+						<!-- <p class="h-12">{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</p> -->
+					{/if}
 					<div class="sticky left-8 right-0 top-0 z-10 h-16 w-fit rounded-xl bg-[#00000050] p-2">
-						<div class="flex rounded-lg bg-[#00000090]">
+						<div class="flex rounded-lg bg-[#00000090] backdrop-blur-sm">
 							{#each entryFields as field}
 								<div class="relative z-10 flex h-12 w-32 items-center gap-4 text-lg">
 									<span class="absolute left-0 right-0 my-auto text-center text-lg">{field}</span>
@@ -214,82 +235,7 @@
 					</div>
 				{/if}
 
-				{#each guesses as mob (mob)}
-					<div
-						in:fade={{ duration: 250 }}
-						out:fade={{ duration: 250 }}
-						animate:flip={{ duration: 250 }}
-						class="flex w-fit rounded-xl bg-[#00000050] p-2"
-					>
-						{#each entryFields as field, i}
-							{#if i === 0}
-								<div class="relative flex w-fit items-center gap-4 text-lg">
-									<div
-										class="flex h-32 w-32 rounded-l-lg bg-contain bg-center bg-no-repeat"
-										style="background-image: url('/gui/sprites/{mob[field] === selected[field]
-											? 'slot_right'
-											: 'slot_wrong'}.png')"
-									>
-										<div
-											class="mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
-											style="background-image: url('/entities{mob.ressource}')"
-										></div>
-									</div>
-									<span
-										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}
-									</span>
-								</div>
-							{:else if i === 1}
-								<div
-									style="background-image: url('/gui/sprites/{compareReleaseVersion(mob, selected.release)}.png')"
-									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
-								>
-									<span
-										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
-										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}
-									</span>
-								</div>
-							{:else if i === 2}
-								<div
-									style="background-image: url('/gui/sprites/{compareHealth(mob, selected.health)}.png')"
-									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
-								>
-									<span
-										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
-										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}
-									</span>
-								</div>
-							{:else if i === 3}
-								<div
-									style="background-image: url('/gui/sprites/{compareHeight(mob, selected.height)}.png')"
-									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
-								>
-									<span
-										class:bottom-6={compareHeight(mob, selected.height) !== 'slot_right'}
-										class="absolute left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}
-									</span>
-								</div>
-							{:else}
-								<div
-									class:rounded-r-lg={i == 6}
-									style="background-image: url('/gui/sprites/{mob[field] === selected[field]
-										? 'slot_right'
-										: 'slot_wrong'}.png')"
-									class="relative flex h-32 w-32 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg"
-								>
-									<span
-										class="absolute bottom-0 top-0 flex items-center justify-center left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}</span
-									>
-								</div>
-							{/if}
-						{/each}
-					</div>
-				{/each}
+				<Guesses {entryFields} {guesses} {selected} />
 			</div>
 		</div>
 	</main>
