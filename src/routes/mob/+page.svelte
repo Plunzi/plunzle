@@ -46,7 +46,7 @@
 	let sortField = $state<keyof Entry>('mob');
 	let sortDirection = $state('asc');
 	let finished = $state(false);
-	let mode = $state('search');
+	let mode: 'creative inventory' | 'search' = $state('search');
 	let date = new Date();
 
 	let filteredMobs: Entry[] = $derived.by(() => {
@@ -146,6 +146,9 @@
 						>
 					</button>
 					<button
+						class:!bg-[#2da05a]={mode === 'creative inventory'}
+						class:!text-white={mode === 'creative inventory'}
+						onclick={() => mode = 'creative inventory'}
 						aria-label="creative inventory"
 						class="contens border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 					>
@@ -164,6 +167,7 @@
 					<button
 						class:!bg-[#2da05a]={mode === 'search'}
 						class:!text-white={mode === 'search'}
+						onclick={() => mode = 'search'}
 						aria-label="search"
 						class="contens rounded-r-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 						><svg
@@ -191,6 +195,7 @@
 					{searchTerm}
 					{selected}
 					bind:sortField
+					mode={mode}
 				/>
 
 				<!-- {#if searchTerm === ''}
