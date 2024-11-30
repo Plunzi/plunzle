@@ -6,6 +6,11 @@
 	import Guesses from '$lib/components/Guesses.svelte';
 	import { onMount } from 'svelte';
 
+	interface Guess {
+		dailyMob: DailyMob;
+		pickedMob: Entry;
+	}
+
 	interface Entry {
 		mob: string;
 		release: string;
@@ -17,30 +22,17 @@
 		ressource: string;
 	}
 
+	interface DailyMob {
+		behavior: 'slot_right' | 'slot_wrong' | 'slot_kinda';
+		classification: 'slot_right' | 'slot_wrong' | 'slot_kinda';
+		health: 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower';
+		height: 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower';
+		mob: 'slot_right' | 'slot_wrong';
+		release: 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower';
+		spawn: 'slot_right' | 'slot_wrong' | 'slot_kinda';
+	}
+
 	let entities: Entry[] = $state(jsonEntries);
-
-	// Bee
-	const selected = {
-		mob: 'Iron Golem',
-		release: '1.2.1',
-		health: 100,
-		height: 2.7,
-		behavior: 'Neutral Passive',
-		spawn: 'Structure Summon',
-		classification: 'Golem',
-		ressource: '/iron_golem.png'
-	};
-
-	// const selected = {
-	// 	mob: 'Enderman',
-	// 	release: 'Beta 1.8',
-	// 	health: 40,
-	// 	height: 2.9,
-	// 	behavior: 'Neutral',
-	// 	spawn: 'Light level Biome',
-	// 	classification: 'None',
-	// 	ressource: '/enderman.png'
-	// };
 
 	let searchTerm = $state('');
 	let sortField = $state<keyof Entry>('mob');
@@ -87,7 +79,7 @@
 		'classification'
 	] as const;
 
-	let guesses: Entry[] = $state([]);
+	let guesses: Guess[] = $state([]);
 
 	onMount(() => {
 		document.getElementById('searchTerm')!.focus();
@@ -193,7 +185,6 @@
 					bind:finished
 					bind:guesses
 					{searchTerm}
-					{selected}
 					bind:sortField
 					mode={mode}
 				/>
@@ -241,7 +232,7 @@
 				{/if}
 
 				<div class="overflow-y-scroll ml-5">
-					<Guesses {entryFields} {guesses} {selected} />
+					<Guesses {guesses} />
 				</div>
 			</div>
 		</div>

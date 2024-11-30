@@ -63,3 +63,11 @@ export function compareHeight(mob: Entry, targetHeight: number): "slot_right" | 
         return "slot_right";
     }
 }
+
+export function compareRegular(mobField: string | number, dailyField: string | number): "slot_right" | "slot_wrong" {   
+    if (mobField === dailyField) {
+        return "slot_right";
+    } else {
+        return "slot_wrong";
+    }
+}

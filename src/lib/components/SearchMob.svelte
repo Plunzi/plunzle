@@ -27,7 +27,21 @@
 
 	const width = 6.5;
 	const gap = 0.8;
-	let selectedTab: 'Building Blocks' | 'Colored Blocks' | 'Natural Blocks' | 'Functional Blocks' | 'Redstone Blocks' | 'Saved Hotbars' | 'Search Items' | 'Tools & Utilities' | 'Combat' | 'Food & Drinks' | 'Ingredients' | 'Spawn Eggs' | 'Operator Utilities' | 'Survival Inventory' = $state('Building Blocks');
+	let selectedTab:
+		| 'Building Blocks'
+		| 'Colored Blocks'
+		| 'Natural Blocks'
+		| 'Functional Blocks'
+		| 'Redstone Blocks'
+		| 'Saved Hotbars'
+		| 'Search Items'
+		| 'Tools & Utilities'
+		| 'Combat'
+		| 'Food & Drinks'
+		| 'Ingredients'
+		| 'Spawn Eggs'
+		| 'Operator Utilities'
+		| 'Survival Inventory' = $state('Building Blocks');
 
 	let {
 		searchTerm,
@@ -36,10 +50,33 @@
 		filteredMobs,
 		entities = $bindable(),
 		guesses = $bindable(),
-		selected,
 		finished = $bindable(),
 		mode
 	} = $props();
+
+	const verifyField = async (field: Entry) => {
+		const requestDailyMobVerification = await fetch('/api/verify/mob', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(field)
+		});
+		let dailyMob = await requestDailyMobVerification.json();
+
+		if (dailyMob.success === true) {
+			entities = entities.filter((filterEntry: Entry) => filterEntry !== field);
+
+			guesses = [{ dailyMob: dailyMob.data, pickedMob: field }, ...guesses];
+
+			if (dailyMob.data.mob === "slot_right") {
+				finished = true;
+			}
+		} else {
+			alert('error');
+		}
+	};
 </script>
 
 <div
@@ -87,13 +124,7 @@
 			{:else}
 				{#each filteredMobs as mob (mob)}
 					<button
-						onclick={() => {
-							entities = entities.filter((filterEntry: Entry) => filterEntry !== mob);
-							guesses = [mob, ...guesses];
-							if (JSON.stringify(selected) === JSON.stringify(mob)) {
-								finished = true;
-							}
-						}}
+						onclick={() => verifyField(mob)}
 						in:fade={{ duration: 250 }}
 						out:fade={{ duration: 250 }}
 						animate:flip={{ duration: 250 }}
@@ -135,65 +166,250 @@
 			{/if}
 		{:else if mode === 'creative inventory'}
 			<div class="relative">
-				<h1 class="font-minecraft text-[2.5rem] text-[#404040] absolute left-[2.5rem] top-[9rem] z-50">{selectedTab}</h1>
+				<h1
+					class="absolute left-[2.5rem] top-[9rem] z-50 font-minecraft text-[2.5rem] text-[#404040]"
+				>
+					{selectedTab}
+				</h1>
 				<!-- top left -->
-				<button style="transform: translate(1px, 17px);" onmousedown={() => selectedTab = 'Building Blocks'} class="flex items-center justify-center relative {selectedTab === 'Building Blocks' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Building Blocks.png" alt="Building Blocks Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_left_{selectedTab === 'Building Blocks' ? '' : 'un'}selected.png" alt="Building Blocks Icon">
+				<button
+					style="transform: translate(1px, 17px);"
+					onmousedown={() => (selectedTab = 'Building Blocks')}
+					class="relative flex items-center justify-center {selectedTab === 'Building Blocks'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Building Blocks.png"
+						alt="Building Blocks Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_left_{selectedTab === 'Building Blocks'
+							? ''
+							: 'un'}selected.png"
+						alt="Building Blocks Icon"
+					/>
 				</button>
 				<!-- top middle -->
-				<button style="transform: translate(1px, 17px); left: {(width + gap) * 1}rem;" onmousedown={() => selectedTab = 'Colored Blocks'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Colored Blocks' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Colored Blocks.webp" alt="Colored Blocks Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_middle_{selectedTab === 'Colored Blocks' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(1px, 17px); left: {(width + gap) * 1}rem;"
+					onmousedown={() => (selectedTab = 'Colored Blocks')}
+					class="absolute top-0 flex items-center justify-center {selectedTab === 'Colored Blocks'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Colored Blocks.webp"
+						alt="Colored Blocks Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_middle_{selectedTab === 'Colored Blocks'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
-				<button style="transform: translate(1px, 17px); left: {(width + gap) * 2}rem;" onmousedown={() => selectedTab = 'Natural Blocks'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Natural Blocks' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Natural Blocks.png" alt="Natural Blocks Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_middle_{selectedTab === 'Natural Blocks' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(1px, 17px); left: {(width + gap) * 2}rem;"
+					onmousedown={() => (selectedTab = 'Natural Blocks')}
+					class="absolute top-0 flex items-center justify-center {selectedTab === 'Natural Blocks'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Natural Blocks.png"
+						alt="Natural Blocks Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_middle_{selectedTab === 'Natural Blocks'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
-				<button style="transform: translate(1px, 17px); left: {(width + gap) * 3}rem;" onmousedown={() => selectedTab = 'Functional Blocks'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Functional Blocks' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Functional Blocks.png" alt="Functional Blocks Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_middle_{selectedTab === 'Functional Blocks' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(1px, 17px); left: {(width + gap) * 3}rem;"
+					onmousedown={() => (selectedTab = 'Functional Blocks')}
+					class="absolute top-0 flex items-center justify-center {selectedTab ===
+					'Functional Blocks'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Functional Blocks.png"
+						alt="Functional Blocks Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_middle_{selectedTab === 'Functional Blocks'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
-				<button style="transform: translate(1px, 17px); left: {(width + gap) * 4}rem;" onmousedown={() => selectedTab = 'Redstone Blocks'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Redstone Blocks' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Redstone Blocks.png" alt="Redstone Blocks Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_middle_{selectedTab === 'Redstone Blocks' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(1px, 17px); left: {(width + gap) * 4}rem;"
+					onmousedown={() => (selectedTab = 'Redstone Blocks')}
+					class="absolute top-0 flex items-center justify-center {selectedTab === 'Redstone Blocks'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Redstone Blocks.png"
+						alt="Redstone Blocks Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_middle_{selectedTab === 'Redstone Blocks'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
 				<!-- top right -->
-				<button style="transform: translate(-1px, 17px); right: {(width + gap) * 1}rem;" onmousedown={() => selectedTab = 'Saved Hotbars'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Saved Hotbars' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Saved Hotbars.png" alt="Saved Hotbars Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_middle_{selectedTab === 'Saved Hotbars' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(-1px, 17px); right: {(width + gap) * 1}rem;"
+					onmousedown={() => (selectedTab = 'Saved Hotbars')}
+					class="absolute top-0 flex items-center justify-center {selectedTab === 'Saved Hotbars'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Saved Hotbars.png"
+						alt="Saved Hotbars Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_middle_{selectedTab === 'Saved Hotbars'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
-				<button style="transform: translate(-1px, 17px); right: 0;" onmousedown={() => selectedTab = 'Search Items'} class="absolute flex justify-center items-center top-0 {selectedTab === 'Search Items' ? 'z-20' : ''}">
-					<img class="w-16 h-16 z-50 absolute" src="/gui/categories/Search Items.png" alt="Search Items Category">
-					<img style="image-rendering: pixelated; width: {width}rem;" src="/gui/sprites/tab_top_right_{selectedTab === 'Search Items' ? '' : 'un'}selected.png" alt="">
+				<button
+					style="transform: translate(-1px, 17px); right: 0;"
+					onmousedown={() => (selectedTab = 'Search Items')}
+					class="absolute top-0 flex items-center justify-center {selectedTab === 'Search Items'
+						? 'z-20'
+						: ''}"
+				>
+					<img
+						class="absolute z-50 h-16 w-16"
+						src="/gui/categories/Search Items.png"
+						alt="Search Items Category"
+					/>
+					<img
+						style="image-rendering: pixelated; width: {width}rem;"
+						src="/gui/sprites/tab_top_right_{selectedTab === 'Search Items'
+							? ''
+							: 'un'}selected.png"
+						alt=""
+					/>
 				</button>
 
 				<!-- bottom left -->
-				<button onmousedown={() => selectedTab = 'Tools & Utilities'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem;" src="/gui/sprites/tab_bottom_left_{selectedTab === 'Tools & Utilities' ? '' : 'un'}selected.png"   class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Tools & Utilities' ? 'z-20' : ''}" alt="">				
+				<button onmousedown={() => (selectedTab = 'Tools & Utilities')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem;"
+						src="/gui/sprites/tab_bottom_left_{selectedTab === 'Tools & Utilities'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Tools & Utilities'
+							? 'z-20'
+							: ''}"
+						alt=""
+					/>
 				</button>
 				<!-- bottom middle -->
-				<button onmousedown={() => selectedTab = 'Combat'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width + gap) * 1}rem;" src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Combat' ? '' : 'un'}selected.png" class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Combat' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Combat')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width +
+							gap) *
+							1}rem;"
+						src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Combat' ? '' : 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Combat' ? 'z-20' : ''}"
+						alt=""
+					/>
 				</button>
-				<button onmousedown={() => selectedTab = 'Food & Drinks'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width + gap) * 2}rem;" src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Food & Drinks' ? '' : 'un'}selected.png" class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Food & Drinks' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Food & Drinks')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width +
+							gap) *
+							2}rem;"
+						src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Food & Drinks'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Food & Drinks' ? 'z-20' : ''}"
+						alt=""
+					/>
 				</button>
-				<button onmousedown={() => selectedTab = 'Ingredients'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width + gap) * 3}rem;" src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Ingredients' ? '' : 'un'}selected.png" class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Ingredients' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Ingredients')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width +
+							gap) *
+							3}rem;"
+						src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Ingredients'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Ingredients' ? 'z-20' : ''}"
+						alt=""
+					/>
 				</button>
-				<button onmousedown={() => selectedTab = 'Spawn Eggs'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width + gap) * 4}rem;" src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Spawn Eggs' ? '' : 'un'}selected.png" class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Spawn Eggs' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Spawn Eggs')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(1px, 109px); width: {width}rem; left: {(width +
+							gap) *
+							4}rem;"
+						src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Spawn Eggs'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Spawn Eggs' ? 'z-20' : ''}"
+						alt=""
+					/>
 				</button>
 				<!-- bottom right -->
-				<button onmousedown={() => selectedTab = 'Operator Utilities'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(-1px, 109px); width: {width}rem; right: {(width + gap) * 1}rem;" src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Operator Utilities' ? '' : 'un'}selected.png" class="w-[{width}rem] bottom-0 absolute {selectedTab === 'Operator Utilities' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Operator Utilities')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(-1px, 109px); width: {width}rem; right: {(width +
+							gap) *
+							1}rem;"
+						src="/gui/sprites/tab_bottom_middle_{selectedTab === 'Operator Utilities'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 {selectedTab === 'Operator Utilities'
+							? 'z-20'
+							: ''}"
+						alt=""
+					/>
 				</button>
-				<button onmousedown={() => selectedTab = 'Survival Inventory'} class="contents">
-					<img style="image-rendering: pixelated; transform: translate(-1px, 109px); width: {width}rem;" src="/gui/sprites/tab_bottom_right_{selectedTab === 'Survival Inventory' ? '' : 'un'}selected.png" class="w-[{width}rem] right-0 bottom-0 absolute {selectedTab === 'Survival Inventory' ? 'z-20' : ''}" alt="">
+				<button onmousedown={() => (selectedTab = 'Survival Inventory')} class="contents">
+					<img
+						style="image-rendering: pixelated; transform: translate(-1px, 109px); width: {width}rem;"
+						src="/gui/sprites/tab_bottom_right_{selectedTab === 'Survival Inventory'
+							? ''
+							: 'un'}selected.png"
+						class="w-[{width}rem] absolute bottom-0 right-0 {selectedTab === 'Survival Inventory'
+							? 'z-20'
+							: ''}"
+						alt=""
+					/>
 				</button>
 
-				<img style="image-rendering: pixelated;" src="/gui/tab_items.png" class="w-[57.5rem] z-10 relative" alt="">
+				<img
+					style="image-rendering: pixelated;"
+					src="/gui/tab_items.png"
+					class="relative z-10 w-[57.5rem]"
+					alt=""
+				/>
 			</div>
 		{/if}
 	</div>
