@@ -70,7 +70,7 @@
 
 			guesses = [{ dailyMob: dailyMob.data, pickedMob: field }, ...guesses];
 
-			if (dailyMob.data.mob === "slot_right") {
+			if (dailyMob.data.mob === 'slot_right') {
 				finished = true;
 			}
 		} else {
@@ -148,16 +148,26 @@
 										>{mob[field]}</span
 									>
 								</div>
+							{:else if i === 5}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-lg leading-4">
+											{display}
+										</p>
+									{/each}
+								</div>
 							{:else}
 								<div
 									class:rounded-r-lg={i == 6}
 									style="background-image: url('/gui/sprites/slot.png')"
-									class="relative flex h-28 w-28 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
 								>
-									<span
-										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
-										>{mob[field]}</span
-									>
+									<p class="text-center font-minecraft text-lg leading-4">
+										{mob[field]}
+									</p>
 								</div>
 							{/if}
 						{/each}

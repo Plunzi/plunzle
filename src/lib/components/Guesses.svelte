@@ -68,16 +68,18 @@
 		</div>
 		<div
 			style="background-image: url('/gui/sprites/{guess.dailyMob.spawn}.png')"
-			class="relative flex h-28 w-28 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+			class="relative flex h-28 w-28 items-center flex-col justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
 		>
-			<span
-				class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-lg leading-4"
-				>{guess.pickedMob.spawn}</span
-			>
+			{#each guess.pickedMob.spawn as spawn}
+				<p
+					class="bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-lg leading-4"
+					>{spawn}
+				</p>
+			{/each}
 		</div>
 		<div
 			style="background-image: url('/gui/sprites/{guess.dailyMob.classification}.png')"
-			class="rounded-r-lg relative flex h-28 w-28 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+			class="relative flex h-28 w-28 items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
 		>
 			<span
 				class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-lg leading-4"

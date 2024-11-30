@@ -4,7 +4,7 @@ interface Entry {
     health: number;
     height: number;
     behavior: string;
-    spawn: string;
+    spawn: string[];
     classification: string;
     ressource: string;
 }

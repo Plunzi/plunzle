@@ -24,7 +24,7 @@ interface Mob {
   "health": number
   "height": number
   "behavior": string
-  "spawn": string
+  "spawn": string[]
   "classification": string
   "ressource": string
 }
@@ -51,7 +51,7 @@ export const POST = async ({ locals, request }) => {
     health: compareHealth(selectedMob, dailyEntity.health),
     height: compareHeight(selectedMob, dailyEntity.height),
     behavior: compareRegular(selectedMob.behavior, dailyEntity.behavior),
-    spawn: compareRegular(selectedMob.spawn, dailyEntity.spawn),
+    spawn: compareRegular(JSON.stringify(selectedMob.spawn), JSON.stringify(dailyEntity.spawn)),
     classification: compareRegular(selectedMob.classification, dailyEntity.classification),
   }
 
