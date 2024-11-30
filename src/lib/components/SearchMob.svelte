@@ -61,7 +61,7 @@
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(field)
+			body: JSON.stringify({ mob: field.mob })
 		});
 		let dailyMob = await requestDailyMobVerification.json();
 

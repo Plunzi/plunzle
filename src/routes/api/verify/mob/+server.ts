@@ -29,22 +29,30 @@ interface Mob {
   "ressource": string
 }
 
+interface Body {
+  "mob": string
+}
+
 export const POST = async ({ locals, request }) => {
   const session = await locals.auth()
-  const data: Mob = await request.json();
+  const data: Body = await request.json();
 
   if (!session && !debug) return json({ "success": false, error: "not authenticated" })
+
+  const selectedMob: Mob | undefined = minecraftEntities.find(entity => entity.mob === data.mob);
+
+  if (!selectedMob) return json({ "success": false, error: "mob not found" })
 
   const dailyEntity: Mob = selectDailyEntity(minecraftEntities);
 
   const response = {
     mob: data.mob === dailyEntity.mob ? "slot_right" : "slot_wrong",
-    release: compareReleaseVersion(data, dailyEntity.release),
-    health: compareHealth(data, dailyEntity.health),
-    height: compareHeight(data, dailyEntity.height),
-    behavior: compareRegular(data.behavior, dailyEntity.behavior),
-    spawn: compareRegular(data.spawn, dailyEntity.spawn),
-    classification: compareRegular(data.classification, dailyEntity.classification),
+    release: compareReleaseVersion(selectedMob, dailyEntity.release),
+    health: compareHealth(selectedMob, dailyEntity.health),
+    height: compareHeight(selectedMob, dailyEntity.height),
+    behavior: compareRegular(selectedMob.behavior, dailyEntity.behavior),
+    spawn: compareRegular(selectedMob.spawn, dailyEntity.spawn),
+    classification: compareRegular(selectedMob.classification, dailyEntity.classification),
   }
 
   return json({
