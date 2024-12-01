@@ -55,6 +55,10 @@
 	} = $props();
 
 	const verifyField = async (field: Entry) => {
+		// remove entry from list
+		entities = entities.filter((filterEntry: Entry) => filterEntry !== field);
+
+		// send verification request
 		const requestDailyMobVerification = await fetch('/api/verify/mob', {
 			method: 'POST',
 			headers: {
@@ -65,16 +69,16 @@
 		});
 		let dailyMob = await requestDailyMobVerification.json();
 
+		// add guess or readd entry
 		if (dailyMob.success === true) {
-			entities = entities.filter((filterEntry: Entry) => filterEntry !== field);
-
 			guesses = [{ dailyMob: dailyMob.data, pickedMob: field }, ...guesses];
 
 			if (dailyMob.data.mob === 'slot_right') {
 				finished = true;
 			}
 		} else {
-			alert('error');
+			alert(`Error: ${dailyMob.error}`)
+			entities.push(field);
 		}
 	};
 </script>

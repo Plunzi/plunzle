@@ -14,13 +14,19 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String
-  password  String?
-  email     String   @unique
-  roles     Role[]   @relation("UserRoles")
-  createdAt DateTime @default(now())
-  provider  String[] // new still needs db push
+  id         Int      @id @default(autoincrement())
+  username   String
+  password   String?
+  email      String   @unique
+  roles      Role[]   @relation("UserRoles")
+  createdAt  DateTime @default(now())
+  tries      Int      @default(0)
+  found      Int      @default(0)
+  last_found DateTime
+  streak     Int      @default(0)
+  max_streak Int      @default(0)
+  unlocked   String[]
+  provider   String[] // new still needs inegration
 }
 
 model Role {
