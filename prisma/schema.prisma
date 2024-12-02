@@ -22,7 +22,7 @@ model User {
   createdAt  DateTime @default(now())
   tries      Int      @default(0)
   found      Int      @default(0)
-  last_found DateTime
+  last_found DateTime @default(dbgenerated("'1970-01-01T00:00:00Z'"))
   streak     Int      @default(0)
   max_streak Int      @default(0)
   unlocked   String[]
