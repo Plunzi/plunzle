@@ -49,7 +49,62 @@
 				mob.classification.toLowerCase().includes(searchTerm.toLowerCase())
 		);
 
+		function compareVersions(a: string, b: string): number {
+			// Define version type precedence
+			const versionTypeOrder = ['alpha', 'beta', 'release'];
+
+			// Extract version type and number
+			const parseVersion = (version: string) => {
+				const alphaMatch = version.match(/^(alpha|beta)\s*([\d.]+)/i);
+				const standardMatch = version.match(/^([\d.]+)/);
+
+				if (alphaMatch) {
+					return {
+						type: alphaMatch[1].toLowerCase(),
+						number: alphaMatch[2].split('.').map(Number)
+					};
+				}
+
+				if (standardMatch) {
+					return {
+						type: 'release',
+						number: standardMatch[1].split('.').map(Number)
+					};
+				}
+
+				return { type: 'unknown', number: [0] };
+			};
+
+			const parsedA = parseVersion(a);
+			const parsedB = parseVersion(b);
+
+			// First, compare by version type
+			const typeOrderDiff =
+				versionTypeOrder.indexOf(parsedA.type) - versionTypeOrder.indexOf(parsedB.type);
+			if (typeOrderDiff !== 0) return typeOrderDiff;
+
+			// Then, compare by version number
+			const maxLength = Math.max(parsedA.number.length, parsedB.number.length);
+
+			for (let i = 0; i < maxLength; i++) {
+				const numA = parsedA.number[i] || 0;
+				const numB = parsedB.number[i] || 0;
+
+				if (numA !== numB) {
+					return numA - numB;
+				}
+			}
+
+			return 0;
+		}
+
 		return filtered.sort((a, b) => {
+			// If sorting by release, use custom version comparison
+			if (sortField === 'release') {
+				return compareVersions(a.release, b.release) * (sortDirection === 'asc' ? 1 : -1);
+			}
+
+			// Existing sorting logic for other fields
 			let aValue = a[sortField];
 			let bValue = b[sortField];
 
@@ -95,7 +150,9 @@
 	>
 		{#if !finished}
 			<div class="relative ml-auto">
-				<div class="relative flex h-fit min-w-[54rem] w-[54rem] 4xl:w-[61rem] 4xl:min-w-[61rem] px-8">
+				<div
+					class="relative flex h-fit w-[54rem] min-w-[54rem] px-8 4xl:w-[61rem] 4xl:min-w-[61rem]"
+				>
 					<button
 						aria-label="search"
 						class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
@@ -140,7 +197,7 @@
 					<button
 						class:!bg-[#2da05a]={mode === 'creative inventory'}
 						class:!text-white={mode === 'creative inventory'}
-						onclick={() => mode = 'creative inventory'}
+						onclick={() => (mode = 'creative inventory')}
 						aria-label="creative inventory"
 						class="contens border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 					>
@@ -159,7 +216,7 @@
 					<button
 						class:!bg-[#2da05a]={mode === 'search'}
 						class:!text-white={mode === 'search'}
-						onclick={() => mode = 'search'}
+						onclick={() => (mode = 'search')}
 						aria-label="search"
 						class="contens rounded-r-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 						><svg
@@ -186,7 +243,7 @@
 					bind:guesses
 					{searchTerm}
 					bind:sortField
-					mode={mode}
+					{mode}
 				/>
 
 				<!-- {#if searchTerm === ''}
@@ -223,7 +280,7 @@
 					<div class="sticky left-8 right-0 top-0 z-10 h-16 w-fit rounded-xl bg-[#00000050] p-2">
 						<div class="flex rounded-lg bg-[#00000090] backdrop-blur-sm">
 							{#each entryFields as field}
-								<div class="relative z-10 flex h-12 w-28 4xl:w-32 items-center gap-4 text-lg">
+								<div class="relative z-10 flex h-12 w-28 items-center gap-4 text-lg 4xl:w-32">
 									<span class="absolute left-0 right-0 my-auto text-center text-lg">{field}</span>
 								</div>
 							{/each}
@@ -231,7 +288,7 @@
 					</div>
 				{/if}
 
-				<div class="overflow-y-scroll ml-5">
+				<div class="ml-5 overflow-y-scroll">
 					<Guesses {guesses} />
 				</div>
 			</div>

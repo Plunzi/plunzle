@@ -148,17 +148,17 @@
 									</div>
 									<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
 									<span
-										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-lg leading-4"
+										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-sm leading-6"
 										>{mob[field]}</span
 									>
 								</div>
 							{:else if i === 5}
 								<div
 									style="background-image: url('/gui/sprites/slot.png')"
-									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-md 4xl:h-32 4xl:w-32"
 								>
 									{#each mob[field] as display}
-										<p class="text-center font-minecraft text-lg leading-4">
+										<p class="text-center font-minecraft text-md leading-5">
 											{display}
 										</p>
 									{/each}
@@ -167,9 +167,9 @@
 								<div
 									class:rounded-r-lg={i == 6}
 									style="background-image: url('/gui/sprites/slot.png')"
-									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-lg 4xl:h-32 4xl:w-32"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-md 4xl:h-32 4xl:w-32"
 								>
-									<p class="text-center font-minecraft text-lg leading-4">
+									<p class="text-center font-minecraft text-md leading-5">
 										{mob[field]}
 									</p>
 								</div>
