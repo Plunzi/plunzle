@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 
 // Import your entities JSON (adjust path as needed)
 import minecraftEntities from '$lib/assets/entries/Entities.json';
-import { compareHealth, compareHeight, compareRegular, compareReleaseVersion } from '$lib/compare';
+import { compareArrays, compareHealth, compareHeight, compareRegular, compareReleaseVersion } from '$lib/compare';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -122,7 +122,7 @@ export const POST = async ({ locals, request }) => {
 		health: compareHealth(selectedMob, dailyEntity.health),
 		height: compareHeight(selectedMob, dailyEntity.height),
 		behavior: compareRegular(selectedMob.behavior, dailyEntity.behavior),
-		spawn: compareRegular(JSON.stringify(selectedMob.spawn), JSON.stringify(dailyEntity.spawn)),
+		spawn: compareArrays(selectedMob.spawn, dailyEntity.spawn),
 		classification: compareRegular(selectedMob.classification, dailyEntity.classification)
 	};
 

@@ -1,12 +1,12 @@
 interface Entry {
-    mob: string;
-    release: string;
-    health: number;
-    height: number;
-    behavior: string;
-    spawn: string[];
-    classification: string;
-    ressource: string;
+	mob: string;
+	release: string;
+	health: number;
+	height: number;
+	behavior: string;
+	spawn: string[];
+	classification: string;
+	ressource: string;
 }
 
 /**
@@ -15,21 +15,24 @@ interface Entry {
  * @param targetVersion - The version to compare against.
  * @returns "Higher" if mob's release version is higher, "Lower" if it's lower, and "Equal" if they match.
  */
-export function compareReleaseVersion(mob: Entry, targetVersion: string): "slot_right" | "slot_wrong_higher" | "slot_wrong_lower" {
-    const mobVersionParts = mob.release.split('.').map(Number);
-    const targetVersionParts = targetVersion.split('.').map(Number);
+export function compareReleaseVersion(
+	mob: Entry,
+	targetVersion: string
+): 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower' {
+	const mobVersionParts = mob.release.split('.').map(Number);
+	const targetVersionParts = targetVersion.split('.').map(Number);
 
-    const maxLength = Math.max(mobVersionParts.length, targetVersionParts.length);
+	const maxLength = Math.max(mobVersionParts.length, targetVersionParts.length);
 
-    for (let i = 0; i < maxLength; i++) {
-        const mobVersionPart = mobVersionParts[i] || 0; // Default to 0 if undefined
-        const targetVersionPart = targetVersionParts[i] || 0; // Default to 0 if undefined
+	for (let i = 0; i < maxLength; i++) {
+		const mobVersionPart = mobVersionParts[i] || 0; // Default to 0 if undefined
+		const targetVersionPart = targetVersionParts[i] || 0; // Default to 0 if undefined
 
-        if (mobVersionPart > targetVersionPart) return "slot_wrong_lower";
-        if (mobVersionPart < targetVersionPart) return "slot_wrong_higher";
-    }
+		if (mobVersionPart > targetVersionPart) return 'slot_wrong_lower';
+		if (mobVersionPart < targetVersionPart) return 'slot_wrong_higher';
+	}
 
-    return "slot_right";
+	return 'slot_right';
 }
 
 /**
@@ -38,14 +41,17 @@ export function compareReleaseVersion(mob: Entry, targetVersion: string): "slot_
  * @param targetHeight - The health to compare against.
  * @returns "slot_wrong_lower" if mob's health is greater, "slot_wrong_higher" if it's smaller, and "slot_right" if they match.
  */
-export function compareHealth(mob: Entry, targetHealth: number): "slot_right" | "slot_wrong_higher" | "slot_wrong_lower" {
-    if (mob.health > targetHealth) {
-        return "slot_wrong_lower";
-    } else if (mob.health < targetHealth) {
-        return "slot_wrong_higher";
-    } else {
-        return "slot_right";
-    }
+export function compareHealth(
+	mob: Entry,
+	targetHealth: number
+): 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower' {
+	if (mob.health > targetHealth) {
+		return 'slot_wrong_lower';
+	} else if (mob.health < targetHealth) {
+		return 'slot_wrong_higher';
+	} else {
+		return 'slot_right';
+	}
 }
 
 /**
@@ -54,20 +60,38 @@ export function compareHealth(mob: Entry, targetHealth: number): "slot_right" | 
  * @param targetHeight - The height to compare against.
  * @returns "slot_wrong_lower" if mob's height is greater, "slot_wrong_higher" if it's smaller, and "slot_right" if they match.
  */
-export function compareHeight(mob: Entry, targetHeight: number): "slot_right" | "slot_wrong_higher" | "slot_wrong_lower" {
-    if (mob.height > targetHeight) {
-        return "slot_wrong_lower";
-    } else if (mob.height < targetHeight) {
-        return "slot_wrong_higher";
-    } else {
-        return "slot_right";
-    }
+export function compareHeight(
+	mob: Entry,
+	targetHeight: number
+): 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower' {
+	if (mob.height > targetHeight) {
+		return 'slot_wrong_lower';
+	} else if (mob.height < targetHeight) {
+		return 'slot_wrong_higher';
+	} else {
+		return 'slot_right';
+	}
 }
 
-export function compareRegular(mobField: string | number, dailyField: string | number): "slot_right" | "slot_wrong" {   
-    if (mobField === dailyField) {
-        return "slot_right";
-    } else {
-        return "slot_wrong";
-    }
+export function compareRegular(
+	mobField: string | number,
+	dailyField: string | number
+): 'slot_right' | 'slot_wrong' {
+	if (mobField === dailyField) {
+		return 'slot_right';
+	} else {
+		return 'slot_wrong';
+	}
+}
+
+export function compareArrays(arr1: string[], arr2: string[]): 'slot_right' | 'slot_kinda' | 'slot_wrong' {
+	// Check if arrays are identical
+	if (arr1.length === arr2.length && arr1.every((item) => arr2.includes(item))) {
+		return 'slot_right';
+	}
+
+	// Check if arrays have common elements
+	const commonElements = arr1.filter((item) => arr2.includes(item));
+
+	return commonElements.length > 0 ? 'slot_kinda' : 'slot_wrong';
 }
