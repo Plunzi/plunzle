@@ -4,9 +4,9 @@
 		"release": "1.19",
 		"health": 20,
 		"height": 0.6,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Structure", "Duplication"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/allay.gif"
 	},
 	{
@@ -14,9 +14,9 @@
 		"release": "1.20.5",
 		"health": 12,
 		"height": 0.65,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/armadillo.gif"
 	},
 	{
@@ -24,9 +24,9 @@
 		"release": "1.17",
 		"health": 14,
 		"height": 0.42,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/axolotl.png"
 	},
 	{
@@ -34,9 +34,9 @@
 		"release": "1.4.2",
 		"health": 6,
 		"height": 0.9,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Light level"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/bat.gif"
 	},
 	{
@@ -44,9 +44,9 @@
 		"release": "1.20",
 		"health": 32,
 		"height": 2.375,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Structure", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/camel.png"
 	},
 	{
@@ -54,9 +54,9 @@
 		"release": "1.14",
 		"health": 10,
 		"height": 0.7,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Structure", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/cat.png"
 	},
 	{
@@ -64,9 +64,9 @@
 		"release": "Alpha 1.0.14",
 		"health": 4,
 		"height": 0.7,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Grass", "Jockey", "Projectile", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/chicken.png"
 	},
 	{
@@ -74,9 +74,9 @@
 		"release": "1.13",
 		"health": 3,
 		"height": 0.3,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/cod.gif"
 	},
 	{
@@ -84,9 +84,9 @@
 		"release": "Alpha 1.0.8",
 		"health": 10,
 		"height": 1.4,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Grass", "Conversion", "Breeding", "Structure"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/cow.png"
 	},
 	{
@@ -94,9 +94,9 @@
 		"release": "1.6.1",
 		"health": 22,
 		"height": 1.5,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/donkey.png"
 	},
 	{
@@ -104,9 +104,9 @@
 		"release": "1.19",
 		"health": 10,
 		"height": 0.5,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Conversion"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/frog.gif"
 	},
 	{
@@ -114,9 +114,9 @@
 		"release": "1.17",
 		"health": 10,
 		"height": 0.8,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Light level"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/glow_squid.gif"
 	},
 	{
@@ -124,9 +124,9 @@
 		"release": "1.6.1",
 		"health": 22,
 		"height": 1.6,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Structure", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/horse.png"
 	},
 	{
@@ -134,9 +134,9 @@
 		"release": "1.0.0",
 		"health": 10,
 		"height": 1.4,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/mooshroom.png"
 	},
 	{
@@ -144,9 +144,9 @@
 		"release": "1.6.1",
 		"health": 22,
 		"height": 1.6,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/mule.png"
 	},
 	{
@@ -154,9 +154,9 @@
 		"release": "1.2.1",
 		"health": 10,
 		"height": 0.7,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/ocelot.png"
 	},
 	{
@@ -164,9 +164,9 @@
 		"release": "1.12",
 		"health": 6,
 		"height": 0.9,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/parrot.png"
 	},
 	{
@@ -174,9 +174,9 @@
 		"release": "pre-alpha",
 		"health": 10,
 		"height": 0.9,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Grass", "Breeding", "Structure"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/pig.png"
 	},
 	{
@@ -184,9 +184,9 @@
 		"release": "1.13",
 		"health": 3,
 		"height": 0.7,
-		"behavior": "Passive Defensive",
+		"behavior": ["Passive", "Defensive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/pufferfish.gif"
 	},
 	{
@@ -194,9 +194,9 @@
 		"release": "1.8",
 		"health": 3,
 		"height": 0.5,
-		"behavior": "Passive Hostile",
+		"behavior": ["Passive", ["Hostile"]],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/rabbit.png"
 	},
 	{
@@ -204,9 +204,9 @@
 		"release": "1.13",
 		"health": 3,
 		"height": 0.4,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/salmon.gif"
 	},
 	{
@@ -214,9 +214,9 @@
 		"release": "pre-alpha",
 		"health": 8,
 		"height": 1.3,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Grass", "Breeding", "Structure"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/sheep.png"
 	},
 	{
@@ -224,9 +224,9 @@
 		"release": "1.6.1",
 		"health": 15,
 		"height": 1.6,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Lightning"],
-		"classification": "Undead Animal",
+		"classification": ["Undead", "Animal"],
 		"ressource": "/skeleton_horse.png"
 	},
 	{
@@ -234,9 +234,9 @@
 		"release": "1.20",
 		"health": 14,
 		"height": 1.75,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Breeding", "Hatching"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/sniffer.gif"
 	},
 	{
@@ -244,9 +244,9 @@
 		"release": "1.0.0",
 		"health": 4,
 		"height": 1.9,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Summon"],
-		"classification": "Golem",
+		"classification": ["Golem"],
 		"ressource": "/snow_golem.png"
 	},
 	{
@@ -254,9 +254,9 @@
 		"release": "Beta 1.2",
 		"health": 10,
 		"height": 0.8,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/squid.gif"
 	},
 	{
@@ -264,9 +264,9 @@
 		"release": "1.16",
 		"health": 20,
 		"height": 1.7,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding", "Jockey"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/strider.gif"
 	},
 	{
@@ -274,9 +274,9 @@
 		"release": "1.19",
 		"health": 6,
 		"height": 0.3,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Hatching"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/tadpole.gif"
 	},
 	{
@@ -284,9 +284,9 @@
 		"release": "1.13",
 		"health": 3,
 		"height": 0.4,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/tropical_fish.png"
 	},
 	{
@@ -294,9 +294,9 @@
 		"release": "1.13",
 		"health": 30,
 		"height": 0.4,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Biome", "Breeding", "Hatching"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/turtle.png"
 	},
 	{
@@ -304,9 +304,9 @@
 		"release": "1.0.0",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Structure", "Breeding", "Conversion"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/villager.png"
 	},
 	{
@@ -314,9 +314,9 @@
 		"release": "1.14",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Overworld"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/wandering_trader.png"
 	},
 	{
@@ -324,9 +324,9 @@
 		"release": "1.15",
 		"health": 10,
 		"height": 0.6,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Block", "Breeding"],
-		"classification": "Animal Arthropod",
+		"classification": ["Animal", "Arthropod"],
 		"ressource": "/bee.gif"
 	},
     {
@@ -336,7 +336,7 @@
 		"height": 0.5,
 		"behavior": "Hostile Neutral",
 		"spawn": ["Spawner"],
-		"classification": "Arthropod",
+		"classification": ["Arthropod"],
 		"ressource": "/cave_spider.png"
 	},
     {
@@ -344,9 +344,9 @@
 		"release": "1.13",
 		"health": 10,
 		"height": 0.6,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal Aquatic",
+		"classification": ["Animal", "Aquatic"],
 		"ressource": "/dolphin.gif"
 	},
     {
@@ -354,9 +354,9 @@
 		"release": "1.13",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Hostile Passive Neutral",
+		"behavior": ["Hostile ", "Passive", ["Neutral"]],
 		"spawn": ["Conversion", "Biome", "Jockey", "Structure", "Reinforcements"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/drowned.png"
 	},
     {
@@ -364,9 +364,9 @@
 		"release": "Beta 1.8",
 		"health": 40,
 		"height": 2.9,
-		"behavior": "Neutral",
+		"behavior": ["Neutral"],
 		"spawn": ["Light level", "Biome"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/enderman.png"
 	},
     {
@@ -376,7 +376,7 @@
 		"height": 0.7,
 		"behavior": "Passive Neutral",
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/fox.png"
 	},
     {
@@ -384,9 +384,9 @@
 		"release": "1.17",
 		"health": 10,
 		"height": 1.3,
-		"behavior": "Neutral",
+		"behavior": ["Neutral"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/goat.png"
 	},
     {
@@ -394,9 +394,9 @@
 		"release": "1.2.1",
 		"health": 100,
 		"height": 2.7,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Structure", "Summon"],
-		"classification": "Golem",
+		"classification": ["Golem"],
 		"ressource": "/iron_golem.png"
 	},
     {
@@ -404,9 +404,9 @@
 		"release": "1.11",
 		"health": 22,
 		"height": 1.87,
-		"behavior": "Neutral",
+		"behavior": ["Neutral"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/llama.png"
 	},
     {
@@ -414,9 +414,9 @@
 		"release": "1.14",
 		"health": 20,
 		"height": 1.25,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/panda.png"
 	},
     {
@@ -424,9 +424,9 @@
 		"release": "1.16",
 		"health": 16,
 		"height": 1.95,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Biome", "Structure"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/piglin.png"
 	},
     {
@@ -434,9 +434,9 @@
 		"release": "1.10",
 		"health": 30,
 		"height": 1.4,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Biome"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/polar_bear.png"
 	},
     {
@@ -446,7 +446,7 @@
 		"height": 0.9,
 		"behavior": "Neutral Hostile",
 		"spawn": ["Light level", "Spawner", "Jockey"],
-		"classification": "Arthropod",
+		"classification": ["Arthropod"],
 		"ressource": "/spider.png"
 	},
     {
@@ -454,9 +454,9 @@
 		"release": "Beta 1.4",
 		"health": 8,
 		"height": 0.85,
-		"behavior": "Neutral Passive",
+		"behavior": ["Neutral", "Passive"],
 		"spawn": ["Biome", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/wolf.png"
 	},
     {
@@ -464,9 +464,9 @@
 		"release": "Alpha 1.2.0",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Neutral",
+		"behavior": ["Neutral"],
 		"spawn": ["Biome", "Structure", "Conversion", "Lightning", "Jockey", "Reinforcements"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/zombified_piglin.png"
 	},
     {
@@ -474,9 +474,9 @@
 		"release": "1.0.0",
 		"health": 20,
 		"height": 1.8,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure", "Spawner"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/blaze.gif"
 	},
     {
@@ -484,9 +484,9 @@
 		"release": "1.21",
 		"health": 16,
 		"height": 1.99,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome", "Spawner"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/bogged.webp"
 	},
     {
@@ -494,9 +494,9 @@
 		"release": "pre-alpha",
 		"health": 20,
 		"height": 1.7,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/creeper.png"
 	},
     {
@@ -504,9 +504,9 @@
 		"release": "1.8",
 		"health": 80,
 		"height": 1.9975,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure"],
-		"classification": "Aquatic",
+		"classification": ["Aquatic"],
 		"ressource": "/elder_guardian.gif"
 	},
     {
@@ -514,9 +514,9 @@
 		"release": "1.8",
 		"health": 8,
 		"height": 0.3,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Projectile"],
-		"classification": "Arthropod",
+		"classification": ["Arthropod"],
 		"ressource": "/endermite.gif"
 	},
     {
@@ -524,9 +524,9 @@
 		"release": "1.11",
 		"health": 24,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure", "Raids", "Jockey"],
-		"classification": "Illager",
+		"classification": ["Illager"],
 		"ressource": "/evoker.png"
 	},
     {
@@ -534,9 +534,9 @@
 		"release": "Alpha 1.2.0",
 		"health": 10,
 		"height": 4,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/ghast.gif"
 	},
     {
@@ -544,9 +544,9 @@
 		"release": "1.8",
 		"health": 30,
 		"height": 0.85,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure"],
-		"classification": "Aquatic",
+		"classification": ["Aquatic"],
 		"ressource": "/guardian.gif"
 	},
     {
@@ -554,9 +554,9 @@
 		"release": "1.16",
 		"health": 40,
 		"height": 1.4,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome", "Structure", "Breeding"],
-		"classification": "Animal",
+		"classification": ["Animal"],
 		"ressource": "/hoglin.png"
 	},
     {
@@ -564,9 +564,9 @@
 		"release": "1.10",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome", "Jockey", "Spawner", "Light level", "Reinforcements"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/husk.png"
 	},
     {
@@ -574,9 +574,9 @@
 		"release": "1.0.0",
 		"health": 16,
 		"height": 2.04,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome", "Spawner", "Structure"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/magma_cube.png"
 	},
     {
@@ -584,9 +584,9 @@
 		"release": "1.13",
 		"health": 20,
 		"height": 0.5,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Summon", "Light level"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/phantom.gif"
 	},
     {
@@ -594,9 +594,9 @@
 		"release": "1.16.2",
 		"health": 50,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/piglin_brute.png"
 	},
     {
@@ -604,9 +604,9 @@
 		"release": "1.14",
 		"health": 24,
 		"height": 1.95,
-		"behavior": "Hostile Passive",
+		"behavior": ["Hostile", "Passive"],
 		"spawn": ["Overworld", "Structure", "Raids", "Jockey"],
-		"classification": "Illager",
+		"classification": ["Illager"],
 		"ressource": "/pillager.png"
 	},
     {
@@ -614,9 +614,9 @@
 		"release": "1.14",
 		"health": 100,
 		"height": 2.2,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Raids"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/ravager.png"
 	},
     {
@@ -624,9 +624,9 @@
 		"release": "1.9",
 		"health": 30,
 		"height": 1,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure", "Duplication"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/shulker.png"
 	},
     {
@@ -634,9 +634,9 @@
 		"release": "Beta 1.7",
 		"health": 8,
 		"height": 0.3,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Block", "Spawner", "Magic"],
-		"classification": "Arthropod",
+		"classification": ["Arthropod"],
 		"ressource": "/silverfish.gif"
 	},
     {
@@ -644,9 +644,9 @@
 		"release": "pre-alpha",
 		"health": 20,
 		"height": 1.99,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Biome", "Spawner", "Lightning", "Jockey", "Structure"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/skeleton.png"
 	},
     {
@@ -654,9 +654,9 @@
 		"release": "Alpha 1.0.11",
 		"health": 16,
 		"height": 2.04,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Biome", "Magic", "Spawner"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/slime.png"
 	},
     {
@@ -664,9 +664,9 @@
 		"release": "1.10",
 		"health": 20,
 		"height": 1.99,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Biome", "Conversion", "Spawner"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/stray.png"
 	},
     {
@@ -674,9 +674,9 @@
 		"release": "1.11",
 		"health": 14,
 		"height": 0.8,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Summon"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/vex.gif"
 	},
     {
@@ -684,9 +684,9 @@
 		"release": "1.11",
 		"health": 24,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure", "Raids", "Jockey"],
-		"classification": "Illager",
+		"classification": ["Illager"],
 		"ressource": "/vindicator.png"
 	},
     {
@@ -694,9 +694,9 @@
 		"release": "1.19",
 		"health": 500,
 		"height": 2.9,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Block", "Summon"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/warden.gif"
 	},
     {
@@ -704,9 +704,9 @@
 		"release": "1.4.2",
 		"health": 26,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Structure", "Raids", "Conversion", "Lightning"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/witch.png"
 	},
     {
@@ -714,9 +714,9 @@
 		"release": "1.4.2",
 		"health": 20,
 		"height": 2.4,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/wither_skeleton.png"
 	},
     {
@@ -724,9 +724,9 @@
 		"release": "1.16",
 		"health": 40,
 		"height": 1.4,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Conversion"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/zoglin.png"
 	},
     {
@@ -734,9 +734,9 @@
 		"release": "pre-alpha",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Conversion", "Spawner", "Jockey", "Reinforcements", "Sieges"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/zombie.png"
 	},
     {
@@ -744,9 +744,9 @@
 		"release": "1.4.2",
 		"health": 20,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Conversion", "Structure", "Jockey", "Reinforcements"],
-		"classification": "Undead",
+		"classification": ["Undead"],
 		"ressource": "/zombie_villager.png"
 	},
     {
@@ -754,9 +754,9 @@
 		"release": "1.21.4",
 		"health": 1,
 		"height": 2.7,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Block"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/creaking.png"
 	},
     {
@@ -764,9 +764,9 @@
 		"release": "1.0.0",
 		"health": 200,
 		"height": 8,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Structure", "Summon"],
-		"classification": "Boss",
+		"classification": ["Boss"],
 		"ressource": "/ender_dragon.gif"
 	},
     {
@@ -774,9 +774,9 @@
 		"release": "1.4.2",
 		"health": 300,
 		"height": 3.5,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Summon"],
-		"classification": "Undead Boss",
+		"classification": ["Undead", "Boss"],
 		"ressource": "/wither.png"
 	},
     {
@@ -784,9 +784,9 @@
 		"release": "1.6.1",
 		"health": 15,
 		"height": 1.6,
-		"behavior": "Passive",
+		"behavior": ["Passive"],
 		"spawn": ["Command"],
-		"classification": "Undead Animal",
+		"classification": ["Undead", "Animal"],
 		"ressource": "/zombie_horse.png"
 	},
     {
@@ -794,9 +794,9 @@
 		"release": "pre-alpha",
 		"health": 100,
 		"height": 12,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Light level", "Command"],
-		"classification": "None",
+		"classification": ["None"],
 		"ressource": "/giant.png"
 	},
     {
@@ -804,9 +804,9 @@
 		"release": "1.12",
 		"health": 32,
 		"height": 1.95,
-		"behavior": "Hostile",
+		"behavior": ["Hostile"],
 		"spawn": ["Command"],
-		"classification": "Illager",
+		"classification": ["Illager"],
 		"ressource": "/illusioner.png"
 	}
 ]
