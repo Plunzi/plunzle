@@ -3,9 +3,9 @@ interface Entry {
 	release: string;
 	health: number;
 	height: number;
-	behavior: string;
+	behavior: string[];
 	spawn: string[];
-	classification: string;
+	classification: string[];
 	ressource: string;
 }
 

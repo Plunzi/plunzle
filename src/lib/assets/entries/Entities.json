@@ -194,7 +194,7 @@
 		"release": "1.8",
 		"health": 3,
 		"height": 0.5,
-		"behavior": ["Passive", ["Hostile"]],
+		"behavior": ["Passive", "Hostile"],
 		"spawn": ["Biome", "Breeding"],
 		"classification": ["Animal"],
 		"ressource": "/rabbit.png"
@@ -334,7 +334,7 @@
 		"release": "Beta 1.8",
 		"health": 12,
 		"height": 0.5,
-		"behavior": "Hostile Neutral",
+		"behavior": ["Hostile", "Neutral"],
 		"spawn": ["Spawner"],
 		"classification": ["Arthropod"],
 		"ressource": "/cave_spider.png"
@@ -354,7 +354,7 @@
 		"release": "1.13",
 		"health": 20,
 		"height": 1.95,
-		"behavior": ["Hostile ", "Passive", ["Neutral"]],
+		"behavior": ["Hostile ", "Passive", "Neutral"],
 		"spawn": ["Conversion", "Biome", "Jockey", "Structure", "Reinforcements"],
 		"classification": ["Undead"],
 		"ressource": "/drowned.png"
@@ -374,7 +374,7 @@
 		"release": "1.14",
 		"health": 10,
 		"height": 0.7,
-		"behavior": "Passive Neutral",
+		"behavior": ["Passive", "Neutral"],
 		"spawn": ["Biome", "Breeding"],
 		"classification": ["Animal"],
 		"ressource": "/fox.png"
@@ -444,7 +444,7 @@
 		"release": "pre-alpha",
 		"health": 16,
 		"height": 0.9,
-		"behavior": "Neutral Hostile",
+		"behavior": ["Neutral", "Hostile"],
 		"spawn": ["Light level", "Spawner", "Jockey"],
 		"classification": ["Arthropod"],
 		"ressource": "/spider.png"

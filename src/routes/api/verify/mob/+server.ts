@@ -26,9 +26,9 @@ interface Mob {
 	release: string;
 	health: number;
 	height: number;
-	behavior: string;
+	behavior: string[];
 	spawn: string[];
-	classification: string;
+	classification: string[];
 	ressource: string;
 }
 
@@ -121,9 +121,9 @@ export const POST = async ({ locals, request }) => {
 		release: compareReleaseVersion(selectedMob, dailyEntity.release),
 		health: compareHealth(selectedMob, dailyEntity.health),
 		height: compareHeight(selectedMob, dailyEntity.height),
-		behavior: compareRegular(selectedMob.behavior, dailyEntity.behavior),
+		behavior: compareArrays(selectedMob.behavior, dailyEntity.behavior),
 		spawn: compareArrays(selectedMob.spawn, dailyEntity.spawn),
-		classification: compareRegular(selectedMob.classification, dailyEntity.classification)
+		classification: compareArrays(selectedMob.classification, dailyEntity.classification)
 	};
 
 	const TRIES = updateTries(PREVIOUS_DATA?.tries);

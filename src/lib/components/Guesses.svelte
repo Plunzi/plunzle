@@ -59,32 +59,39 @@
 		</div>
 		<div
 			style="background-image: url('/gui/sprites/{guess.dailyMob.behavior}.png')"
-			class="relative flex h-28 w-28 items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+			class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
 		>
-			<span
-				class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-base leading-4"
-				>{guess.pickedMob.behavior}</span
-			>
+			{#each guess.pickedMob.behavior as behavior}
+				<p
+					class="bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-base leading-4"
+				>
+					{behavior}
+				</p>
+			{/each}
 		</div>
 		<div
 			style="background-image: url('/gui/sprites/{guess.dailyMob.spawn}.png')"
-			class="relative flex h-28 w-28 items-center flex-col justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+			class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
 		>
 			{#each guess.pickedMob.spawn as spawn}
 				<p
 					class="bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-base leading-4"
-					>{spawn}
+				>
+					{spawn}
 				</p>
 			{/each}
 		</div>
 		<div
 			style="background-image: url('/gui/sprites/{guess.dailyMob.classification}.png')"
-			class="relative flex h-28 w-28 items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+			class="relative flex h-28 w-28 flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
 		>
-			<span
-				class="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-base leading-4"
-				>{guess.pickedMob.classification}</span
-			>
+			{#each guess.pickedMob.classification as classification}
+				<p
+					class="bottom-0 left-0 right-0 top-0 flex items-center justify-center text-center font-minecraft text-base leading-4"
+				>
+					{classification}
+				</p>
+			{/each}
 		</div>
 	</div>
 {/each}

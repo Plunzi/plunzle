@@ -77,7 +77,7 @@
 				finished = true;
 			}
 		} else {
-			alert(`Error: ${dailyMob.error}`)
+			alert(`Error: ${dailyMob.error}`);
 			entities.push(field);
 		}
 	};
@@ -152,6 +152,17 @@
 										>{mob[field]}</span
 									>
 								</div>
+							{:else if i === 4}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-base leading-5">
+											{display}
+										</p>
+									{/each}
+								</div>
 							{:else if i === 5}
 								<div
 									style="background-image: url('/gui/sprites/slot.png')"
@@ -163,9 +174,19 @@
 										</p>
 									{/each}
 								</div>
+							{:else if i === 6}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-base leading-5">
+											{display}
+										</p>
+									{/each}
+								</div>
 							{:else}
 								<div
-									class:rounded-r-lg={i == 6}
 									style="background-image: url('/gui/sprites/slot.png')"
 									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
 								>

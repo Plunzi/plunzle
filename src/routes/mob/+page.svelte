@@ -16,9 +16,9 @@
 		release: string;
 		health: number;
 		height: number;
-		behavior: string;
+		behavior: string[];
 		spawn: string[];
-		classification: string;
+		classification: string[];
 		ressource: string;
 	}
 
@@ -45,8 +45,8 @@
 		let filtered = entities.filter(
 			(mob) =>
 				mob.mob.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				mob.behavior.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				mob.classification.toLowerCase().includes(searchTerm.toLowerCase())
+				mob.behavior.includes(searchTerm.toLowerCase()) ||
+				mob.classification.includes(searchTerm.toLowerCase())
 		);
 
 		function compareVersions(a: string, b: string): number {
