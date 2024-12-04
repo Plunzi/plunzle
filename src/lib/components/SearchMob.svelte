@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import { fade } from 'svelte/transition';
 
@@ -146,16 +147,30 @@
 	}
 
 	// Rune-based reactive variables
-	let minVersion = $state('1.0.0');
-	let maxVersion = $state('1.5.0');
+	let options = $state({
+		minRelease: 'pre-alpha',
+		maxRelease: '1.21.4',
+		minHealth: '',
+		maxHealth: '',
+		minHeigth: '',
+		maxHeigth: '',
+		behavior: '',
+		spawn: '',
+		classification: ''
+	});
+
+	let releaseVersions: any = $state([]);
+
+	onMount(() => {
+		let versions = entities.map((mob: Entry) => mob.release);
+		releaseVersions = [...new Set(versions)].sort();
+	});
 
 	// Derived rune for filtering
 	const filteredEntries = $derived.by(() => {
-		return entities.filter((entry: Entry	) => isVersionInRange(entry, minVersion, maxVersion));
-	});
-
-	$effect(() => {
-		console.log(filteredEntries);
+		return filteredMobs.filter((entry: Entry) =>
+			isVersionInRange(entry, options.minRelease, options.maxRelease)
+		);
 	});
 </script>
 
@@ -524,7 +539,7 @@
 			</div>
 		{:else if mode === 'filter'}
 			<div
-				class="h-30 sticky left-8 right-0 top-0 z-10 w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 backdrop-blur-sm"
+				class="h-30 sticky left-8 right-0 top-0 z-10 w-fit rounded-xl bg-[#00000050] p-2 backdrop-blur-sm"
 			>
 				<div class="flex rounded-lg bg-[#00000090] backdrop-blur-sm">
 					{#each entryFields as field}
@@ -553,89 +568,109 @@
 				</div>
 				<div class="mt-2 flex gap-2">
 					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span class="absolute left-0 right-0 my-auto text-center text-lg">mob</span>
-					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+						class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 					>
 						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
 							class:-translate-y-2={true}>release</span
 						>
 						<span
 							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>pre alpha - 1.14</span
+							class:translate-y-3={true}>{options.minRelease} - {options.maxRelease}</span
 						>
 					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
-							class:-translate-y-2={true}>health</span
+					{#if options.minHealth || options.maxHealth}
+						<button
+							class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 						>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>12 - 200</span
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
+								class:-translate-y-2={true}>health</span
+							>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-sm"
+								class:translate-y-3={true}>{options.minHealth} - {options.maxHealth}</span
+							>
+						</button>
+					{/if}
+					{#if options.minHeigth || options.minHeigth}
+						<button
+							class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 						>
-					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
-							class:-translate-y-2={true}>height</span
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
+								class:-translate-y-2={true}>height</span
+							>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-sm"
+								class:translate-y-3={true}>{options.minHeigth} - {options.maxHealth}</span
+							>
+						</button>
+					{/if}
+					{#if options.behavior}
+						<button
+							class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 						>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>0.2 - 1.6</span
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
+								class:-translate-y-2={true}>behavior</span
+							>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-sm"
+								class:translate-y-3={true}>{options.behavior}</span
+							>
+						</button>
+					{/if}
+					{#if options.spawn}
+						<button
+							class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 						>
-					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
-							class:-translate-y-2={true}>behavior</span
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
+								class:-translate-y-2={true}>spawn</span
+							>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-sm"
+								class:translate-y-3={true}>{options.spawn}</span
+							>
+						</button>
+					{/if}
+					{#if options.classification}
+						<button
+							class="relative z-10 flex h-12 w-40 items-center gap-4 rounded-lg border-neutral-800 bg-[#00000090] text-lg text-neutral-500 hover:bg-[#0a2620] hover:ring-1 hover:ring-[#36bf68] focus:bg-[#0a2620] focus:outline-none focus:ring-1 focus:ring-[#36bf68] 4xl:w-32"
 						>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>passive</span
-						>
-					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
-							class:-translate-y-2={true}>spawn</span
-						>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>duplication</span
-						>
-					</button>
-					<button
-						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
-					>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-lg"
-							class:-translate-y-2={true}>classification</span
-						>
-						<span
-							class="absolute left-0 right-0 my-auto text-center text-sm"
-							class:translate-y-3={true}>structure</span
-						>
-					</button>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-lg text-neutral-300"
+								class:-translate-y-2={true}>classification</span
+							>
+							<span
+								class="absolute left-0 right-0 my-auto text-center text-sm"
+								class:translate-y-3={true}>{options.classification}</span
+							>
+						</button>
+					{/if}
+					<div class="flex ml-auto items-center text-gray-500 gap-2">
+						<span>soon</span>
+						<button class="h-10 w-10 rounded-lg bg-[#00000090] text-lg text-gray-300">+</button>
+					</div>
 				</div>
-				<div class="mt-2 flex h-16 w-full bg-red-500">
-					<h1>Release</h1>
-					from
-					<input bind:value={minVersion} name="" id="">
-					to
-					<input bind:value={maxVersion} name="" id="">
+				<div class="mt-2 flex h-20 w-full flex-col rounded-lg bg-[#00000050] p-2">
+					<h1 class="-translate-y-1 font-medium text-neutral-300">
+						Edit filter: <span class="text-[#2da05a]">Release</span>
+					</h1>
+					<div class="flex h-10 items-center gap-2">
+						<select class="h-10 w-full rounded-lg text-center" bind:value={options.minRelease}>
+							{#each releaseVersions as version}
+								<option value={version}>{version}</option>
+							{/each}
+						</select>
+						to
+						<select class="h-10 w-full rounded-lg text-center" bind:value={options.maxRelease}>
+							{#each releaseVersions as version}
+								<option value={version}>{version}</option>
+							{/each}
+						</select>
+					</div>
 				</div>
 			</div>
 

@@ -16,23 +16,58 @@ interface Entry {
  * @returns "Higher" if mob's release version is higher, "Lower" if it's lower, and "Equal" if they match.
  */
 export function compareReleaseVersion(
-	mob: Entry,
-	targetVersion: string
+    mob: Entry,
+    targetVersion: string
 ): 'slot_right' | 'slot_wrong_higher' | 'slot_wrong_lower' {
-	const mobVersionParts = mob.release.split('.').map(Number);
-	const targetVersionParts = targetVersion.split('.').map(Number);
+    // Define version type precedence
+    const versionTypeOrder = ['alpha', 'beta', 'release'];
 
-	const maxLength = Math.max(mobVersionParts.length, targetVersionParts.length);
+    // Parse version with type extraction
+    const parseVersion = (version: string) => {
+        const alphaMatch = version.match(/^(alpha|beta)\s*([\d.]+)/i);
+        const standardMatch = version.match(/^([\d.]+)/);
 
-	for (let i = 0; i < maxLength; i++) {
-		const mobVersionPart = mobVersionParts[i] || 0; // Default to 0 if undefined
-		const targetVersionPart = targetVersionParts[i] || 0; // Default to 0 if undefined
+        if (alphaMatch) {
+            return {
+                type: alphaMatch[1].toLowerCase(),
+                number: alphaMatch[2].split('.').map(Number)
+            };
+        }
 
-		if (mobVersionPart > targetVersionPart) return 'slot_wrong_lower';
-		if (mobVersionPart < targetVersionPart) return 'slot_wrong_higher';
-	}
+        if (standardMatch) {
+            return {
+                type: 'release',
+                number: standardMatch[1].split('.').map(Number)
+            };
+        }
 
-	return 'slot_right';
+        return { type: 'unknown', number: [0] };
+    };
+
+    // Parse both versions
+    const mobParsedVersion = parseVersion(mob.release);
+    const targetParsedVersion = parseVersion(targetVersion);
+
+    // First, compare by version type
+    const typeOrderDiff = 
+        versionTypeOrder.indexOf(mobParsedVersion.type) - 
+        versionTypeOrder.indexOf(targetParsedVersion.type);
+    
+    if (typeOrderDiff > 0) return 'slot_wrong_lower';
+    if (typeOrderDiff < 0) return 'slot_wrong_higher';
+
+    // Then, compare by version number
+    const maxLength = Math.max(mobParsedVersion.number.length, targetParsedVersion.number.length);
+
+    for (let i = 0; i < maxLength; i++) {
+        const mobVersionPart = mobParsedVersion.number[i] || 0;
+        const targetVersionPart = targetParsedVersion.number[i] || 0;
+
+        if (mobVersionPart > targetVersionPart) return 'slot_wrong_lower';
+        if (mobVersionPart < targetVersionPart) return 'slot_wrong_higher';
+    }
+
+    return 'slot_right';
 }
 
 /**

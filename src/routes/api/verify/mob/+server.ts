@@ -158,7 +158,8 @@ export const POST = async ({ locals, request }) => {
 	await prisma.user.update({
 		data: {
 			tries: TRIES,
-			daily_mob_guesses: JSON.stringify(DAILY_MOB_GUESSES)
+			// my code cannot currently handle storing mob guesses
+			// daily_mob_guesses: JSON.stringify(DAILY_MOB_GUESSES)
 		},
 		where: {
 			email: session.user.email
