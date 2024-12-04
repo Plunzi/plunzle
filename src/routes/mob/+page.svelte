@@ -38,15 +38,19 @@
 	let sortField = $state<keyof Entry>('mob');
 	let sortDirection = $state('asc');
 	let finished = $state(false);
-	let mode: 'creative inventory' | 'search' = $state('search');
+	let mode: 'creative inventory' | 'search' | 'filter' = $state('search');
 	let date = new Date();
 
 	let filteredMobs: Entry[] = $derived.by(() => {
 		let filtered = entities.filter(
 			(mob) =>
 				mob.mob.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				mob.behavior.includes(searchTerm.toLowerCase()) ||
-				mob.classification.includes(searchTerm.toLowerCase())
+				mob.behavior.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+				mob.spawn.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+				mob.classification.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+				mob.release.toString().toLowerCase().includes(searchTerm.toLowerCase())||
+				mob.health.toString().toLowerCase().includes(searchTerm.toLowerCase())||
+				mob.height.toString().toLowerCase().includes(searchTerm.toLowerCase())
 		);
 
 		function compareVersions(a: string, b: string): number {
@@ -179,6 +183,9 @@
 						class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-neutral-300 focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
 					/>
 					<button
+					class:!bg-[#2da05a]={mode === 'filter'}
+					class:!text-white={mode === 'filter'}
+					onclick={() => (mode = 'filter')}
 						aria-label="filter"
 						class="contens rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 					>

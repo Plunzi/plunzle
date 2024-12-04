@@ -2,8 +2,15 @@ import { json } from '@sveltejs/kit';
 
 // Import your entities JSON (adjust path as needed)
 import minecraftEntities from '$lib/assets/entries/Entities.json';
-import { compareArrays, compareHealth, compareHeight, compareRegular, compareReleaseVersion } from '$lib/compare';
+import {
+	compareArrays,
+	compareHealth,
+	compareHeight,
+	compareRegular,
+	compareReleaseVersion
+} from '$lib/compare';
 import { PrismaClient } from '@prisma/client';
+import type { Guess, Mob } from '$lib/mobTypes';
 
 const prisma = new PrismaClient();
 
@@ -20,17 +27,6 @@ function selectDailyEntity(entities: any[]) {
 }
 
 const debug = false;
-
-interface Mob {
-	mob: string;
-	release: string;
-	health: number;
-	height: number;
-	behavior: string[];
-	spawn: string[];
-	classification: string[];
-	ressource: string;
-}
 
 interface Body {
 	mob: string;
@@ -80,12 +76,12 @@ function updateFound(found: number): number {
 }
 
 function isToday(date: Date): boolean {
-  const today = new Date()
-  return (
-    date.getFullYear() === today.getFullYear() &&
-    date.getMonth() === today.getMonth() &&
-    date.getDate() === today.getDate()
-  );
+	const today = new Date();
+	return (
+		date.getFullYear() === today.getFullYear() &&
+		date.getMonth() === today.getMonth() &&
+		date.getDate() === today.getDate()
+	);
 }
 
 export const POST = async ({ locals, request }) => {
@@ -110,9 +106,9 @@ export const POST = async ({ locals, request }) => {
 		return json({ success: false, error: 'no account in database' });
 	}
 
-  if (isToday(PREVIOUS_DATA.last_found)) {
-    return json({ success: false, error: 'You have already done your daily plunzle' });
-  }
+	if (isToday(PREVIOUS_DATA.last_found)) {
+		return json({ success: false, error: 'You have already done your daily plunzle' });
+	}
 
 	const dailyEntity: Mob = selectDailyEntity(minecraftEntities);
 
@@ -125,6 +121,14 @@ export const POST = async ({ locals, request }) => {
 		spawn: compareArrays(selectedMob.spawn, dailyEntity.spawn),
 		classification: compareArrays(selectedMob.classification, dailyEntity.classification)
 	};
+
+	const DAILY_MOB_GUESSES: Guess[] = [
+		{
+			dailyMob: response,
+			pickedMob: selectedMob,
+		},
+		...JSON.parse(PREVIOUS_DATA.daily_mob_guesses),
+	];
 
 	const TRIES = updateTries(PREVIOUS_DATA?.tries);
 
@@ -153,7 +157,8 @@ export const POST = async ({ locals, request }) => {
 
 	await prisma.user.update({
 		data: {
-			tries: TRIES
+			tries: TRIES,
+			daily_mob_guesses: JSON.stringify(DAILY_MOB_GUESSES)
 		},
 		where: {
 			email: session.user.email

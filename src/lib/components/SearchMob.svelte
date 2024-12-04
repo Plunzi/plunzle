@@ -81,13 +81,89 @@
 			entities.push(field);
 		}
 	};
+
+	function compareVersions(a: string, b: string): number {
+		// Define version type precedence
+		const versionTypeOrder = ['alpha', 'beta', 'release'];
+
+		// Extract version type and number
+		const parseVersion = (version: string) => {
+			const alphaMatch = version.match(/^(alpha|beta)\s*([\d.]+)/i);
+			const standardMatch = version.match(/^([\d.]+)/);
+
+			if (alphaMatch) {
+				return {
+					type: alphaMatch[1].toLowerCase(),
+					number: alphaMatch[2].split('.').map(Number)
+				};
+			}
+
+			if (standardMatch) {
+				return {
+					type: 'release',
+					number: standardMatch[1].split('.').map(Number)
+				};
+			}
+
+			return { type: 'unknown', number: [0] };
+		};
+
+		const parsedA = parseVersion(a);
+		const parsedB = parseVersion(b);
+
+		// First, compare by version type
+		const typeOrderDiff =
+			versionTypeOrder.indexOf(parsedA.type) - versionTypeOrder.indexOf(parsedB.type);
+		if (typeOrderDiff !== 0) return typeOrderDiff;
+
+		// Then, compare by version number
+		const maxLength = Math.max(parsedA.number.length, parsedB.number.length);
+
+		for (let i = 0; i < maxLength; i++) {
+			const numA = parsedA.number[i] || 0;
+			const numB = parsedB.number[i] || 0;
+
+			if (numA !== numB) {
+				return numA - numB;
+			}
+		}
+
+		return 0;
+	}
+
+	function isVersionInRange(mob: Entry, minVersion: string, maxVersion: string): boolean {
+		// If either min or max version is not provided, skip filtering
+		if (!minVersion && !maxVersion) return true;
+		if (!mob.release) return false;
+
+		// Check min version
+		const minCheck = minVersion ? compareVersions(mob.release, minVersion) >= 0 : true;
+
+		// Check max version
+		const maxCheck = maxVersion ? compareVersions(mob.release, maxVersion) <= 0 : true;
+
+		return minCheck && maxCheck;
+	}
+
+	// Rune-based reactive variables
+	let minVersion = $state('1.0.0');
+	let maxVersion = $state('1.5.0');
+
+	// Derived rune for filtering
+	const filteredEntries = $derived.by(() => {
+		return entities.filter((entry: Entry	) => isVersionInRange(entry, minVersion, maxVersion));
+	});
+
+	$effect(() => {
+		console.log(filteredEntries);
+	});
 </script>
 
 <div
 	class:opacity-0={!searchTerm && mode === 'search'}
 	class:pointer-events-none={!searchTerm && mode === 'search'}
 	style="height: calc(100vh - 11.5rem);"
-	class="mt-4 w-fit min-w-[50rem] overflow-y-scroll pl-8 pt-0 transition-all"
+	class="mt-4 w-full min-w-[50rem] overflow-y-scroll pl-8 pr-3 pt-0 transition-all"
 >
 	<div class="relative flex w-full flex-col gap-2">
 		{#if mode === 'search'}
@@ -446,6 +522,201 @@
 					alt=""
 				/>
 			</div>
+		{:else if mode === 'filter'}
+			<div
+				class="h-30 sticky left-8 right-0 top-0 z-10 w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 backdrop-blur-sm"
+			>
+				<div class="flex rounded-lg bg-[#00000090] backdrop-blur-sm">
+					{#each entryFields as field}
+						<button
+							onclick={() => (sortField = field)}
+							class="relative z-10 flex h-12 w-28 items-center gap-4 text-lg 4xl:w-32"
+						>
+							<span class="absolute left-0 right-0 my-auto text-center text-lg">{field}</span>
+						</button>
+					{/each}
+					<div
+						class:translate-x-[7rem]={sortField == 'release'}
+						class:4xl:translate-x-[8rem]={sortField == 'release'}
+						class:translate-x-[14rem]={sortField == 'health'}
+						class:4xl:translate-x-[16rem]={sortField == 'health'}
+						class:translate-x-[21rem]={sortField == 'height'}
+						class:4xl:translate-x-[24rem]={sortField == 'height'}
+						class:translate-x-[28rem]={sortField == 'behavior'}
+						class:4xl:translate-x-[32rem]={sortField == 'behavior'}
+						class:translate-x-[35rem]={sortField == 'spawn'}
+						class:4xl:translate-x-[40rem]={sortField == 'spawn'}
+						class:translate-x-[42rem]={sortField == 'classification'}
+						class:4xl:translate-x-[48rem]={sortField == 'classification'}
+						class="absolute left-0 h-12 w-28 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68] 4xl:w-32"
+					></div>
+				</div>
+				<div class="mt-2 flex gap-2">
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span class="absolute left-0 right-0 my-auto text-center text-lg">mob</span>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>release</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>pre alpha - 1.14</span
+						>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>health</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>12 - 200</span
+						>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>height</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>0.2 - 1.6</span
+						>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>behavior</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>passive</span
+						>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>spawn</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>duplication</span
+						>
+					</button>
+					<button
+						class="relative z-10 flex h-12 w-[6.55rem] items-center gap-4 rounded-lg border-neutral-800 bg-neutral-900 text-lg text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none 4xl:w-32"
+					>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-lg"
+							class:-translate-y-2={true}>classification</span
+						>
+						<span
+							class="absolute left-0 right-0 my-auto text-center text-sm"
+							class:translate-y-3={true}>structure</span
+						>
+					</button>
+				</div>
+				<div class="mt-2 flex h-16 w-full bg-red-500">
+					<h1>Release</h1>
+					from
+					<input bind:value={minVersion} name="" id="">
+					to
+					<input bind:value={maxVersion} name="" id="">
+				</div>
+			</div>
+
+			{#if filteredEntries.length === 0}
+				<p class="flex h-16 items-center justify-center rounded-xl bg-[#00000050] text-center">
+					There is currently no mob with this name!
+				</p>
+			{:else}
+				{#each filteredEntries as mob (mob)}
+					<button
+						onclick={() => verifyField(mob)}
+						in:fade={{ duration: 250 }}
+						out:fade={{ duration: 250 }}
+						animate:flip={{ duration: 250 }}
+						class="flex w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 hover:bg-[#36bf6850]"
+					>
+						{#each entryFields as field, i}
+							{#if i === 0}
+								<div class="relative flex w-fit items-center gap-4 text-lg">
+									<div
+										class="flex h-28 w-28 rounded-l-lg bg-contain bg-center bg-no-repeat 4xl:h-32 4xl:w-32"
+										style="background-image: url('/gui/sprites/slot.png')"
+									>
+										<div
+											class="mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
+											style="background-image: url('/entities{mob.ressource}')"
+										></div>
+									</div>
+									<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
+									<span
+										class="absolute bottom-6 left-0 right-0 text-center font-minecraft text-sm leading-6"
+										>{mob[field]}</span
+									>
+								</div>
+							{:else if i === 4}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-base leading-5">
+											{display}
+										</p>
+									{/each}
+								</div>
+							{:else if i === 5}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-base leading-5">
+											{display}
+										</p>
+									{/each}
+								</div>
+							{:else if i === 6}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									{#each mob[field] as display}
+										<p class="text-center font-minecraft text-base leading-5">
+											{display}
+										</p>
+									{/each}
+								</div>
+							{:else}
+								<div
+									style="background-image: url('/gui/sprites/slot.png')"
+									class="relative flex h-28 w-28 flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center font-minecraft text-base 4xl:h-32 4xl:w-32"
+								>
+									<p class="text-center font-minecraft text-base leading-5">
+										{mob[field]}
+									</p>
+								</div>
+							{/if}
+						{/each}
+					</button>
+				{/each}
+			{/if}
 		{/if}
 	</div>
 </div>
