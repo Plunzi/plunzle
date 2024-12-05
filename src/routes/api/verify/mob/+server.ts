@@ -122,13 +122,13 @@ export const POST = async ({ locals, request }) => {
 		classification: compareArrays(selectedMob.classification, dailyEntity.classification)
 	};
 
-	const DAILY_MOB_GUESSES: Guess[] = [
-		{
-			dailyMob: response,
-			pickedMob: selectedMob,
-		},
-		...JSON.parse(PREVIOUS_DATA.daily_mob_guesses),
-	];
+	// const DAILY_MOB_GUESSES: Guess[] = [
+	// 	{
+	// 		dailyMob: response,
+	// 		pickedMob: selectedMob,
+	// 	},
+	// 	...JSON.parse(PREVIOUS_DATA.daily_mob_guesses),
+	// ];
 
 	const TRIES = updateTries(PREVIOUS_DATA?.tries);
 
