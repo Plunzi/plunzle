@@ -6,8 +6,7 @@
 	import Guesses from '$lib/components/mobile/ui/Guesses.svelte';
 	import { onMount } from 'svelte';
 	import SearchMob from '$lib/components/mobile/ui/SearchMob.svelte';
-	import { sheetVariants } from '$lib/components/ui/sheet/sheet-content.svelte';
-	import { page } from '$app/stores';
+	import SearchMobPopover from '$lib/components/mobile/ui/SearchMobPopover.svelte';
 
 	interface Guess {
 		dailyMob: DailyMob;
@@ -278,6 +277,7 @@
 	let mode: 'creative inventory' | 'search' | 'filter' = $state('search');
 	let date = new Date();
 	let innerWidth: number = $state(0);
+	let forceOpen = $state(false);
 
 	function onKeydown(e: KeyboardEvent) {}
 
@@ -384,11 +384,19 @@
 
 	let guesses: Guess[] = $state([]);
 
-	guesses = guesses1;
+	// guesses = guesses1;
 
 	onMount(() => {
 		innerWidth = window.innerWidth;
 		document.getElementById('searchTerm')!.focus();
+	});
+
+	$effect(() => {
+		if (forceOpen) {
+			sidepanel.searchOpen = true;
+		} else {
+			sidepanel.searchOpen = Boolean(searchTerm);
+		}
 	});
 </script>
 
@@ -498,38 +506,37 @@
 						class="relative mx-auto mt-2 flex w-full flex-col content-center items-center lg:w-fit"
 						style="height: calc(100vh - 11.5rem);"
 					>
-					<div class="relative right-0 top-0 z-10 h-fit w-full rounded-xl bg-[#00000090] px-2">
-						<div class="flex rounded-lg backdrop-blur-sm">
-							{#each entryFields as field, i}
-							<!-- class:ml-2={i === 0}
+						<div class="relative right-0 top-0 z-10 h-fit w-full rounded-xl bg-[#00000090] px-2">
+							<div class="flex rounded-lg backdrop-blur-sm">
+								{#each entryFields as field, i}
+									<!-- class:ml-2={i === 0}
 							class:mr-2={i === 6} -->
-								<button
-								
-									onclick={() => (sortField = field)}
-									class="4xl:w-32 relative z-10 flex h-12 w-full items-center gap-4 overflow-hidden"
-								>
-									<span class="absolute left-0 right-0 my-auto text-center text-sm lg:text-base"
-										>{field}</span
+									<button
+										onclick={() => (sortField = field)}
+										class="4xl:w-32 relative z-10 flex h-12 w-full items-center gap-4 overflow-hidden"
 									>
-								</button>
-							{/each}
-							<div
-								class:translate-x-[97.5%]={sortField == 'release'}
-								class:4xl:translate-x-[8rem]={sortField == 'release'}
-								class:translate-x-[195%]={sortField == 'health'}
-								class:4xl:translate-x-[16rem]={sortField == 'health'}
-								class:translate-x-[292.5%]={sortField == 'height'}
-								class:4xl:translate-x-[24rem]={sortField == 'height'}
-								class:translate-x-[390%]={sortField == 'behavior'}
-								class:4xl:translate-x-[32rem]={sortField == 'behavior'}
-								class:translate-x-[487.5%]={sortField == 'spawn'}
-								class:4xl:translate-x-[40rem]={sortField == 'spawn'}
-								class:translate-x-[585%]={sortField == 'classification'}
-								class:4xl:translate-x-[48rem]={sortField == 'classification'}
-								class="4xl:w-32 absolute h-8 top-2 scale-y-105 w-[6.9642857143rem] rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
-							></div>
+										<span class="absolute left-0 right-0 my-auto text-center text-sm lg:text-base"
+											>{field}</span
+										>
+									</button>
+								{/each}
+								<div
+									class:translate-x-[97.5%]={sortField == 'release'}
+									class:4xl:translate-x-[8rem]={sortField == 'release'}
+									class:translate-x-[195%]={sortField == 'health'}
+									class:4xl:translate-x-[16rem]={sortField == 'health'}
+									class:translate-x-[292.5%]={sortField == 'height'}
+									class:4xl:translate-x-[24rem]={sortField == 'height'}
+									class:translate-x-[390%]={sortField == 'behavior'}
+									class:4xl:translate-x-[32rem]={sortField == 'behavior'}
+									class:translate-x-[487.5%]={sortField == 'spawn'}
+									class:4xl:translate-x-[40rem]={sortField == 'spawn'}
+									class:translate-x-[585%]={sortField == 'classification'}
+									class:4xl:translate-x-[48rem]={sortField == 'classification'}
+									class="4xl:w-32 absolute top-2 h-8 w-[6.9642857143rem] scale-y-105 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
+								></div>
+							</div>
 						</div>
-					</div>
 						{#if guesses.length !== 0}
 							{#if finished}
 								<h1 class="font-minecraft text-center text-4xl font-black leading-loose">
@@ -584,11 +591,15 @@
 			{#if !finished}
 				<div class="relative mx-auto w-full lg:w-fit">
 					<div
-						class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full px-8 lg:w-[52rem] lg:min-w-[52rem]"
+						class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full px-2 lg:w-[52rem] lg:min-w-[52rem] lg:px-8"
 					>
 						<button
+							onclick={() => {
+								forceOpen = false;
+								forceOpen = true;
+							}}
 							aria-label="search"
-							class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
+							class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 focus:outline-none"
 							><svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="1em"
@@ -604,13 +615,16 @@
 							>
 						</button>
 
-						<input
+						<button
+							onclick={() => {
+								forceOpen = false;
+								forceOpen = true;
+							}}
 							id="searchTerm"
-							bind:value={searchTerm}
 							name="quick-overall-search"
-							placeholder="Search ... {sidepanel.searchOpen}"
-							class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-neutral-300 focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
-						/>
+							class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-left text-[#9ca3af] focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
+							>{searchTerm || 'Search ...'}
+						</button>
 						<button
 							class:!bg-[#2da05a]={mode === 'filter'}
 							class:!text-white={mode === 'filter'}
@@ -712,13 +726,74 @@
 				</div>
 
 				<Sheet.Root bind:open={sidepanel.searchOpen}>
-					<Sheet.Content side={'left'} class="w-[50%]" style="max-width: none;">
-						<div class="h-[50vh]">
-							<Sheet.Header>
+					<Sheet.Content
+						side={'bottom'}
+						class="h-[80%] border-neutral-800 bg-neutral-950"
+						style="max-width: none;"
+					>
+						<div class="flex gap-2 relative z-50">
+							<div
+								class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full lg:w-[52rem] lg:min-w-[52rem] lg:px-8"
+							>
+								<div
+									class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="1em"
+										height="1em"
+										fill="currentColor"
+										viewBox="0 0 256 256"
+										class="h-10 w-11 fill-[currentcolor] p-2 px-2.5"
+										data-darkreader-inline-fill=""
+										style="--darkreader-inline-fill: currentColor;"
+										><rect width="256" height="256" fill="none"></rect><path
+											d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+										></path></svg
+									>
+								</div>
+
+								<input
+									id="searchTerm"
+									bind:value={searchTerm}
+									name="quick-overall-search"
+									placeholder="Search ..."
+									class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-neutral-300 focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
+								/>
+
+								<Sheet.Close
+									class="flex max-h-10 min-h-10 min-w-10 max-w-10 rounded-lg bg-neutral-900 text-neutral-500 ring-offset-background transition-opacity hover:bg-[#278c4c] hover:text-white hover:opacity-100 focus:bg-[#2da05a] focus:text-white focus:outline-none focus:ring-2"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="32"
+										height="32"
+										class="h-10 w-11 fill-[currentcolor] p-2 px-2"
+										fill="currentcolor"
+										viewBox="0 0 256 256"
+										><path
+											d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+										></path></svg
+									>
+									<span class="sr-only">Close</span>
+								</Sheet.Close>
+							</div>
+						</div>
+						<div class="h-full pt-4">
+							<Sheet.Header class="overflow-y-scroll h-full">
 								<Sheet.Title>Are you sure absolutely sure?</Sheet.Title>
+								<SearchMobPopover
+									bind:entities
+									{entryFields}
+									{filteredMobs}
+									bind:finished
+									bind:guesses
+									{searchTerm}
+									bind:sortField
+									{mode}
+								></SearchMobPopover>
 								<Sheet.Description>
-									This action cannot be undone. This will permanently delete your account and remove
-									your data from our servers.
+									No Minecraft mob was found with the search criteria and filters you entered!
 								</Sheet.Description>
 							</Sheet.Header>
 						</div>
