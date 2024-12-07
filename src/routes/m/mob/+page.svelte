@@ -587,7 +587,8 @@
 				</div>
 			{/if}
 		{/if}
-		<div class="w-full bg-green-500 lg:mx-auto" class:ml-auto={finished}>
+		<!-- <div class="w-full bg-green-500 lg:mx-auto" class:ml-auto={finished}> -->
+		<div class="w-full lg:mx-auto" class:ml-auto={finished}>
 			{#if !finished}
 				<div class="relative mx-auto w-full lg:w-fit">
 					<div
@@ -725,80 +726,83 @@
 					<Guesses {guesses} />
 				</div>
 
-				<Sheet.Root bind:open={sidepanel.searchOpen}>
-					<Sheet.Content
-						side={'bottom'}
-						class="h-[80%] border-neutral-800 bg-neutral-950"
-						style="max-width: none;"
-					>
-						<div class="flex gap-2 relative z-50">
-							<div
-								class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full lg:w-[52rem] lg:min-w-[52rem] lg:px-8"
-							>
+				{#if innerWidth < 1600}
+					<Sheet.Root bind:open={sidepanel.searchOpen}>
+						<Sheet.Content
+							side={'bottom'}
+							class="h-[90%] border-neutral-800 bg-neutral-950 !p-0"
+							style="max-width: none;"
+						>
+							<div class="relative z-50 flex gap-2">
 								<div
-									class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
+									class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full px-4 pt-4 lg:w-[52rem] lg:min-w-[52rem] lg:px-8 mx-auto"
 								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="1em"
-										height="1em"
-										fill="currentColor"
-										viewBox="0 0 256 256"
-										class="h-10 w-11 fill-[currentcolor] p-2 px-2.5"
-										data-darkreader-inline-fill=""
-										style="--darkreader-inline-fill: currentColor;"
-										><rect width="256" height="256" fill="none"></rect><path
-											d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-										></path></svg
+									<div
+										class="contens absolute rounded-l-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="1em"
+											height="1em"
+											fill="currentColor"
+											viewBox="0 0 256 256"
+											class="h-10 w-11 fill-[currentcolor] p-2 px-2.5"
+											data-darkreader-inline-fill=""
+											style="--darkreader-inline-fill: currentColor;"
+											><rect width="256" height="256" fill="none"></rect><path
+												d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+											></path></svg
+										>
+									</div>
+
+									<input
+										id="searchTerm"
+										bind:value={searchTerm}
+										name="quick-overall-search"
+										placeholder="Search ..."
+										class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-neutral-300 focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
+									/>
+
+									<Sheet.Close
+										class="flex max-h-10 min-h-10 min-w-10 max-w-10 rounded-lg bg-neutral-900 text-neutral-500 ring-offset-background transition-opacity hover:bg-[#278c4c] hover:text-white hover:opacity-100 focus:bg-[#2da05a] focus:text-white focus:outline-none focus:ring-2"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="32"
+											height="32"
+											class="h-10 w-11 fill-[currentcolor] p-2 px-2"
+											fill="currentcolor"
+											viewBox="0 0 256 256"
+											><path
+												d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+											></path></svg
+										>
+										<span class="sr-only">Close</span>
+									</Sheet.Close>
 								</div>
-
-								<input
-									id="searchTerm"
-									bind:value={searchTerm}
-									name="quick-overall-search"
-									placeholder="Search ..."
-									class="mr-4 w-full rounded-lg bg-[#161616] px-3 py-2 pl-14 text-neutral-300 focus:outline-none focus:ring-1 focus:ring-[#36bf68]"
-								/>
-
-								<Sheet.Close
-									class="flex max-h-10 min-h-10 min-w-10 max-w-10 rounded-lg bg-neutral-900 text-neutral-500 ring-offset-background transition-opacity hover:bg-[#278c4c] hover:text-white hover:opacity-100 focus:bg-[#2da05a] focus:text-white focus:outline-none focus:ring-2"
-								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="32"
-										height="32"
-										class="h-10 w-11 fill-[currentcolor] p-2 px-2"
-										fill="currentcolor"
-										viewBox="0 0 256 256"
-										><path
-											d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
-										></path></svg
-									>
-									<span class="sr-only">Close</span>
-								</Sheet.Close>
 							</div>
-						</div>
-						<div class="h-full pt-4">
-							<Sheet.Header class="overflow-y-scroll h-full">
-								<Sheet.Title>Are you sure absolutely sure?</Sheet.Title>
-								<SearchMobPopover
-									bind:entities
-									{entryFields}
-									{filteredMobs}
-									bind:finished
-									bind:guesses
-									{searchTerm}
-									bind:sortField
-									{mode}
-								></SearchMobPopover>
-								<Sheet.Description>
-									No Minecraft mob was found with the search criteria and filters you entered!
-								</Sheet.Description>
-							</Sheet.Header>
-						</div>
-					</Sheet.Content>
-				</Sheet.Root>
+							<div class="h-full pt-4">
+								<Sheet.Header class="h-full overflow-y-scroll">
+									<SearchMobPopover
+										bind:entities
+										{entryFields}
+										{filteredMobs}
+										bind:finished
+										bind:guesses
+										{searchTerm}
+										bind:sortField
+										{mode}
+									></SearchMobPopover>
+									{#if filteredMobs.length === 0}
+										<Sheet.Description class="lg:w-[52rem] lg:mx-auto lg:px-4 lg:text-center">
+											No Minecraft mob was found with the search criteria and filters you entered!
+										</Sheet.Description>
+									{/if}
+								</Sheet.Header>
+							</div>
+						</Sheet.Content>
+					</Sheet.Root>
+				{/if}
 			</div>
 		</div>
 	</main>

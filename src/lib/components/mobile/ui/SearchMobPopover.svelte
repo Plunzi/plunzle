@@ -163,90 +163,82 @@
 </script>
 
 {#if mode === 'search'}
-	{#if filteredMobs.length === 0}
-		<p class="flex h-16 items-center justify-center rounded-xl bg-[#00000050] text-center">
-			There is currently no mob with this name!
-		</p>
-	{:else}
-		{#each filteredMobs as mob, i (mob)}
-			<button
-				class:mt-2={i !== 0}
-				onclick={() => verifyField(mob)}
-				in:fade={{ duration: 250 }}
-				out:fade={{ duration: 250 }}
-				animate:flip={{ duration: 250 }}
-				class="flex w-full cursor-pointer rounded-xl bg-[#00000050] p-2 hover:bg-[#36bf6850]"
-			>
-				{#each entryFields as field, i}
-					{#if i === 0}
+	{#each filteredMobs as mob, i (mob)}
+		<button
+			class:mt-2={i !== 0}
+			onclick={() => verifyField(mob)}
+			in:fade={{ duration: 250 }}
+			out:fade={{ duration: 250 }}
+			animate:flip={{ duration: 250 }}
+			class="flex w-full cursor-pointer rounded-xl lg:w-[52rem] lg:mx-auto lg:px-4"
+		>
+			<div class="flex px-4 w-full">
+				<div
+					class="4xl:h-32 4xl:w-32 relative flex aspect-square min-w-20 max-w-20 flex-col items-center justify-center bg-neutral-900 rounded-l-lg bg-contain bg-center bg-no-repeat text-center text-base"
+				>
+					<div
+						class="4xl:h-32 4xl:w-32 flex aspect-square rounded-l-lg bg-contain bg-center bg-no-repeat"
+					>
 						<div
-							class="4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat text-center text-base lg:h-28 lg:w-[6.75rem]"
-							style="background-image: url('/gui/sprites/slot.png')"
-						>
+							class=" mx-auto mt-0 h-12 w-12 bg-contain bg-center bg-no-repeat"
+							style="background-image: url('/entities{mob.ressource}')"
+						></div>
+					</div>
+					<span class=" text-center text-sm leading-6">{mob.mob}</span>
+				</div>
+				<div class="grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1 bg-[#111111] overflow-hidden h-[12.5rem] sm:h-[7.1rem] rounded-r-lg p-2 w-full">
+					{#each entryFields as field, i}
+						{#if i === 0}{:else if i === 4}
 							<div
-								class="4xl:h-32 4xl:w-32 flex aspect-square rounded-l-lg bg-contain bg-center bg-no-repeat lg:w-[6.75rem]"
+								style="background-image: url('/gui/sprites/slot.png')"
+								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
 							>
-								<div
-									class="font-minecraft mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
-									style="background-image: url('/entities{mob.ressource}')"
-								></div>
+								{#each mob[field] as display}
+									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+										{display}
+									</p>
+								{/each}
 							</div>
-							<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
-							<span
-								class="font-minecraft absolute bottom-6 left-0 right-0 text-center text-sm leading-6"
-								>{mob[field]}</span
+						{:else if i === 5}
+							<div
+								style="background-image: url('/gui/sprites/slot.png')"
+								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
 							>
-						</div>
-					{:else if i === 4}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
+								{#each mob[field] as display}
+									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+										{display}
+									</p>
+								{/each}
+							</div>
+						{:else if i === 6}
+							<div
+								style="background-image: url('/gui/sprites/slot.png')"
+								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+							>
+								{#each mob[field] as display}
+									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+										{display}
+									</p>
+								{/each}
+							</div>
+						{:else}
+							<div
+								style="background-image: url('/gui/sprites/slot.png')"
+								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+							>
+								<p class=" text-center text-base leading-5">
+									{mob[field]}
 								</p>
-							{/each}
-						</div>
-					{:else if i === 5}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
-								</p>
-							{/each}
-						</div>
-					{:else if i === 6}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
-								</p>
-							{/each}
-						</div>
-					{:else}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							<p class="font-minecraft text-center text-base leading-5">
-								{mob[field]}
-							</p>
-						</div>
-					{/if}
-				{/each}
-			</button>
-		{/each}
-	{/if}
+							</div>
+						{/if}
+					{/each}
+				</div>
+			</div>
+		</button>
+	{/each}
 {:else if mode === 'creative inventory'}
 	<div class="relative">
-		<h1 class="font-minecraft absolute left-[2.5rem] top-[9rem] z-50 text-[2.5rem] text-[#404040]">
+		<h1 class=" absolute left-[2.5rem] top-[9rem] z-50 text-[2.5rem] text-[#404040]">
 			{selectedTab}
 		</h1>
 		<!-- top left -->
@@ -608,82 +600,76 @@
 		</div>
 	</div>
 
-	{#if filteredEntries.length === 0}
-		<p class="flex h-16 items-center justify-center rounded-xl bg-[#00000050] text-center">
-			There is currently no mob with this name!
-		</p>
-	{:else}
-		{#each filteredEntries as mob (mob)}
-			<button
-				onclick={() => verifyField(mob)}
-				in:fade={{ duration: 250 }}
-				out:fade={{ duration: 250 }}
-				animate:flip={{ duration: 250 }}
-				class="flex w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 hover:bg-[#36bf6850]"
-			>
-				{#each entryFields as field, i}
-					{#if i === 0}
-						<div class="relative flex w-fit items-center gap-4 text-lg">
+	{#each filteredEntries as mob (mob)}
+		<button
+			onclick={() => verifyField(mob)}
+			in:fade={{ duration: 250 }}
+			out:fade={{ duration: 250 }}
+			animate:flip={{ duration: 250 }}
+			class="flex w-fit cursor-pointer rounded-xl bg-[#00000050] p-2 hover:bg-[#36bf6850]"
+		>
+			{#each entryFields as field, i}
+				{#if i === 0}
+					<div class="relative flex w-fit items-center gap-4 text-lg">
+						<div
+							class="4xl:h-32 4xl:w-32 flex h-28 w-28 rounded-l-lg bg-contain bg-center bg-no-repeat"
+							style="background-image: url('/gui/sprites/slot.png')"
+						>
 							<div
-								class="4xl:h-32 4xl:w-32 flex h-28 w-28 rounded-l-lg bg-contain bg-center bg-no-repeat"
-								style="background-image: url('/gui/sprites/slot.png')"
-							>
-								<div
-									class="mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
-									style="background-image: url('/entities{mob.ressource}')"
-								></div>
-							</div>
-							<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
-							<span
-								class="font-minecraft absolute bottom-6 left-0 right-0 text-center text-sm leading-6"
-								>{mob[field]}</span
-							>
+								class="mx-auto mt-4 h-20 w-20 bg-contain bg-center bg-no-repeat"
+								style="background-image: url('/entities{mob.ressource}')"
+							></div>
 						</div>
-					{:else if i === 4}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
+						<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
+						<span
+							class=" absolute bottom-6 left-0 right-0 text-center text-sm leading-6"
+							>{mob[field]}</span
 						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
-								</p>
-							{/each}
-						</div>
-					{:else if i === 5}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
-								</p>
-							{/each}
-						</div>
-					{:else if i === 6}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							{#each mob[field] as display}
-								<p class="font-minecraft text-center text-base leading-5">
-									{display}
-								</p>
-							{/each}
-						</div>
-					{:else}
-						<div
-							style="background-image: url('/gui/sprites/slot.png')"
-							class="font-minecraft 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base lg:h-28 lg:w-[6.75rem]"
-						>
-							<p class="font-minecraft text-center text-base leading-5">
-								{mob[field]}
+					</div>
+				{:else if i === 4}
+					<div
+						style="background-image: url('/gui/sprites/slot.png')"
+						class=" 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
+					>
+						{#each mob[field] as display}
+							<p class=" text-center text-base leading-5">
+								{display}
 							</p>
-						</div>
-					{/if}
-				{/each}
-			</button>
-		{/each}
-	{/if}
+						{/each}
+					</div>
+				{:else if i === 5}
+					<div
+						style="background-image: url('/gui/sprites/slot.png')"
+						class=" 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
+					>
+						{#each mob[field] as display}
+							<p class=" text-center text-base leading-5">
+								{display}
+							</p>
+						{/each}
+					</div>
+				{:else if i === 6}
+					<div
+						style="background-image: url('/gui/sprites/slot.png')"
+						class=" 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] flex-col items-center justify-center rounded-r-lg bg-contain bg-center bg-no-repeat p-2 text-center text-base"
+					>
+						{#each mob[field] as display}
+							<p class=" text-center text-base leading-5">
+								{display}
+							</p>
+						{/each}
+					</div>
+				{:else}
+					<div
+						style="background-image: url('/gui/sprites/slot.png')"
+						class=" 4xl:h-32 4xl:w-32 relative flex aspect-square w-[14.285%] items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
+					>
+						<p class=" text-center text-base leading-5">
+							{mob[field]}
+						</p>
+					</div>
+				{/if}
+			{/each}
+		</button>
+	{/each}
 {/if}
