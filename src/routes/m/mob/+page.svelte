@@ -384,7 +384,7 @@
 
 	let guesses: Guess[] = $state([]);
 
-	guesses = guesses1;
+	// guesses = guesses1;
 
 	onMount(() => {
 		innerWidth = window.innerWidth;
