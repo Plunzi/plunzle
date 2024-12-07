@@ -37,11 +37,11 @@
 		},
 		{
 			dailyMob: {
-				behavior: 'slot_right',
+				behavior: 'slot_wrong',
 				classification: 'slot_right',
 				health: 'slot_right',
 				height: 'slot_right',
-				mob: 'slot_right',
+				mob: 'slot_wrong',
 				release: 'slot_right',
 				spawn: 'slot_right'
 			},
@@ -384,7 +384,7 @@
 
 	let guesses: Guess[] = $state([]);
 
-	// guesses = guesses1;
+	guesses = guesses1;
 
 	onMount(() => {
 		innerWidth = window.innerWidth;
@@ -410,7 +410,7 @@
 	>
 		{#if innerWidth > 1600}
 			{#if !finished}
-				<div class="hidden w-full bg-red-500 lg:mx-auto lg:!block">
+				<div class="hidden w-full lg:mx-auto lg:!block">
 					<div class="relative mx-auto w-full lg:w-fit">
 						<div
 							class="4xl:w-[61rem] 4xl:min-w-[61rem] relative flex h-fit w-full px-8 lg:w-[52rem] lg:min-w-[52rem]"
@@ -483,7 +483,7 @@
 								class:!text-white={sidepanel.searchOpen}
 								onclick={() => ((mode = 'search'), (sidepanel.searchOpen = true))}
 								aria-label="search"
-								class="contens rounded-r-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 transition-colors hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
+								class="contens rounded-r-lg border-neutral-800 bg-neutral-900 text-neutral-500 transition-colors hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 								><svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="1em"
@@ -503,8 +503,8 @@
 
 					<div
 						class:justify-center={finished}
-						class="relative mx-auto mt-2 flex w-full flex-col content-center items-center lg:w-fit"
-						style="height: calc(100vh - 11.5rem);"
+						class="relative mx-auto mt-2 px-2 flex w-full flex-col content-center items-center lg:w-fit"
+						style="height: calc(100vh - 9.5rem);"
 					>
 						<div class="relative right-0 top-0 z-10 h-fit w-full rounded-xl bg-[#00000090] px-2">
 							<div class="flex rounded-lg backdrop-blur-sm">
@@ -539,7 +539,7 @@
 						</div>
 						{#if guesses.length !== 0}
 							{#if finished}
-								<h1 class="font-minecraft text-center text-4xl font-black leading-loose">
+								<h1 class="font-minecraft text-center text-2xl lg:text-4xl font-black leading-loose">
 									Congratulations!
 								</h1>
 								<p class="-mt-4 text-center text-lg">
@@ -557,19 +557,6 @@
 							{:else}
 								<!-- <p class="h-12">{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</p> -->
 							{/if}
-							<!-- <div class="left-8 right-0 top-0 z-10 h-fit w-full rounded-xl bg-[#00000090] px-2">
-								<div class="flex rounded-lg backdrop-blur-sm">
-									{#each entryFields as field}
-										<div
-											class="4xl:w-32 relative z-10 flex h-12 w-full items-center gap-4 overflow-hidden"
-										>
-											<span class="absolute left-0 right-0 my-auto text-center text-sm lg:text-base"
-												>{field}</span
-											>
-										</div>
-									{/each}
-								</div>
-							</div> -->
 						{/if}
 						<div class="mt-2 w-full max-w-none overflow-y-scroll">
 							<SearchMob
@@ -669,7 +656,7 @@
 							class:!text-white={sidepanel.searchOpen}
 							onclick={() => ((mode = 'search'), (sidepanel.searchOpen = true))}
 							aria-label="search"
-							class="contens rounded-r-lg border-r border-neutral-800 bg-neutral-900 text-neutral-500 transition-colors hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
+							class="contens rounded-r-lg border-neutral-800 bg-neutral-900 text-neutral-500 transition-colors hover:bg-[#278c4c] hover:text-white focus:bg-[#2da05a] focus:text-white focus:outline-none"
 							><svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="1em"
@@ -689,15 +676,15 @@
 			{/if}
 			<div
 				class:justify-center={finished}
-				class="relative mx-auto mt-2 flex w-full flex-col content-center items-center lg:w-fit"
-				style="height: calc(100vh - 11.5rem);"
+				class="relative mx-auto mt-2 flex w-full flex-col content-center items-center lg:w-fit px-2 lg:px-0"
+				style="height: calc(100vh - 9.5rem);"
 			>
 				{#if guesses.length !== 0}
 					{#if finished}
-						<h1 class="font-minecraft text-center text-4xl font-black leading-loose">
+						<h1 class="font-minecraft text-center text-3xl lg:text-4xl lg:mb-5 font-black leading-loose">
 							Congratulations!
 						</h1>
-						<p class="-mt-4 text-center text-lg">
+						<p class="-mt-4 text-center lg:text-lg">
 							You discovered <strong>{date.getDay()}.{date.getMonth()}.{date.getFullYear()}</strong
 							>'s #Plunzle mob in
 							<strong>{guesses.length} {guesses.length === 1 ? 'try' : 'tries'}</strong>! 🐸
@@ -722,7 +709,7 @@
 					</div>
 				{/if}
 
-				<div class="mt-2 w-full max-w-none overflow-y-scroll">
+				<div class="mt-2 w-full max-w-none overflow-y-scroll relative z-50">
 					<Guesses {guesses} />
 				</div>
 
@@ -784,17 +771,18 @@
 							<div class="h-full pt-4">
 								<Sheet.Header class="h-full overflow-y-scroll">
 									<SearchMobPopover
+										bind:forceOpen
 										bind:entities
 										{entryFields}
 										{filteredMobs}
 										bind:finished
 										bind:guesses
-										{searchTerm}
+										bind:searchTerm
 										bind:sortField
 										{mode}
 									></SearchMobPopover>
 									{#if filteredMobs.length === 0}
-										<Sheet.Description class="lg:w-[52rem] lg:mx-auto lg:px-4 lg:text-center">
+										<Sheet.Description class="lg:w-[52rem] lg:mx-auto lg:px-4 lg:text-center flex justify-center">
 											No Minecraft mob was found with the search criteria and filters you entered!
 										</Sheet.Description>
 									{/if}

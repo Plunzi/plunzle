@@ -33,7 +33,8 @@
 		| 'Survival Inventory' = $state('Building Blocks');
 
 	let {
-		searchTerm,
+		forceOpen = $bindable(),
+		searchTerm = $bindable(),
 		entryFields,
 		sortField = $bindable(),
 		filteredMobs,
@@ -65,6 +66,9 @@
 			if (dailyMob.data.mob === 'slot_right') {
 				finished = true;
 			}
+
+			searchTerm = "";
+			forceOpen = false;
 		} else {
 			alert(`Error: ${dailyMob.error}`);
 			entities.push(field);
