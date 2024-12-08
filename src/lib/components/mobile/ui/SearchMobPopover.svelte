@@ -67,7 +67,7 @@
 				finished = true;
 			}
 
-			searchTerm = "";
+			searchTerm = '';
 			forceOpen = false;
 		} else {
 			alert(`Error: ${dailyMob.error}`);
@@ -165,7 +165,6 @@
 		);
 	});
 </script>
-
 {#if mode === 'search'}
 	{#each filteredMobs as mob, i (mob)}
 		<button
@@ -174,11 +173,11 @@
 			in:fade={{ duration: 250 }}
 			out:fade={{ duration: 250 }}
 			animate:flip={{ duration: 250 }}
-			class="flex w-full cursor-pointer rounded-xl lg:w-[52rem] lg:mx-auto lg:px-4"
+			class="flex w-full cursor-pointer rounded-xl lg:mx-auto lg:w-[52rem] lg:px-4"
 		>
-			<div class="flex px-4 w-full">
+			<div class="flex w-full px-4">
 				<div
-					class="4xl:h-32 4xl:w-32 relative flex aspect-square min-w-20 max-w-20 flex-col items-center justify-center bg-neutral-900 rounded-l-lg bg-contain bg-center bg-no-repeat text-center text-base"
+					class="4xl:h-32 4xl:w-32 relative flex aspect-square min-w-20 max-w-20 flex-col items-center justify-center rounded-l-lg bg-neutral-900 bg-contain bg-center bg-no-repeat text-center text-base"
 				>
 					<div
 						class="4xl:h-32 4xl:w-32 flex aspect-square rounded-l-lg bg-contain bg-center bg-no-repeat"
@@ -190,15 +189,21 @@
 					</div>
 					<span class=" text-center text-sm leading-6">{mob.mob}</span>
 				</div>
-				<div class="grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1 bg-[#111111] overflow-hidden h-[12.5rem] sm:h-[7.1rem] rounded-r-lg p-2 w-full">
+				<div
+					class="grid h-[12.5rem] w-full grid-cols-3 grid-rows-2 overflow-hidden rounded-r-lg bg-[#111111] p-2 sm:h-[7.1rem] sm:grid-cols-6 sm:grid-rows-1"
+				>
 					{#each entryFields as field, i}
 						{#if i === 0}{:else if i === 4}
 							<div
 								style="background-image: url('/gui/sprites/slot.png')"
-								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+								class="relative flex aspect-square w-full max-w-[100px] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
 							>
 								{#each mob[field] as display}
-									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+									<p
+										class=" text-center text-base leading-5 {mob[field].length >= 4
+											? '!text-[10px] !leading-tight'
+											: ''} {mob[field].length === 3 ? '!text-[14px] !leading-snug' : ''}"
+									>
 										{display}
 									</p>
 								{/each}
@@ -206,10 +211,14 @@
 						{:else if i === 5}
 							<div
 								style="background-image: url('/gui/sprites/slot.png')"
-								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+								class="relative flex aspect-square w-full max-w-[100px] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
 							>
 								{#each mob[field] as display}
-									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+									<p
+										class=" text-center text-base leading-5 {mob[field].length >= 4
+											? '!text-[10px] !leading-tight'
+											: ''} {mob[field].length === 3 ? '!text-[14px] !leading-snug' : ''}"
+									>
 										{display}
 									</p>
 								{/each}
@@ -217,10 +226,14 @@
 						{:else if i === 6}
 							<div
 								style="background-image: url('/gui/sprites/slot.png')"
-								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+								class="relative flex aspect-square w-full max-w-[100px] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
 							>
 								{#each mob[field] as display}
-									<p class=" text-center text-base leading-5 {mob[field].length >= 4 ? "!leading-tight !text-[10px]" : ""} {mob[field].length === 3 ? "!leading-snug !text-[14px]" : ""}">
+									<p
+										class=" text-center text-base leading-5 {mob[field].length >= 4
+											? '!text-[10px] !leading-tight'
+											: ''} {mob[field].length === 3 ? '!text-[14px] !leading-snug' : ''}"
+									>
 										{display}
 									</p>
 								{/each}
@@ -228,7 +241,7 @@
 						{:else}
 							<div
 								style="background-image: url('/gui/sprites/slot.png')"
-								class="w-full relative flex aspect-square flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base max-w-[100px]"
+								class="relative flex aspect-square w-full max-w-[100px] flex-col items-center justify-center bg-contain bg-center bg-no-repeat p-2 text-center text-base"
 							>
 								<p class=" text-center text-base leading-5">
 									{mob[field]}
@@ -625,8 +638,7 @@
 							></div>
 						</div>
 						<!-- <img class="w-16" src="/entities/{mob.ressource}" alt={`${mob[field]}`}> -->
-						<span
-							class=" absolute bottom-6 left-0 right-0 text-center text-sm leading-6"
+						<span class=" absolute bottom-6 left-0 right-0 text-center text-sm leading-6"
 							>{mob[field]}</span
 						>
 					</div>
