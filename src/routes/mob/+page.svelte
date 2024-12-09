@@ -508,9 +508,7 @@
 					>
 						<div class="relative right-0 top-0 z-10 h-fit w-full rounded-xl bg-[#00000090] px-2">
 							<div class="flex rounded-lg backdrop-blur-sm">
-								{#each entryFields as field, i}
-									<!-- class:ml-2={i === 0}
-							class:mr-2={i === 6} -->
+								{#each entryFields as field}
 									<button
 										onclick={() => (sortField = field)}
 										class="4xl:w-32 relative z-10 flex h-12 w-full items-center gap-4 overflow-hidden"
@@ -521,17 +519,17 @@
 									</button>
 								{/each}
 								<div
-									class:translate-x-[97.5%]={sortField == 'release'}
+									class:translate-x-[100%]={sortField == 'release'}
 									class:4xl:translate-x-[8rem]={sortField == 'release'}
-									class:translate-x-[195%]={sortField == 'health'}
+									class:translate-x-[190%]={sortField == 'health'}
 									class:4xl:translate-x-[16rem]={sortField == 'health'}
-									class:translate-x-[292.5%]={sortField == 'height'}
+									class:translate-x-[290%]={sortField == 'height'}
 									class:4xl:translate-x-[24rem]={sortField == 'height'}
-									class:translate-x-[390%]={sortField == 'behavior'}
+									class:translate-x-[385%]={sortField == 'behavior'}
 									class:4xl:translate-x-[32rem]={sortField == 'behavior'}
-									class:translate-x-[487.5%]={sortField == 'spawn'}
+									class:translate-x-[480%]={sortField == 'spawn'}
 									class:4xl:translate-x-[40rem]={sortField == 'spawn'}
-									class:translate-x-[585%]={sortField == 'classification'}
+									class:translate-x-[575%]={sortField == 'classification'}
 									class:4xl:translate-x-[48rem]={sortField == 'classification'}
 									class="4xl:w-32 absolute top-2 h-8 w-[6.9642857143rem] scale-y-105 rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"
 								></div>
@@ -752,7 +750,7 @@
 									</div>
 								</div>
 								<div class="h-full pt-4">
-									<div class="flex px-4 mb-4">
+									<div class="flex px-4 mb-4 lg:max-w-[50rem] lg:mx-auto">
 										{#each entryFields as field, i}
 											<button
 												class:!bg-[#278c4c]={sortField === field}
