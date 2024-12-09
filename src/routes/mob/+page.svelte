@@ -519,13 +519,13 @@
 									</button>
 								{/each}
 								<div
-									class:translate-x-[100%]={sortField == 'release'}
+									class:translate-x-[94.5%]={sortField == 'release'}
 									class:4xl:translate-x-[8rem]={sortField == 'release'}
-									class:translate-x-[190%]={sortField == 'health'}
+									class:translate-x-[191%]={sortField == 'health'}
 									class:4xl:translate-x-[16rem]={sortField == 'health'}
-									class:translate-x-[290%]={sortField == 'height'}
+									class:translate-x-[287%]={sortField == 'height'}
 									class:4xl:translate-x-[24rem]={sortField == 'height'}
-									class:translate-x-[385%]={sortField == 'behavior'}
+									class:translate-x-[383.5%]={sortField == 'behavior'}
 									class:4xl:translate-x-[32rem]={sortField == 'behavior'}
 									class:translate-x-[480%]={sortField == 'spawn'}
 									class:4xl:translate-x-[40rem]={sortField == 'spawn'}
