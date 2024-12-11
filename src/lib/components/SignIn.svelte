@@ -13,8 +13,10 @@
 </script>
 
 <div class="m-auto flex h-full w-full bg-neutral-950">
-	<div class="bg-neutral-950 border border-neutral-800 m-auto p-10 rounded-lg">
-		<h1 class="text-lg font-bold">Sign in with</h1>
+	<div class="lg:bg-neutral-950 lg:border lg:border-neutral-800 flex flex-col m-auto px-4 lg:p-10 rounded-lg">
+		<h1 class="text-xl font-extrabold text-[#2d9b55]">Preview Version</h1>
+		<p class="text-md -mt-1">Sign to beta test</p>
+        <hr class="mb-8 mt-6 border-neutral-800">
 		<div class="grid grid-cols-2 gap-4">
             <button class={oAuth} onclick={oAuthDiscord}>
                 <img class={oAuthImage} src={Discord} alt="gitlab" />
