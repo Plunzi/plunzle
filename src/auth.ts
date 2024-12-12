@@ -99,9 +99,9 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 				  })
 				}
 
-				console.log('Profile:', profile);
-				console.log('User:', user);
-				console.log('Account:', account);
+				// console.log('Profile:', profile);
+				// console.log('User:', user);
+				// console.log('Account:', account);
 
 				return true;
 			}

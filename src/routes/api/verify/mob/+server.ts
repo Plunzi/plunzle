@@ -6,11 +6,14 @@ import {
 	compareArrays,
 	compareHealth,
 	compareHeight,
-	compareRegular,
 	compareReleaseVersion
 } from '$lib/compare';
 import { PrismaClient } from '@prisma/client';
 import type { Guess, Mob } from '$lib/mobTypes';
+import getUser from '$lib/db/call/getUser';
+import getTries from '$lib/db/call/getTries.js';
+import updateTries from '$lib/db/call/updateTries';
+import updateUser from '$lib/db/call/updateUser.js';
 
 const prisma = new PrismaClient();
 
@@ -67,40 +70,33 @@ function updateStreak(
 	return { STREAK: streak, MAX_STREAK: max_streak, LAST_FOUND: last_found };
 }
 
-function updateTries(tries: number): number {
-	return tries + 1;
-}
-
 function updateFound(found: number): number {
 	return found + 1;
 }
 
 function isToday(date: Date): boolean {
-	const today = new Date();
+	const TODAY = new Date();
+	const DATE = new Date(date);
 	return (
-		date.getFullYear() === today.getFullYear() &&
-		date.getMonth() === today.getMonth() &&
-		date.getDate() === today.getDate()
+		DATE.getFullYear() === TODAY.getFullYear() &&
+		DATE.getMonth() === TODAY.getMonth() &&
+		DATE.getDate() === TODAY.getDate()
 	);
 }
 
 export const POST = async ({ locals, request }) => {
-	const session = await locals.auth();
-	const data: Body = await request.json();
+	const SESSION = await locals.auth();
+	const DATA: Body = await request.json();
 
-	if (!session) return json({ success: false, error: 'not authenticated' });
-	if (!session.user?.email) return json({ success: false, error: 'not in debug mode' });
+	if (!SESSION) return json({ success: false, error: 'not authenticated' });
+	if (!SESSION.user?.email) return json({ success: false, error: 'not in debug mode' });
 	if (debug) return json({ success: false, error: 'not in debug mode' });
 
-	const selectedMob: Mob | undefined = minecraftEntities.find((entity) => entity.mob === data.mob);
+	const SELECTED_MOB: Mob | undefined = minecraftEntities.find((entity) => entity.mob === DATA.mob);
 
-	if (!selectedMob) return json({ success: false, error: 'mob not found' });
+	if (!SELECTED_MOB) return json({ success: false, error: 'mob not found' });
 
-	const PREVIOUS_DATA = await prisma.user.findFirst({
-		where: {
-			email: session.user.email
-		}
-	});
+	const PREVIOUS_DATA = await getUser(SESSION.user.email);
 
 	if (!PREVIOUS_DATA) {
 		return json({ success: false, error: 'no account in database' });
@@ -110,16 +106,16 @@ export const POST = async ({ locals, request }) => {
 		return json({ success: false, error: 'You have already done your daily plunzle' });
 	}
 
-	const dailyEntity: Mob = selectDailyEntity(minecraftEntities);
+	const DAILY_ENTRY: Mob = selectDailyEntity(minecraftEntities);
 
 	const response = {
-		mob: data.mob === dailyEntity.mob ? 'slot_right' : 'slot_wrong',
-		release: compareReleaseVersion(selectedMob, dailyEntity.release),
-		health: compareHealth(selectedMob, dailyEntity.health),
-		height: compareHeight(selectedMob, dailyEntity.height),
-		behavior: compareArrays(selectedMob.behavior, dailyEntity.behavior),
-		spawn: compareArrays(selectedMob.spawn, dailyEntity.spawn),
-		classification: compareArrays(selectedMob.classification, dailyEntity.classification)
+		mob: DATA.mob === DAILY_ENTRY.mob ? 'slot_right' : 'slot_wrong',
+		release: compareReleaseVersion(SELECTED_MOB, DAILY_ENTRY.release),
+		health: compareHealth(SELECTED_MOB, DAILY_ENTRY.health),
+		height: compareHeight(SELECTED_MOB, DAILY_ENTRY.height),
+		behavior: compareArrays(SELECTED_MOB.behavior, DAILY_ENTRY.behavior),
+		spawn: compareArrays(SELECTED_MOB.spawn, DAILY_ENTRY.spawn),
+		classification: compareArrays(SELECTED_MOB.classification, DAILY_ENTRY.classification)
 	};
 
 	// const DAILY_MOB_GUESSES: Guess[] = [
@@ -130,10 +126,14 @@ export const POST = async ({ locals, request }) => {
 	// 	...JSON.parse(PREVIOUS_DATA.daily_mob_guesses),
 	// ];
 
-	const TRIES = updateTries(PREVIOUS_DATA?.tries);
+	const TRIES = await getTries(SESSION.user.email);
 
-	if (data.mob === dailyEntity.mob) {
-		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, dailyEntity.mob);
+    await updateTries(SESSION.user.email, TRIES + 1);
+
+    // guessed correctly
+	if (DATA.mob === DAILY_ENTRY.mob) {
+        const FINAL_TRIES = await getTries(SESSION.user.email);
+		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, DAILY_ENTRY.mob);
 		const { STREAK, MAX_STREAK, LAST_FOUND } = updateStreak(
 			PREVIOUS_DATA.streak,
 			PREVIOUS_DATA.max_streak,
@@ -141,30 +141,13 @@ export const POST = async ({ locals, request }) => {
 		);
 		const FOUND = updateFound(PREVIOUS_DATA.found);
 
-		await prisma.user.update({
-			data: {
-				found: FOUND,
-				unlocked: UNLOCKED,
-				streak: STREAK,
-				max_streak: MAX_STREAK,
-				last_found: LAST_FOUND
-			},
-			where: {
-				email: session.user.email
-			}
-		});
-	}
+		await updateUser(SESSION.user.email, FOUND, UNLOCKED, STREAK, MAX_STREAK, LAST_FOUND, FINAL_TRIES);
 
-	await prisma.user.update({
-		data: {
-			tries: TRIES,
-			// my code cannot currently handle storing mob guesses
-			// daily_mob_guesses: JSON.stringify(DAILY_MOB_GUESSES)
-		},
-		where: {
-			email: session.user.email
-		}
-	});
+        return json({
+            success: true,
+            data: response
+        });
+	}
 
 	return json({
 		success: true,
