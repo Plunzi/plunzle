@@ -132,7 +132,8 @@ export const POST = async ({ locals, request }) => {
 
     // guessed correctly
 	if (DATA.mob === DAILY_ENTRY.mob) {
-        const FINAL_TRIES = await getTries(SESSION.user.email);
+        const FINAL_TRIES = PREVIOUS_DATA.tries + await getTries(SESSION.user.email);
+
 		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, DAILY_ENTRY.mob);
 		const { STREAK, MAX_STREAK, LAST_FOUND } = updateStreak(
 			PREVIOUS_DATA.streak,
