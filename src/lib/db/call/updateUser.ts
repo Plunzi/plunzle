@@ -19,7 +19,7 @@ export default async function (email: string, found: number, unlocked: string[],
     });
 
     const CACHE_SECONDS = 60 * 60 * 24;
-    redis.setex(email, CACHE_SECONDS, JSON.stringify(DB_DATA));
+    redis.setex(`data.user.${email}`, CACHE_SECONDS, JSON.stringify(DB_DATA));
 
     return true;
 }
