@@ -1,3 +1,5 @@
+"use server"
+
 import redis from "$lib/db/redis";
 import { PrismaClient } from "@prisma/client";
 
