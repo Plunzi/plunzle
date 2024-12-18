@@ -150,7 +150,7 @@ export const POST = async ({ locals, request }) => {
 		const { STREAK, MAX_STREAK, LAST_FOUND } = updateStreak(
 			PREVIOUS_DATA.streak,
 			PREVIOUS_DATA.max_streak,
-			PREVIOUS_DATA.last_found
+			new Date(`${PREVIOUS_DATA.last_found.getFullYear()}-${PREVIOUS_DATA.last_found.getMonth() + 1}-${PREVIOUS_DATA.last_found.getDate()}`)
 		);
 
 		console.log(STREAK, MAX_STREAK, LAST_FOUND);
