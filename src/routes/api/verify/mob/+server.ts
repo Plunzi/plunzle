@@ -145,15 +145,13 @@ export const POST = async ({ locals, request }) => {
 
 		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, DAILY_ENTRY.mob);
 
-		console.log(UNLOCKED);
+		let last_found = new Date(PREVIOUS_DATA.last_found);
 
 		const { STREAK, MAX_STREAK, LAST_FOUND } = updateStreak(
 			PREVIOUS_DATA.streak,
 			PREVIOUS_DATA.max_streak,
-			new Date(`${PREVIOUS_DATA.last_found.getFullYear()}-${PREVIOUS_DATA.last_found.getMonth() + 1}-${PREVIOUS_DATA.last_found.getDate()}`)
+			new Date(`${last_found.getFullYear()}-${last_found.getMonth() + 1}-${last_found.getDate()}`)
 		);
-
-		console.log(STREAK, MAX_STREAK, LAST_FOUND);
 
 		const FOUND = updateFound(PREVIOUS_DATA.found);
 
