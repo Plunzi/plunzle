@@ -42,22 +42,31 @@ function updateUnlocked(unlocked: string[], mob: string): string[] {
 	return unlocked;
 }
 
+function isYesterday(date: Date): boolean {
+	const today = new Date();
+	const yesterday = new Date(today);
+	yesterday.setDate(today.getDate() - 1);
+	
+	const yesterdayStart = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate(), 0, 0, 0);
+	
+	const yesterdayEnd = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate(), 23, 59, 59, 999);
+	
+	return date >= yesterdayStart && date <= yesterdayEnd;
+}
+
 function updateStreak(
 	streak: number,
 	max_streak: number,
 	last_found: Date
 ): { STREAK: number; MAX_STREAK: number; LAST_FOUND: Date } {
 	const now = new Date();
-	const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-	const startOfYesterday = new Date(startOfToday.getTime() - 24 * 60 * 60 * 1000);
-	const endOfYesterday = new Date(startOfToday.getTime() - 1);
+	const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-	const wasYesterday = last_found >= startOfYesterday && last_found <= endOfYesterday;
+	const isOneDayAgo = isYesterday(last_found)
 
-	if (wasYesterday) {
+	if (isOneDayAgo) {
 		streak++;
 	} else {
-		// Reset streak to 1 if last_found was not yesterday
 		streak = 1;
 	}
 
@@ -65,7 +74,7 @@ function updateStreak(
 		max_streak = streak;
 	}
 
-	last_found = now;
+	last_found = today;
 
 	return { STREAK: streak, MAX_STREAK: max_streak, LAST_FOUND: last_found };
 }
@@ -135,11 +144,17 @@ export const POST = async ({ locals, request }) => {
         const FINAL_TRIES = PREVIOUS_DATA.tries + await getTries(SESSION.user.email);
 
 		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, DAILY_ENTRY.mob);
+
+		console.log(UNLOCKED);
+
 		const { STREAK, MAX_STREAK, LAST_FOUND } = updateStreak(
 			PREVIOUS_DATA.streak,
 			PREVIOUS_DATA.max_streak,
 			PREVIOUS_DATA.last_found
 		);
+
+		console.log(STREAK, MAX_STREAK, LAST_FOUND);
+
 		const FOUND = updateFound(PREVIOUS_DATA.found);
 
 		await updateUser(SESSION.user.email, FOUND, UNLOCKED, STREAK, MAX_STREAK, LAST_FOUND, FINAL_TRIES);
