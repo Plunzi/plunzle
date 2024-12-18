@@ -5,8 +5,6 @@ import getUser from '$lib/db/call/getUser';
 export const GET = async ({ locals }) => {
 	const SESSION = await locals.auth();
 
-	console.log(SESSION);
-
 	if (!SESSION) return json({ success: false, error: 'not authenticated' });
 	if (!SESSION.user?.email) return json({ success: false, error: 'not in debug mode' });
 
