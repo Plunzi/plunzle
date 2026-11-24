@@ -1,10 +1,27 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import Navigation from '$lib/components/Navigation.svelte';
-	import SignIn from '$lib/components/SignIn.svelte';
+	import { page } from '$app/state';
+	import Navigation from '#lib/components/Navigation.svelte';
+	import SignIn from '#lib/components/SignIn.svelte';
 
 	let user: any = $state();
 	let leaderboard: any = $state();
+
+	const isCurrentUser = (entry: any) =>
+		!!user?.data?.username && entry.username === user.data.username;
+
+	const rankBadgeClass = (i: number) => {
+		if (i === 0) return 'bg-yellow-500/15 text-yellow-200 ring-1 ring-inset ring-yellow-500/40';
+		if (i === 1) return 'bg-neutral-400/15 text-neutral-100 ring-1 ring-inset ring-neutral-400/30';
+		if (i === 2) return 'bg-orange-500/15 text-orange-200 ring-1 ring-inset ring-orange-500/40';
+		return 'bg-neutral-900 text-neutral-500';
+	};
+
+	const rankValueClass = (i: number) => {
+		if (i === 0) return 'text-yellow-200';
+		if (i === 1) return 'text-neutral-100';
+		if (i === 2) return 'text-orange-200';
+		return 'text-neutral-400';
+	};
 
 	const getUser = async () => {
 		try {
@@ -49,8 +66,8 @@
 	};
 
 	$effect(() => {
-		if ($page.data.session) {
-			if (!$page.data.session.user?.email) {
+		if (page.data.session) {
+			if (!page.data.session.user?.email) {
 				return;
 			}
 
@@ -60,52 +77,67 @@
 	});
 </script>
 
-<main class="h-full w-full flex-grow">
+<main>
 	<Navigation pageTitle={'Home'} />
 
-	{#if $page.data.session}
-		<div class="flex h-full w-full flex-col content-center items-center justify-center">
+	{#if page.data.session}
+		<div class="flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center">
 			<h2 class="-mt-2 text-base text-neutral-700">Preview Version</h2>
 			{#if leaderboard}
-				<h1 class="mt-2 text-xl text-[#2d9b55]">Top 10 Max Streaks!</h1>
-				<div class="rounded-lg bg-neutral-950 p-4">
-					<table>
-						<thead>
-							<tr class="border-b border-neutral-700">
-								<td class="w-16">Rank</td>
-								<td>Username</td>
-								<td>Max Streak</td>
-							</tr>
-						</thead>
-						<tbody>
-							{#each leaderboard as entry, i}
-								<tr class="border-b border-neutral-800">
-									<td>
-										{#if i === 0}
-											<b class="text-yellow-200">{i + 1}</b><span class="text-yellow-300">st</span>
-										{:else if i === 1}
-											<b class="text-neutral-200">{i + 1}</b><span class="text-neutral-300">nd</span
-											>
-										{:else if i === 2}
-											<b class="text-orange-200">{i + 1}</b><span class="text-orange-300">rd</span>
-										{:else}
-											<span class="text-neutral-400">{i + 1}</span><span class="text-neutral-500"
-												>th</span
-											>
-										{/if}
-									</td>
-									<td class:!text-neutral-500={i > 2} class="text-neutral-300">{entry.username}</td>
-									<td
-										class:text-neutral-500={i > 2}
-										class:text-yellow-200={i == 0}
-										class:text-neutral-200={i == 1}
-										class:text-orange-200={i == 2}
-										class="text-right">{entry.max_streak}</td
-									>
+				<div
+					class="mt-4 w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 shadow-xl"
+				>
+					<div
+						class="flex items-center gap-2 border-b border-neutral-800 bg-gradient-to-b from-neutral-900 to-neutral-950 px-5 py-3"
+					>
+						<span class="h-2 w-2 rounded-full bg-[#36bf68]"></span>
+						<h1 class="text-xs font-semibold uppercase tracking-[0.15em] text-[#36bf68]">
+							Top 10 Max Streaks
+						</h1>
+					</div>
+
+					{#if leaderboard.length === 0}
+						<p class="px-5 py-6 text-center text-sm text-neutral-500">No streaks yet.</p>
+					{:else}
+						<table class="w-full border-collapse text-sm">
+							<thead>
+								<tr class="text-left text-[0.65rem] uppercase tracking-wider text-neutral-600">
+									<th class="w-14 px-4 py-2 font-medium">#</th>
+									<th class="px-2 py-2 font-medium">Player</th>
+									<th class="px-4 py-2 text-right font-medium">Streak</th>
 								</tr>
-							{/each}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{#each leaderboard as entry, i}
+									{@const me = isCurrentUser(entry)}
+									<tr
+										class="border-t border-neutral-900 transition-colors hover:bg-neutral-900/60 {me
+											? 'bg-green-950/40'
+											: ''}"
+									>
+										<td class="px-4 py-2.5">
+											<span
+												class="flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold {rankBadgeClass(
+													i
+												)}"
+											>
+												{i + 1}
+											</span>
+										</td>
+										<td class="px-2 py-2.5 font-medium {i > 2 ? 'text-neutral-500' : 'text-neutral-200'}">
+											{entry.username}
+											{#if me}
+												<span class="ml-1 text-xs font-normal text-[#36bf68]">you</span>
+											{/if}
+										</td>
+										<td class="px-4 py-2.5 text-right font-bold tabular-nums {rankValueClass(i)}">
+											{entry.max_streak}
+										</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					{/if}
 				</div>
 			{/if}
 			{#if user}

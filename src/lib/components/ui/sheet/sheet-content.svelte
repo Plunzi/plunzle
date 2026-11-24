@@ -23,7 +23,7 @@
 	import { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import type { Snippet } from "svelte";
 	import SheetOverlay from "./sheet-overlay.svelte";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "#lib/utils.ts";
 
 	let {
 		ref = $bindable(null),

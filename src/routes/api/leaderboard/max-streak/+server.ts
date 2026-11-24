@@ -1,9 +1,8 @@
 import { json } from '@sveltejs/kit';
 
-import getUser from '$lib/db/call/getUser';
-import getMaxStreakLeaderboard from '$lib/db/call/getMaxStreakLeaderboard.js';
+import getMaxStreakLeaderboard from '#lib/server/db/call/getMaxStreakLeaderboard.ts';
 
-export const GET = async ({ locals }) => {
+export const GET = async () => {
     const LEADERBOARD_DATA = await getMaxStreakLeaderboard();
 
 	if (!LEADERBOARD_DATA) {

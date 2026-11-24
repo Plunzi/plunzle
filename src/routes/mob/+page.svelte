@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as Sheet from '$lib/components/ui/sheet/index';
-	import Navigation from '$lib/components/Navigation.svelte';
+	import * as Sheet from '#lib/components/ui/sheet/index.ts';
+	import Navigation from '#lib/components/Navigation.svelte';
 
-	import jsonEntries from '$lib/assets/entries/Entities.json';
-	import Guesses from '$lib/components/mobile/ui/Guesses.svelte';
+	import jsonEntries from '#lib/assets/entries/Entities.json';
+	import Guesses from '#lib/components/mobile/ui/Guesses.svelte';
 	import { onMount } from 'svelte';
-	import SearchMob from '$lib/components/mobile/ui/SearchMob.svelte';
-	import SearchMobPopover from '$lib/components/mobile/ui/SearchMobPopover.svelte';
+	import SearchMob from '#lib/components/mobile/ui/SearchMob.svelte';
+	import SearchMobPopover from '#lib/components/mobile/ui/SearchMobPopover.svelte';
 
 	interface Guess {
 		dailyMob: DailyMob;

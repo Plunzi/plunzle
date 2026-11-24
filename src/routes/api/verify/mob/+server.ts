@@ -1,18 +1,18 @@
 import { json } from '@sveltejs/kit';
 
 // Import your entities JSON (adjust path as needed)
-import minecraftEntities from '$lib/assets/entries/Entities.json';
+import minecraftEntities from '#lib/assets/entries/Entities.json';
 import {
 	compareArrays,
 	compareHealth,
 	compareHeight,
 	compareReleaseVersion
-} from '$lib/compare';
-import type { Guess, Mob } from '$lib/mobTypes';
-import getUser from '$lib/db/call/getUser';
-import getTries from '$lib/db/call/getTries.js';
-import updateTries from '$lib/db/call/updateTries';
-import updateUser from '$lib/db/call/updateUser.js';
+} from '#lib/compare.ts';
+import type { Guess, Mob } from '#lib/mobTypes.ts';
+import getUser from '#lib/server/db/call/getUser.ts';
+import getTries from '#lib/server/db/call/getTries.ts';
+import updateTries from '#lib/server/db/call/updateTries.ts';
+import updateUser from '#lib/server/db/call/updateUser.ts';
 
 function selectDailyEntity(entities: any[]) {
 	// Create a seed based on the current date
@@ -91,18 +91,18 @@ function isToday(date: Date): boolean {
 }
 
 export const POST = async ({ locals, request }) => {
-	const SESSION = await locals.auth();
+	const { user, session } = locals;
 	const DATA: Body = await request.json();
 
-	if (!SESSION) return json({ success: false, error: 'not authenticated' });
-	if (!SESSION.user?.email) return json({ success: false, error: 'not in debug mode' });
+	if (!session || !user) return json({ success: false, error: 'not authenticated' });
+	if (!user.email) return json({ success: false, error: 'not in debug mode' });
 	if (debug) return json({ success: false, error: 'not in debug mode' });
 
 	const SELECTED_MOB: Mob | undefined = minecraftEntities.find((entity) => entity.mob === DATA.mob);
 
 	if (!SELECTED_MOB) return json({ success: false, error: 'mob not found' });
 
-	const PREVIOUS_DATA = await getUser(SESSION.user.email);
+	const PREVIOUS_DATA = await getUser(user.email);
 
 	if (!PREVIOUS_DATA) {
 		return json({ success: false, error: 'no account in database' });
@@ -132,13 +132,13 @@ export const POST = async ({ locals, request }) => {
 	// 	...JSON.parse(PREVIOUS_DATA.daily_mob_guesses),
 	// ];
 
-	const TRIES = await getTries(SESSION.user.email);
+	const TRIES = await getTries(user.email);
 
-    await updateTries(SESSION.user.email, TRIES + 1);
+    await updateTries(user.email, TRIES + 1);
 
     // guessed correctly
 	if (DATA.mob === DAILY_ENTRY.mob) {
-        const FINAL_TRIES = PREVIOUS_DATA.tries + await getTries(SESSION.user.email);
+        const FINAL_TRIES = PREVIOUS_DATA.tries + await getTries(user.email);
 
 		const UNLOCKED = updateUnlocked(PREVIOUS_DATA.unlocked, DAILY_ENTRY.mob);
 
@@ -152,7 +152,7 @@ export const POST = async ({ locals, request }) => {
 
 		const FOUND = updateFound(PREVIOUS_DATA.found);
 
-		await updateUser(SESSION.user.email, FOUND, UNLOCKED, STREAK, MAX_STREAK, LAST_FOUND, FINAL_TRIES);
+		await updateUser(user.email, FOUND, UNLOCKED, STREAK, MAX_STREAK, LAST_FOUND, FINAL_TRIES);
 
         return json({
             success: true,

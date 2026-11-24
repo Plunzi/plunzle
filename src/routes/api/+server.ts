@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 
 // Import your entities JSON (adjust path as needed)
-import minecraftEntities from '$lib/assets/entries/Entities.json';
+import minecraftEntities from '#lib/assets/entries/Entities.json';
 import type { PageServerLoad } from '../$types';
 
 function selectDailyEntity(entities: any[]) {

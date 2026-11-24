@@ -1,7 +1,7 @@
 <script lang="ts">
     const { pageTitle } = $props();
-	import { page } from '$app/stores';
-	import { signOut } from '@auth/sveltekit/client';
+	import { page } from '$app/state';
+	import { authClient } from '#lib/auth-client.ts';
     let expanded = $state(false)
 </script>
 
@@ -26,7 +26,7 @@
 		<!-- <div class="text-neutral-500">{pageTitle}</div> -->
 	</div>
 	<div class="flex mr-4 relative">
-		{#if $page.data.session}
+		{#if page.data.session}
         <button
             onclick={() => expanded = !expanded}
 			class:!bg-[#2da05a]={expanded}
@@ -35,7 +35,7 @@
 			class:scale-95={expanded}
 			class:!text-white={expanded}
 			class="z-10 relative bg-neutral-950 focus:bg-neutral-900 hover:bg-neutral-900 flex items-center gap-2 rounded-lg pl-3 hover:ring-neutral-800 focus:ring-neutral-800 text-neutral-500  focus:outline-none focus:ring transition-all hover:ring"
-			><p class="pb-0.5">{$page.data.session?.user?.name}</p>
+			><p class="pb-0.5">{page.data.session?.user?.name}</p>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="1em"
@@ -52,19 +52,19 @@
 			<div
 				class="grid h-10 min-h-10 w-10 min-w-10 items-center justify-center rounded-lg bg-[#161616] pb-0.5 text-xl font-medium"
 			>
-				{#if $page.data.session?.user?.image}
+				{#if page.data.session?.user?.image}
 					<img
 						class="h-10 min-h-10 w-10 min-w-10 rounded-lg"
-						src={$page.data.session?.user?.image}
+						src={page.data.session?.user?.image}
 						alt="avatar"
 					/>
 				{:else}
-					{$page.data.session?.user?.name?.charAt(0)}
+					{page.data.session?.user?.name?.charAt(0)}
 				{/if}
 			</div>
         </button>
-        <div class:mt-8={expanded} class:opacity-1={expanded} class:opacity-0={!expanded} class="bg-neutral-900 border hover:text-[#36bf68] hover:bg-green-950 hover:font-semibold hover:border-[#36bf68] transition-all border-neutral-800 text-neutral-500 shadow-lg scale-[0.98] rounded-b-xl absolute h-12 w-full flex items-center">
-            <button onclick={() => signOut()} class="mt-1 w-full h-full">Log out</button>
+        <div class:pointer-events-none={!expanded} class:opacity-0={!expanded} class="bg-neutral-900 border hover:text-[#36bf68] hover:bg-green-950 hover:font-semibold hover:border-[#36bf68] transition-all border-neutral-800 text-neutral-500 shadow-lg scale-[0.98] rounded-b-xl absolute top-full right-0 z-20 h-12 w-full flex items-center">
+            <button onclick={() => authClient.signOut()} class="mt-1 w-full h-full">Log out</button>
         </div>
         {:else}
         <a

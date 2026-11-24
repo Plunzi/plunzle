@@ -1,14 +1,14 @@
 import { json } from '@sveltejs/kit';
 
-import getUser from '$lib/db/call/getUser';
+import getUser from '#lib/server/db/call/getUser.ts';
 
 export const GET = async ({ locals }) => {
-	const SESSION = await locals.auth();
+	const { user, session } = locals;
 
-	if (!SESSION) return json({ success: false, error: 'not authenticated' });
-	if (!SESSION.user?.email) return json({ success: false, error: 'not in debug mode' });
+	if (!session || !user) return json({ success: false, error: 'not authenticated' });
+	if (!user.email) return json({ success: false, error: 'not in debug mode' });
 
-    const PREVIOUS_DATA = await getUser(SESSION.user.email);
+	const PREVIOUS_DATA = await getUser(user.email);
 
 	if (!PREVIOUS_DATA) {
 		return json({ success: false, error: 'no account in database' });

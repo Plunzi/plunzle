@@ -1,16 +1,16 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
-import updateUsername from '$lib/db/call/updateUsername';
+import updateUsername from '#lib/server/db/call/updateUsername.ts';
 
 const MAX_LENGTH = 16;
 const NAME_PATTERN = /^[A-Za-z0-9 _.-]+$/;
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
-		const SESSION = await locals.auth();
+		const { user } = locals;
 
-		if (!SESSION?.user?.email) {
+		if (!user?.email) {
 			return fail(401, { error: 'You must be signed in to change your name.' });
 		}
 
@@ -35,7 +35,7 @@ export const actions: Actions = {
 			});
 		}
 
-		await updateUsername(SESSION.user.email, USERNAME);
+		await updateUsername(user.email, USERNAME);
 
 		return { success: true, username: USERNAME };
 	}

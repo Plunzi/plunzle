@@ -3,6 +3,9 @@ node_modules
 # Output
 .output
 .vercel
+.netlify
+.wrangler
+.cloudflare
 /.svelte-kit
 /build
 
@@ -16,10 +19,8 @@ Thumbs.db
 !.env.example
 !.env.test
 
-# SQLite (local dev database for Turso)
-/prisma/*.db
-/prisma/*.db-journal
-
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+# SQLite
+*.db

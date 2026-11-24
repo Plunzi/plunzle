@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
-	import Navigation from '$lib/components/Navigation.svelte';
-	import SignIn from '$lib/components/SignIn.svelte';
+	import { page } from '$app/state';
+	import Navigation from '#lib/components/Navigation.svelte';
+	import SignIn from '#lib/components/SignIn.svelte';
 
 	const MAX_LENGTH = 16;
 
-	let value = $state($page.data.session?.user?.name ?? '');
+	let value = $state(page.data.session?.user?.name ?? '');
 	let saving = $state(false);
 
 	// keep the field in sync with the saved name after a successful update
 	$effect(() => {
-		const NAME = $page.data.session?.user?.name;
+		const NAME = page.data.session?.user?.name;
 
 		if (NAME !== undefined) {
 			value = NAME ?? '';
@@ -22,7 +22,7 @@
 <main class="h-full w-full flex-grow">
 	<Navigation pageTitle={'Settings'} />
 
-	{#if $page.data.session}
+	{#if page.data.session}
 		<div class="flex h-full w-full flex-col items-center justify-center">
 			<div class="flex w-80 flex-col rounded-lg border border-neutral-800 bg-neutral-950 p-6">
 				<h1 class="text-xl font-extrabold text-[#2d9b55]">Change your name</h1>
@@ -63,9 +63,9 @@
 						{saving ? 'Saving...' : 'Save'}
 					</button>
 
-					{#if $page.form?.error}
-						<p class="mt-3 text-sm text-red-400">{$page.form.error}</p>
-					{:else if $page.form?.success}
+					{#if page.form?.error}
+						<p class="mt-3 text-sm text-red-400">{page.form.error}</p>
+					{:else if page.form?.success}
 						<p class="mt-3 text-sm text-[#36bf68]">Your name was updated.</p>
 					{/if}
 				</form>
