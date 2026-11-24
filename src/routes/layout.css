@@ -4,3 +4,15 @@ html {
     color: white;
     background: black;
 }
+
+/* Hide scrollbars visually while keeping scrolling functional */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / legacy Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, new Edge */
+    width: 0;
+    height: 0;
+}
