@@ -1,8 +1,19 @@
 <script lang="ts">
     const { pageTitle } = $props();
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 	import { authClient } from '#lib/auth-client.ts';
     let expanded = $state(false)
+
+	async function handleLogout() {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					goto('/', { invalidateAll: true });
+				}
+			}
+		});
+	}
 </script>
 
 <nav
@@ -64,7 +75,7 @@
 			</div>
         </button>
         <div class:pointer-events-none={!expanded} class:opacity-0={!expanded} class="bg-neutral-900 border hover:text-[#36bf68] hover:bg-green-950 hover:font-semibold hover:border-[#36bf68] transition-all border-neutral-800 text-neutral-500 shadow-lg scale-[0.98] rounded-b-xl absolute top-full right-0 z-20 h-12 w-full flex items-center">
-            <button onclick={() => authClient.signOut()} class="mt-1 w-full h-full">Log out</button>
+            <button onclick={handleLogout} class="mt-1 w-full h-full">Log out</button>
         </div>
         {:else}
         <a
