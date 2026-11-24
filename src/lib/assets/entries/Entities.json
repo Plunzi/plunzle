@@ -50,6 +50,16 @@
 		"ressource": "/camel.png"
 	},
 	{
+		"mob": "Camel Husk",
+		"release": "1.21.11",
+		"health": 32,
+		"height": 2.375,
+		"behavior": ["Passive"],
+		"spawn": ["Biome", "Light level"],
+		"classification": ["Undead", "Animal"],
+		"ressource": "/camel_husk.gif"
+	},
+	{
 		"mob": "Cat",
 		"release": "1.14",
 		"health": 10,
@@ -78,6 +88,16 @@
 		"spawn": ["Biome"],
 		"classification": ["Animal", "Aquatic"],
 		"ressource": "/cod.gif"
+	},
+	{
+		"mob": "Copper Golem",
+		"release": "1.21.9",
+		"health": 12,
+		"height": 0.98,
+		"behavior": ["Passive"],
+		"spawn": ["Summon"],
+		"classification": ["Golem"],
+		"ressource": "/copper_golem.gif"
 	},
 	{
 		"mob": "Cow",
@@ -120,6 +140,16 @@
 		"ressource": "/glow_squid.gif"
 	},
 	{
+		"mob": "Happy Ghast",
+		"release": "1.21.6",
+		"health": 20,
+		"height": 4,
+		"behavior": ["Passive"],
+		"spawn": ["Block"],
+		"classification": ["Animal"],
+		"ressource": "/happy_ghast.webp"
+	},
+	{
 		"mob": "Horse",
 		"release": "1.6.1",
 		"health": 22,
@@ -148,6 +178,16 @@
 		"spawn": ["Breeding"],
 		"classification": ["Animal"],
 		"ressource": "/mule.png"
+	},
+	{
+		"mob": "Nautilus",
+		"release": "1.21.11",
+		"health": 15,
+		"height": 0.95,
+		"behavior": ["Passive", "Neutral"],
+		"spawn": ["Biome"],
+		"classification": ["Aquatic", "Animal"],
+		"ressource": "/nautilus.gif"
 	},
 	{
 		"mob": "Ocelot",
@@ -460,6 +500,16 @@
 		"ressource": "/wolf.png"
 	},
     {
+		"mob": "Zombie Nautilus",
+		"release": "1.21.11",
+		"health": 15,
+		"height": 0.95,
+		"behavior": ["Neutral", "Passive"],
+		"spawn": ["Biome", "Structure"],
+		"classification": ["Aquatic", "Undead", "Animal"],
+		"ressource": "/zombie_nautilus.gif"
+	},
+    {
 		"mob": "Zombified Piglin",
 		"release": "Alpha 1.2.0",
 		"health": 20,
@@ -578,6 +628,16 @@
 		"spawn": ["Biome", "Spawner", "Structure"],
 		"classification": ["None"],
 		"ressource": "/magma_cube.png"
+	},
+    {
+		"mob": "Parched",
+		"release": "1.21.11",
+		"health": 16,
+		"height": 1.99,
+		"behavior": ["Hostile"],
+		"spawn": ["Biome", "Jockey"],
+		"classification": ["Undead"],
+		"ressource": "/parched.png"
 	},
     {
 		"mob": "Phantom",
