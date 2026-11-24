@@ -8,14 +8,11 @@ import {
 	compareHeight,
 	compareReleaseVersion
 } from '$lib/compare';
-import { PrismaClient } from '@prisma/client';
 import type { Guess, Mob } from '$lib/mobTypes';
 import getUser from '$lib/db/call/getUser';
 import getTries from '$lib/db/call/getTries.js';
 import updateTries from '$lib/db/call/updateTries';
 import updateUser from '$lib/db/call/updateUser.js';
-
-const prisma = new PrismaClient();
 
 function selectDailyEntity(entities: any[]) {
 	// Create a seed based on the current date

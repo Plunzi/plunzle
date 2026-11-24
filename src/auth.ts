@@ -15,7 +15,8 @@ import Google from '@auth/core/providers/google';
 import MicrosoftEntraID from '@auth/core/providers/microsoft-entra-id';
 import { SvelteKitAuth } from '@auth/sveltekit';
 import GitHub from '@auth/sveltekit/providers/github';
-import { PrismaClient } from '@prisma/client';
+
+import prisma from '$lib/db/prisma';
 
 import type { Profile, User, Account } from '@auth/core/types';
 
@@ -24,8 +25,6 @@ interface CallBacks {
 	user: User;
 	account: Account;
 }
-
-const prisma = new PrismaClient();
 
 export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 	const authOptions = {
@@ -92,6 +91,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 				    data: {
 				      email: user.email,
 				      username: user.name,
+				      last_found: new Date(0),
 				      roles: {
 				        connect: [{ id: 1 }]
 				      }

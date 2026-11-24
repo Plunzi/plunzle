@@ -68,7 +68,6 @@
 			<h2 class="-mt-2 text-base text-neutral-700">Preview Version</h2>
 			{#if leaderboard}
 				<h1 class="mt-2 text-xl text-[#2d9b55]">Top 10 Max Streaks!</h1>
-				<h2 class="-mt-2 mb-2 text-base text-neutral-500">Change username, soon!</h2>
 				<div class="rounded-lg bg-neutral-950 p-4">
 					<table>
 						<thead>
@@ -121,6 +120,9 @@
 				</div>
 				<p class="text-neutral-500">{user.data.email}</p>
 			{/if}
+			<a href="/settings" class="mt-2 text-base text-[#2d9b55] hover:underline"
+				>Change username</a
+			>
 			<a
 				href="/mob"
 				class="4xl:w-32 mx-auto mt-4 flex h-12 w-28 items-center justify-center rounded-lg border border-[#36bf68] bg-[#2da05a] bg-gradient-to-t from-[#278c4c] to-[#36bf68] px-4 shadow-lg transition-transform hover:bg-[#36bf68]"

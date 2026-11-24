@@ -1,16 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -22,14 +20,16 @@ model User {
   createdAt           DateTime @default(now())
   tries               Int      @default(0)
   found               Int      @default(0)
-  last_found          DateTime @default(dbgenerated("'1970-01-01T00:00:00Z'"))
+  last_found          DateTime
   streak              Int      @default(0)
   max_streak          Int      @default(0)
   daily_mob_guesses   String   @default("{}")
   daily_item_guesses  String   @default("{}")
   daily_block_guesses String   @default("{}")
-  unlocked            String[]
-  provider            String[] // still needs integration
+  daily_tries         Int      @default(0)
+  daily_tries_date    DateTime?
+  unlocked            String   @default("[]")
+  provider            String   @default("[]")
 }
 
 model Role {

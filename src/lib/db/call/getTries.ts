@@ -1,12 +1,23 @@
-import redis from "$lib/db/redis";
+import prisma from "$lib/db/prisma";
+
+function isToday(date: Date | null): boolean {
+	if (!date) return false;
+
+	const NOW = new Date();
+	return (
+		date.getFullYear() === NOW.getFullYear() &&
+		date.getMonth() === NOW.getMonth() &&
+		date.getDate() === NOW.getDate()
+	);
+}
 
 export default async function (email: string): Promise<number> {
-    const CACHED_TRIES = await redis.get(`tries.user.${email}`);
+	const USER = await prisma.user.findFirst({
+		where: { email },
+		select: { daily_tries: true, daily_tries_date: true }
+	});
 
-    if (CACHED_TRIES) {
-        return JSON.parse(CACHED_TRIES);
-    }
+	if (!USER || !isToday(USER.daily_tries_date)) return 0;
 
-    // return 0 if cache is empty
-    return 0;
+	return USER.daily_tries;
 }
